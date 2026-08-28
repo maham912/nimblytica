@@ -1,0 +1,455 @@
+{
+  "disclaimer": "FICTIONAL DEMO. Invented employer and people. Round numbers only. Not a client.",
+  "org": "Northwind Health Ops",
+  "as_of": "2026-08-01",
+  "snapshot_owner": "Alex Rivera",
+  "kpis": {
+    "headcount": 1200,
+    "open_roles": 48,
+    "attrition_12mo_pct": 12,
+    "span_of_control": 8,
+    "hires_90d": 60,
+    "terms_12mo": 140
+  },
+  "departments": [
+    {
+      "name": "Nursing",
+      "headcount": 480,
+      "open_roles": 20,
+      "attrition_pct": 16,
+      "overtime_hours_12mo": 24000,
+      "span": 10,
+      "owner": "Alex Rivera"
+    },
+    {
+      "name": "Clinical Support",
+      "headcount": 220,
+      "open_roles": 8,
+      "attrition_pct": 10,
+      "overtime_hours_12mo": 6000,
+      "span": 8,
+      "owner": "Jordan Hale"
+    },
+    {
+      "name": "Revenue Cycle",
+      "headcount": 180,
+      "open_roles": 8,
+      "attrition_pct": 14,
+      "overtime_hours_12mo": 4000,
+      "span": 7,
+      "owner": "Sam Okonkwo"
+    },
+    {
+      "name": "Operations",
+      "headcount": 100,
+      "open_roles": 4,
+      "attrition_pct": 8,
+      "overtime_hours_12mo": 2000,
+      "span": 8,
+      "owner": "Casey Nguyen"
+    },
+    {
+      "name": "IT",
+      "headcount": 80,
+      "open_roles": 4,
+      "attrition_pct": 6,
+      "overtime_hours_12mo": 1000,
+      "span": 6,
+      "owner": "Priya Shah"
+    },
+    {
+      "name": "Finance",
+      "headcount": 60,
+      "open_roles": 2,
+      "attrition_pct": 6,
+      "overtime_hours_12mo": 400,
+      "span": 6,
+      "owner": "Morgan Ellis"
+    },
+    {
+      "name": "Quality",
+      "headcount": 40,
+      "open_roles": 1,
+      "attrition_pct": 8,
+      "overtime_hours_12mo": 200,
+      "span": 8,
+      "owner": "Riley Chen"
+    },
+    {
+      "name": "Administration",
+      "headcount": 40,
+      "open_roles": 1,
+      "attrition_pct": 4,
+      "overtime_hours_12mo": 100,
+      "span": 8,
+      "owner": "Dana Brooks"
+    }
+  ],
+  "trend_headcount": [
+    {
+      "month": "2025-09",
+      "Nursing": 460,
+      "Clinical Support": 210,
+      "Revenue Cycle": 170,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1160
+    },
+    {
+      "month": "2025-10",
+      "Nursing": 460,
+      "Clinical Support": 210,
+      "Revenue Cycle": 170,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1160
+    },
+    {
+      "month": "2025-11",
+      "Nursing": 460,
+      "Clinical Support": 210,
+      "Revenue Cycle": 170,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1160
+    },
+    {
+      "month": "2025-12",
+      "Nursing": 470,
+      "Clinical Support": 210,
+      "Revenue Cycle": 170,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1170
+    },
+    {
+      "month": "2026-01",
+      "Nursing": 470,
+      "Clinical Support": 210,
+      "Revenue Cycle": 170,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1170
+    },
+    {
+      "month": "2026-02",
+      "Nursing": 470,
+      "Clinical Support": 220,
+      "Revenue Cycle": 180,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1190
+    },
+    {
+      "month": "2026-03",
+      "Nursing": 470,
+      "Clinical Support": 220,
+      "Revenue Cycle": 180,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1190
+    },
+    {
+      "month": "2026-04",
+      "Nursing": 470,
+      "Clinical Support": 220,
+      "Revenue Cycle": 180,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1190
+    },
+    {
+      "month": "2026-05",
+      "Nursing": 480,
+      "Clinical Support": 220,
+      "Revenue Cycle": 180,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1200
+    },
+    {
+      "month": "2026-06",
+      "Nursing": 480,
+      "Clinical Support": 220,
+      "Revenue Cycle": 180,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1200
+    },
+    {
+      "month": "2026-07",
+      "Nursing": 480,
+      "Clinical Support": 220,
+      "Revenue Cycle": 180,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1200
+    },
+    {
+      "month": "2026-08",
+      "Nursing": 480,
+      "Clinical Support": 220,
+      "Revenue Cycle": 180,
+      "Operations": 100,
+      "IT": 80,
+      "Finance": 60,
+      "Quality": 40,
+      "Administration": 40,
+      "all": 1200
+    }
+  ],
+  "trend_overtime_hours": [
+    {
+      "month": "2025-09",
+      "Nursing": 1800,
+      "Clinical Support": 400,
+      "Revenue Cycle": 300,
+      "Operations": 200,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 2800
+    },
+    {
+      "month": "2025-10",
+      "Nursing": 2000,
+      "Clinical Support": 500,
+      "Revenue Cycle": 300,
+      "Operations": 200,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 3100
+    },
+    {
+      "month": "2025-11",
+      "Nursing": 2200,
+      "Clinical Support": 600,
+      "Revenue Cycle": 400,
+      "Operations": 200,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 3500
+    },
+    {
+      "month": "2025-12",
+      "Nursing": 2800,
+      "Clinical Support": 700,
+      "Revenue Cycle": 500,
+      "Operations": 200,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 4300
+    },
+    {
+      "month": "2026-01",
+      "Nursing": 2600,
+      "Clinical Support": 600,
+      "Revenue Cycle": 400,
+      "Operations": 200,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 3900
+    },
+    {
+      "month": "2026-02",
+      "Nursing": 2000,
+      "Clinical Support": 500,
+      "Revenue Cycle": 300,
+      "Operations": 200,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 3100
+    },
+    {
+      "month": "2026-03",
+      "Nursing": 2100,
+      "Clinical Support": 500,
+      "Revenue Cycle": 400,
+      "Operations": 200,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 3300
+    },
+    {
+      "month": "2026-04",
+      "Nursing": 1800,
+      "Clinical Support": 400,
+      "Revenue Cycle": 300,
+      "Operations": 200,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 2800
+    },
+    {
+      "month": "2026-05",
+      "Nursing": 1900,
+      "Clinical Support": 500,
+      "Revenue Cycle": 300,
+      "Operations": 200,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 3000
+    },
+    {
+      "month": "2026-06",
+      "Nursing": 2000,
+      "Clinical Support": 500,
+      "Revenue Cycle": 300,
+      "Operations": 200,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 3100
+    },
+    {
+      "month": "2026-07",
+      "Nursing": 2200,
+      "Clinical Support": 600,
+      "Revenue Cycle": 400,
+      "Operations": 200,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 3500
+    },
+    {
+      "month": "2026-08",
+      "Nursing": 1600,
+      "Clinical Support": 400,
+      "Revenue Cycle": 300,
+      "Operations": 100,
+      "IT": 100,
+      "Finance": 0,
+      "Quality": 0,
+      "Administration": 0,
+      "all": 2500
+    }
+  ],
+  "top": [
+    {
+      "rank": 1,
+      "unit": "Nursing",
+      "kind": "Overtime hours, 12 months",
+      "value": 24000,
+      "note": "Largest overtime load. Check unfilled night shifts."
+    },
+    {
+      "rank": 2,
+      "unit": "Clinical Support",
+      "kind": "Overtime hours, 12 months",
+      "value": 6000,
+      "note": "Second load. Weekend coverage is the usual driver."
+    },
+    {
+      "rank": 3,
+      "unit": "Revenue Cycle",
+      "kind": "Overtime hours, 12 months",
+      "value": 4000,
+      "note": "Month-end close still spikes hours."
+    },
+    {
+      "rank": 4,
+      "unit": "Nursing",
+      "kind": "Open roles",
+      "value": 20,
+      "note": "About 40 percent of open roles sit here."
+    },
+    {
+      "rank": 5,
+      "unit": "Revenue Cycle",
+      "kind": "Attrition, 12 months",
+      "value": 14,
+      "note": "Attrition percent, not a count. Next check: 90-day stay."
+    }
+  ],
+  "new_hires": [
+    {
+      "name": "Alex Rivera",
+      "role": "Director, Nursing",
+      "dept": "Nursing",
+      "start": "2026-06-02"
+    },
+    {
+      "name": "Quinn Patel",
+      "role": "Staff Nurse",
+      "dept": "Nursing",
+      "start": "2026-07-06"
+    },
+    {
+      "name": "Taylor Brooks",
+      "role": "Coder",
+      "dept": "Revenue Cycle",
+      "start": "2026-07-13"
+    },
+    {
+      "name": "Jamie Ortiz",
+      "role": "Analyst",
+      "dept": "IT",
+      "start": "2026-07-20"
+    },
+    {
+      "name": "Chris Adeyemi",
+      "role": "Coordinator",
+      "dept": "Operations",
+      "start": "2026-07-27"
+    },
+    {
+      "name": "Morgan Ellis",
+      "role": "Manager, Finance",
+      "dept": "Finance",
+      "start": "2026-06-16"
+    }
+  ]
+}

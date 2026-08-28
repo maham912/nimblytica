@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-root="" data-page="home">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <title>Maham Marashizadeh · Nimblytica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="top" data-chrome="header"></header>
+  <main>
+    <div class="wrap hero">
+      <p class="kicker">Nimblytica Inc.</p>
+      <h1>Maham Marashizadeh</h1>
+      <p class="role">President, Nimblytica</p>
+      <p class="one-liner">Data &amp; BI | Dashboards, Pipelines, Automation &amp; Analytics</p>
+      <div class="chips" aria-label="Stack">
+        <span class="chip">Power BI</span>
+        <span class="chip">SQL</span>
+        <span class="chip">Python</span>
+        <span class="chip">Azure Data Factory</span>
+        <span class="chip">Snowflake</span>
+        <span class="chip">Automation</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn" href="demo/workforce.html">Workforce snapshot</a>
+        <a class="btn ghost" href="demo/llm.html">Briefing demo</a>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <section>
+        <h2 class="section-label">Live demos</h2>
+        <div class="grid-2">
+          <article class="card">
+            <div class="meta">Interactive · fake data</div>
+            <h3>Workforce snapshot</h3>
+            <p>Cards, 12-month trend, department slicer, top units and new names. Plotly on a static JSON file. Invented org: Northwind Health Ops.</p>
+            <a class="more" href="demo/workforce.html">Open the dashboard →</a>
+          </article>
+          <article class="card">
+            <div class="meta">Python-flavored · no API key</div>
+            <h3>Metrics briefing</h3>
+            <p>A small function reads the same JSON and prints a five-bullet briefing. This is the pattern for an LLM layer on a metrics model, with a deterministic fallback.</p>
+            <a class="more" href="demo/llm.html">Run the briefing →</a>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-label">Work notes</h2>
+        <div class="grid-3">
+          <article class="card">
+            <div class="meta">Azure SQL · Blob · ADF · Power BI</div>
+            <h3>Firewalled warehouse</h3>
+            <p>When BI cannot talk to SQL, stage files and schedule the copy. Architecture, not a client name.</p>
+            <a class="more" href="work/pipeline.html">Case note →</a>
+          </article>
+          <article class="card">
+            <div class="meta">Self-serve</div>
+            <h3>Retire the pack</h3>
+            <p>Overview, trend, slicer, top and new lists — so people stop waiting on a ticketed refresh.</p>
+            <a class="more" href="work/self-serve.html">Case note →</a>
+          </article>
+          <article class="card">
+            <div class="meta">Python · briefing</div>
+            <h3>Narrative on the model</h3>
+            <p>Same snapshot, a function that writes what moved and what to check next. Wraps the live demo.</p>
+            <a class="more" href="work/llm-insights.html">Case note →</a>
+          </article>
+        </div>
+      </section>
+
+      <p class="note">Demos use invented figures and names (Northwind Health Ops). They show the working pattern, not a live client report.</p>
+    </div>
+  </main>
+  <footer class="site" data-chrome="footer"></footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

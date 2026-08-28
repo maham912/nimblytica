@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 280" role="img" aria-labelledby="archTitle archDesc">
+  <title id="archTitle">Scheduled pipeline when the warehouse is firewalled</title>
+  <desc id="archDesc">Azure SQL behind a firewall, daily extract into Blob staging, Azure Data Factory copy, Power BI model on staged files.</desc>
+  <rect width="920" height="280" fill="#1b1e18"/>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a227"/>
+    </marker>
+  </defs>
+  <!-- boxes -->
+  <g font-family="IBM Plex Sans, Segoe UI, sans-serif">
+    <rect x="24" y="70" width="160" height="100" fill="#20241c" stroke="#c9a227" stroke-width="1.5"/>
+    <text x="104" y="108" text-anchor="middle" fill="#ece7d8" font-size="14" font-weight="600">Azure SQL</text>
+    <text x="104" y="128" text-anchor="middle" fill="#8c887a" font-size="11">warehouse</text>
+    <text x="104" y="146" text-anchor="middle" fill="#c45c3e" font-size="11">firewall — no live BI</text>
+
+    <rect x="268" y="70" width="160" height="100" fill="#20241c" stroke="#3d4336" stroke-width="1.5"/>
+    <text x="348" y="108" text-anchor="middle" fill="#ece7d8" font-size="14" font-weight="600">Extract</text>
+    <text x="348" y="128" text-anchor="middle" fill="#8c887a" font-size="11">daily CSV overwrite</text>
+    <text x="348" y="146" text-anchor="middle" fill="#8c887a" font-size="11">allow-listed job</text>
+
+    <rect x="512" y="70" width="160" height="100" fill="#20241c" stroke="#3d4336" stroke-width="1.5"/>
+    <text x="592" y="108" text-anchor="middle" fill="#ece7d8" font-size="14" font-weight="600">Azure Blob</text>
+    <text x="592" y="128" text-anchor="middle" fill="#8c887a" font-size="11">staging container</text>
+    <text x="592" y="146" text-anchor="middle" fill="#8c887a" font-size="11">latest file wins</text>
+
+    <rect x="736" y="28" width="160" height="84" fill="#20241c" stroke="#8fa37a" stroke-width="1.5"/>
+    <text x="816" y="62" text-anchor="middle" fill="#ece7d8" font-size="14" font-weight="600">Data Factory</text>
+    <text x="816" y="82" text-anchor="middle" fill="#8c887a" font-size="11">scheduled copy</text>
+
+    <rect x="736" y="132" width="160" height="84" fill="#20241c" stroke="#c9a227" stroke-width="1.5"/>
+    <text x="816" y="166" text-anchor="middle" fill="#ece7d8" font-size="14" font-weight="600">Power BI</text>
+    <text x="816" y="186" text-anchor="middle" fill="#8c887a" font-size="11">model on staged files</text>
+  </g>
+  <line x1="184" y1="120" x2="264" y2="120" stroke="#c9a227" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="428" y1="120" x2="508" y2="120" stroke="#c9a227" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="672" y1="100" x2="732" y2="70" stroke="#c9a227" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="816" y1="112" x2="816" y2="130" stroke="#c9a227" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="24" y="250" fill="#8c887a" font-size="12" font-family="IBM Plex Mono, monospace">Unbranded pattern. Invented labels. Not a client diagram.</text>
+</svg>

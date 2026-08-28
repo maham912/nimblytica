@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-root=".." data-page="llm-insights">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <title>Narrative layer · Nimblytica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="top" data-chrome="header"></header>
+  <main class="wrap">
+    <div class="page-head">
+      <p class="crumb"><a href="../index.html">Home</a> / work / insights layer</p>
+      <h1>Narrative layer on a metrics model</h1>
+    </div>
+    
+    <p class="lede">Case note wrapping the live briefing demo. Python over a metrics table; an LLM can sit on the same contract later. No API key required for the live demo.</p>
+    <div class="prose">
+      <h2>Situation</h2>
+      <p>A dashboard answers “what is the number.” Standups still spend time turning that number into five sentences. That last step is a function over a metrics model, not a new report.</p>
+      <h2>Constraint</h2>
+      <p>Do not send a model the whole warehouse. Give it a small JSON slice: this department, this as-of, these four cards, the top unit, the new names. If the key is missing, still print something a human can check.</p>
+      <h2>Build</h2>
+      <ol class="steps">
+        <li><strong>Same snapshot.</strong> <a href="../data/workforce.fake.json">workforce.fake.json</a> — invented Northwind Health Ops, round figures, invented people including Alex Rivera.</li>
+        <li><strong>Contract.</strong> <code>brief_workforce(snapshot, department) -&gt; list[str]</code> of length five: cut, vacancy, trend, overtime, next check.</li>
+        <li><strong>Fallback first.</strong> The page runs that function in JavaScript. No key required. A hosted model would receive the same slice and must return the same shape.</li>
+      </ol>
+      <h2>Result</h2>
+      <p>A briefing you can regenerate with a slicer. Live: <a href="../demo/llm.html">demo/llm.html</a>. This note is new work for a public evidence page. It is not a republish of a client notebook.</p>
+    </div>
+
+  </main>
+  <footer class="site" data-chrome="footer"></footer>
+  <script src="../js/site.js"></script>
+</body>
+</html>

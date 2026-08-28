@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-root=".." data-page="pipeline">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <title>Firewalled warehouse · Nimblytica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="top" data-chrome="header"></header>
+  <main class="wrap">
+    <div class="page-head">
+      <p class="crumb"><a href="../index.html">Home</a> / work / pipeline</p>
+      <h1>Scheduled insights when SQL is unreachable</h1>
+    </div>
+    
+    <p class="lede">Case note. Stack: Azure SQL, Blob, Azure Data Factory, Power BI. Invented setting: a health-ops warehouse that BI could not reach directly.</p>
+    <div class="prose">
+      <h2>Situation</h2>
+      <p>A standing pack was rebuilt by hand on a cycle. The numbers lived in Azure SQL. The BI workspace sat outside the warehouse network. Direct SQL from the report was blocked, so every refresh waited on someone running an extract.</p>
+      <h2>Constraint</h2>
+      <p>Firewall stays. No tunnel from Power BI into the database. The warehouse team would allow a scheduled job that they owned, writing files to a staging account they already used.</p>
+      <h2>Build</h2>
+      <ol class="steps">
+        <li><strong>Azure SQL extract.</strong> An allow-listed job pulls the tables the model needs. No ad-hoc desktop queries.</li>
+        <li><strong>Blob staging.</strong> Daily CSV overwrite in a container. Latest file wins. BI never sees the live database.</li>
+        <li><strong>Azure Data Factory.</strong> A scheduled pipeline copies and, if needed, lightly types the files. Failures show up in the factory run history instead of a personal inbox.</li>
+        <li><strong>Power BI.</strong> The semantic model points at the staged files. Refresh is a schedule, not a ticket.</li>
+      </ol>
+      <h2>Architecture</h2>
+    </div>
+    <img class="arch" src="../assets/arch-pipeline.svg" alt="Azure SQL behind a firewall, daily extract to Blob staging, Data Factory copy, Power BI on staged files">
+    <div class="prose">
+      <h2>Result</h2>
+      <p>The pack stopped depending on a person being at a desk. Stakeholders opened the same pages they already knew. Public stand-in for the interaction pattern: the <a href="../demo/workforce.html">workforce snapshot</a> — fake org, fake people, not this warehouse.</p>
+      <p>This diagram is new and unbranded. It is not a client graphic.</p>
+    </div>
+
+  </main>
+  <footer class="site" data-chrome="footer"></footer>
+  <script src="../js/site.js"></script>
+</body>
+</html>
