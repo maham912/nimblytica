@@ -1,0 +1,95 @@
+{
+  "disclaimer": "FICTIONAL DEMO. Invented employer. Round numbers only. Not a client. Not a republish of any workbook.",
+  "org": "Lanternfield Service Ops",
+  "as_of": "2026-08-28",
+  "kpis": {
+    "open_tickets": 240,
+    "sla_on_time_pct": 88,
+    "breached_open": 28,
+    "aging_8plus": 30
+  },
+  "queues": [
+    {
+      "name": "Identity",
+      "open": 48,
+      "sla_pct": 92,
+      "breached": 4,
+      "median_age_days": 2,
+      "aging": { "0-1": 20, "2-3": 14, "4-7": 10, "8-14": 3, "15+": 1 },
+      "priority": { "Critical": 2, "High": 8, "Medium": 24, "Low": 14 }
+    },
+    {
+      "name": "Workplace",
+      "open": 72,
+      "sla_pct": 84,
+      "breached": 12,
+      "median_age_days": 3,
+      "aging": { "0-1": 20, "2-3": 22, "4-7": 18, "8-14": 8, "15+": 4 },
+      "priority": { "Critical": 2, "High": 16, "Medium": 36, "Low": 18 }
+    },
+    {
+      "name": "Network",
+      "open": 36,
+      "sla_pct": 90,
+      "breached": 4,
+      "median_age_days": 2,
+      "aging": { "0-1": 14, "2-3": 10, "4-7": 8, "8-14": 3, "15+": 1 },
+      "priority": { "Critical": 2, "High": 6, "Medium": 18, "Low": 10 }
+    },
+    {
+      "name": "Applications",
+      "open": 52,
+      "sla_pct": 86,
+      "breached": 6,
+      "median_age_days": 3,
+      "aging": { "0-1": 16, "2-3": 16, "4-7": 12, "8-14": 6, "15+": 2 },
+      "priority": { "Critical": 2, "High": 8, "Medium": 28, "Low": 14 }
+    },
+    {
+      "name": "Facilities",
+      "open": 20,
+      "sla_pct": 94,
+      "breached": 1,
+      "median_age_days": 1,
+      "aging": { "0-1": 8, "2-3": 6, "4-7": 4, "8-14": 2, "15+": 0 },
+      "priority": { "Critical": 0, "High": 2, "Medium": 10, "Low": 8 }
+    },
+    {
+      "name": "Finance Ops",
+      "open": 12,
+      "sla_pct": 88,
+      "breached": 1,
+      "median_age_days": 1,
+      "aging": { "0-1": 6, "2-3": 4, "4-7": 2, "8-14": 0, "15+": 0 },
+      "priority": { "Critical": 0, "High": 0, "Medium": 8, "Low": 4 }
+    }
+  ],
+  "trend_opened": [
+    { "week": "2026-06-13", "Identity": 40, "Workplace": 60, "Network": 24, "Applications": 36, "Facilities": 12, "Finance Ops": 8, "all": 180 },
+    { "week": "2026-06-20", "Identity": 40, "Workplace": 64, "Network": 28, "Applications": 40, "Facilities": 12, "Finance Ops": 6, "all": 190 },
+    { "week": "2026-06-27", "Identity": 44, "Workplace": 68, "Network": 28, "Applications": 40, "Facilities": 12, "Finance Ops": 8, "all": 200 },
+    { "week": "2026-07-04", "Identity": 44, "Workplace": 72, "Network": 32, "Applications": 44, "Facilities": 12, "Finance Ops": 6, "all": 210 },
+    { "week": "2026-07-11", "Identity": 36, "Workplace": 60, "Network": 24, "Applications": 40, "Facilities": 12, "Finance Ops": 8, "all": 180 },
+    { "week": "2026-07-18", "Identity": 36, "Workplace": 56, "Network": 24, "Applications": 36, "Facilities": 12, "Finance Ops": 6, "all": 170 },
+    { "week": "2026-07-25", "Identity": 40, "Workplace": 64, "Network": 28, "Applications": 40, "Facilities": 12, "Finance Ops": 6, "all": 190 },
+    { "week": "2026-08-01", "Identity": 40, "Workplace": 68, "Network": 28, "Applications": 44, "Facilities": 12, "Finance Ops": 8, "all": 200 },
+    { "week": "2026-08-08", "Identity": 44, "Workplace": 76, "Network": 32, "Applications": 48, "Facilities": 12, "Finance Ops": 8, "all": 220 },
+    { "week": "2026-08-15", "Identity": 44, "Workplace": 72, "Network": 28, "Applications": 44, "Facilities": 16, "Finance Ops": 6, "all": 210 },
+    { "week": "2026-08-22", "Identity": 40, "Workplace": 64, "Network": 28, "Applications": 40, "Facilities": 12, "Finance Ops": 6, "all": 190 },
+    { "week": "2026-08-29", "Identity": 36, "Workplace": 60, "Network": 24, "Applications": 40, "Facilities": 12, "Finance Ops": 8, "all": 180 }
+  ],
+  "trend_resolved": [
+    { "week": "2026-06-13", "Identity": 36, "Workplace": 56, "Network": 24, "Applications": 36, "Facilities": 12, "Finance Ops": 6, "all": 170 },
+    { "week": "2026-06-20", "Identity": 40, "Workplace": 60, "Network": 28, "Applications": 40, "Facilities": 12, "Finance Ops": 5, "all": 185 },
+    { "week": "2026-06-27", "Identity": 40, "Workplace": 64, "Network": 28, "Applications": 40, "Facilities": 12, "Finance Ops": 6, "all": 190 },
+    { "week": "2026-07-04", "Identity": 44, "Workplace": 68, "Network": 28, "Applications": 40, "Facilities": 12, "Finance Ops": 8, "all": 200 },
+    { "week": "2026-07-11", "Identity": 40, "Workplace": 68, "Network": 28, "Applications": 44, "Facilities": 12, "Finance Ops": 8, "all": 200 },
+    { "week": "2026-07-18", "Identity": 36, "Workplace": 60, "Network": 24, "Applications": 40, "Facilities": 12, "Finance Ops": 8, "all": 180 },
+    { "week": "2026-07-25", "Identity": 40, "Workplace": 60, "Network": 28, "Applications": 40, "Facilities": 12, "Finance Ops": 5, "all": 185 },
+    { "week": "2026-08-01", "Identity": 40, "Workplace": 64, "Network": 28, "Applications": 44, "Facilities": 12, "Finance Ops": 7, "all": 195 },
+    { "week": "2026-08-08", "Identity": 40, "Workplace": 68, "Network": 28, "Applications": 44, "Facilities": 12, "Finance Ops": 8, "all": 200 },
+    { "week": "2026-08-15", "Identity": 44, "Workplace": 72, "Network": 28, "Applications": 44, "Facilities": 16, "Finance Ops": 6, "all": 210 },
+    { "week": "2026-08-22", "Identity": 40, "Workplace": 68, "Network": 28, "Applications": 44, "Facilities": 12, "Finance Ops": 8, "all": 200 },
+    { "week": "2026-08-29", "Identity": 40, "Workplace": 64, "Network": 24, "Applications": 40, "Facilities": 14, "Finance Ops": 8, "all": 190 }
+  ]
+}

@@ -1,0 +1,189 @@
+(function () {
+  const DATA_URL = new URL("../data/ops-pulse.fake.json", document.currentScript.src);
+  let DATA = null;
+  let QUEUE = "all";
+
+  const AGING_KEYS = ["0-1", "2-3", "4-7", "8-14", "15+"];
+  const PRIORITY_KEYS = ["Critical", "High", "Medium", "Low"];
+  const fmt = (n) => Number(n).toLocaleString("en-US");
+
+  function queues() {
+    if (QUEUE === "all") return DATA.queues;
+    return DATA.queues.filter((q) => q.name === QUEUE);
+  }
+
+  function sum(list, key) {
+    return list.reduce((n, r) => n + (Number(r[key]) || 0), 0);
+  }
+
+  function agingTotals(list) {
+    const out = {};
+    AGING_KEYS.forEach((k) => {
+      out[k] = list.reduce((n, q) => n + (Number(q.aging[k]) || 0), 0);
+    });
+    return out;
+  }
+
+  function priorityTotals(list) {
+    const out = {};
+    PRIORITY_KEYS.forEach((k) => {
+      out[k] = list.reduce((n, q) => n + (Number(q.priority[k]) || 0), 0);
+    });
+    return out;
+  }
+
+  function slaWeighted(list) {
+    const open = sum(list, "open");
+    if (!open) return 0;
+    const weighted = list.reduce((n, q) => n + q.sla_pct * q.open, 0);
+    return Math.round(weighted / open);
+  }
+
+  function renderSlicer() {
+    const el = document.getElementById("slicer");
+    const names = ["all", ...DATA.queues.map((q) => q.name)];
+    el.innerHTML = "";
+    names.forEach((name) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = name === "all" ? "All queues" : name;
+      b.setAttribute("aria-pressed", name === QUEUE ? "true" : "false");
+      b.addEventListener("click", () => {
+        QUEUE = name;
+        render();
+      });
+      el.appendChild(b);
+    });
+  }
+
+  function renderKpis() {
+    const r = queues();
+    const open = sum(r, "open");
+    const sla = slaWeighted(r);
+    const breached = sum(r, "breached");
+    const aging = agingTotals(r);
+    const aged = aging["8-14"] + aging["15+"];
+    const cut = QUEUE === "all" ? DATA.org : QUEUE;
+    document.getElementById("kpis").innerHTML = `
+      <article class="kpi"><div class="n">${fmt(open)}</div><div class="l">Open tickets</div><div class="d">${cut}</div></article>
+      <article class="kpi"><div class="n">${sla}%</div><div class="l">SLA on time</div><div class="d">${QUEUE === "all" ? "Weighted across queues" : "This queue"}</div></article>
+      <article class="kpi"><div class="n">${fmt(breached)}</div><div class="l">Breached, still open</div><div class="d">${open ? Math.round((breached / open) * 100) : 0}% of open</div></article>
+      <article class="kpi"><div class="n">${fmt(aged)}</div><div class="l">Aging 8+ days</div><div class="d">${fmt(aging["15+"])} at 15 days or more</div></article>`;
+  }
+
+  function axis() {
+    return {
+      gridcolor: "#2d3228",
+      linecolor: "#3d4336",
+      tickfont: { color: "#8c887a", family: "IBM Plex Sans, sans-serif", size: 11 },
+      zeroline: false
+    };
+  }
+
+  function layout(extra) {
+    const a = axis();
+    return Object.assign(
+      {
+        paper_bgcolor: "rgba(0,0,0,0)",
+        plot_bgcolor: "rgba(0,0,0,0)",
+        font: { color: "#ece7d8", family: "IBM Plex Sans, sans-serif" },
+        margin: { t: 16, r: 16, b: 40, l: 48 },
+        legend: { orientation: "h", y: 1.12, font: { size: 12 } },
+        xaxis: a,
+        yaxis: Object.assign({ title: "" }, a),
+        hovermode: "x unified"
+      },
+      extra || {}
+    );
+  }
+
+  function series(src) {
+    const field = QUEUE === "all" ? "all" : QUEUE;
+    return {
+      x: src.map((d) => d.week),
+      y: src.map((d) => d[field])
+    };
+  }
+
+  function renderCharts() {
+    const opened = series(DATA.trend_opened);
+    const resolved = series(DATA.trend_resolved);
+    Plotly.react(
+      "chart-flow",
+      [
+        { x: opened.x, y: opened.y, type: "scatter", mode: "lines+markers", name: "Opened", line: { color: "#c9a227", width: 2 }, marker: { size: 6 } },
+        { x: resolved.x, y: resolved.y, type: "scatter", mode: "lines+markers", name: "Resolved", line: { color: "#8fa37a", width: 2 }, marker: { size: 6 } }
+      ],
+      layout(),
+      { displayModeBar: false, responsive: true }
+    );
+
+    const aging = agingTotals(queues());
+    const agingColors = AGING_KEYS.map((k) => (k === "8-14" || k === "15+" ? "#c45c3e" : "#8fa37a"));
+    Plotly.react(
+      "chart-aging",
+      [{ x: AGING_KEYS.map((k) => k + " days"), y: AGING_KEYS.map((k) => aging[k]), type: "bar", name: "Open", marker: { color: agingColors } }],
+      layout({ hovermode: "closest" }),
+      { displayModeBar: false, responsive: true }
+    );
+
+    const r = queues();
+    Plotly.react(
+      "chart-queue",
+      [{ x: r.map((q) => q.name), y: r.map((q) => q.open), type: "bar", name: "Open", marker: { color: "#c9a227" } }],
+      layout({ hovermode: "closest" }),
+      { displayModeBar: false, responsive: true }
+    );
+
+    const pri = priorityTotals(r);
+    Plotly.react(
+      "chart-priority",
+      [
+        {
+          x: PRIORITY_KEYS,
+          y: PRIORITY_KEYS.map((k) => pri[k]),
+          type: "bar",
+          name: "Open",
+          marker: { color: ["#c45c3e", "#c9a227", "#8fa37a", "#6e6a5e"] }
+        }
+      ],
+      layout({ hovermode: "closest" }),
+      { displayModeBar: false, responsive: true }
+    );
+  }
+
+  function renderLists() {
+    const r = queues()
+      .slice()
+      .sort((a, b) => b.open - a.open);
+    document.getElementById("queue-body").innerHTML = r
+      .map(
+        (q) =>
+          `<tr><td>${q.name}</td><td>${fmt(q.open)}</td><td>${q.sla_pct}%</td><td>${fmt(q.breached)}</td><td>${q.median_age_days}d</td><td>${fmt(q.aging["8-14"] + q.aging["15+"])}</td></tr>`
+      )
+      .join("");
+  }
+
+  function render() {
+    renderSlicer();
+    renderKpis();
+    renderCharts();
+    renderLists();
+  }
+
+  fetch(DATA_URL)
+    .then((res) => {
+      if (!res.ok) throw new Error("Could not load snapshot JSON");
+      return res.json();
+    })
+    .then((json) => {
+      DATA = json;
+      document.getElementById("as-of").textContent = json.as_of;
+      document.getElementById("org-name").textContent = json.org;
+      render();
+    })
+    .catch((err) => {
+      document.getElementById("banner").textContent =
+        "Serve this folder with python3 -m http.server so the JSON can load. (" + err.message + ")";
+    });
+})();

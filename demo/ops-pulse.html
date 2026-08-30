@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-root=".." data-page="ops-pulse">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <title>Ops pulse · Nimblytica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+  <header class="top" data-chrome="header"></header>
+  <main class="wrap">
+    <div class="page-head">
+      <p class="crumb"><a href="../index.html">Home</a> / demo / ops-pulse</p>
+      <h1>Ops pulse</h1>
+      <p class="lede"><span id="org-name">Lanternfield Service Ops</span> · as of <span id="as-of">—</span>. Invented employer, invented queues, round numbers. Interaction pattern only — not a republish of any live report.</p>
+    </div>
+    <p class="banner" id="banner">FICTIONAL DEMO · Lanternfield Service Ops · synthetic ticket volumes only</p>
+    <div class="slicer" id="slicer" role="group" aria-label="Queue"></div>
+    <div class="kpis" id="kpis"></div>
+    <div class="grid-2">
+      <div class="panel">
+        <h2>Opened vs resolved</h2>
+        <div id="chart-flow" style="height:280px"></div>
+      </div>
+      <div class="panel">
+        <h2>Aging of open work</h2>
+        <div id="chart-aging" style="height:280px"></div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <h2>Open by queue</h2>
+        <div id="chart-queue" style="height:280px"></div>
+      </div>
+      <div class="panel">
+        <h2>Open by priority</h2>
+        <div id="chart-priority" style="height:280px"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Queue snapshot</h2>
+      <table class="data">
+        <thead>
+          <tr><th>Queue</th><th>Open</th><th>SLA</th><th>Breached</th><th>Median age</th><th>8+ days</th></tr>
+        </thead>
+        <tbody id="queue-body"></tbody>
+      </table>
+    </div>
+    <p class="note">Data: <a href="../data/ops-pulse.fake.json">ops-pulse.fake.json</a>. Invented org, rounded figures, no ticket rows. See the <a href="../work/ops-pulse.html">case note</a>. Serve the folder over HTTP so fetch works.</p>
+  </main>
+  <footer class="site" data-chrome="footer"></footer>
+  <script src="../js/site.js"></script>
+  <script src="../js/ops-pulse.js"></script>
+</body>
+</html>
