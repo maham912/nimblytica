@@ -1,0 +1,33 @@
+{
+  "disclaimer": "FICTIONAL DEMO. Invented employers and tickets. Not a client. Client-side only. No API.",
+  "samples": [
+    {
+      "id": "workplace-aging",
+      "label": "Workplace aging",
+      "kind": "ops",
+      "cut": "Workplace",
+      "note": "Workplace is sitting on 12 tickets older than 8 days. Standup still opens the extract and scrolls. Need a cut that says what is late versus what is just unowned."
+    },
+    {
+      "id": "identity-sla",
+      "label": "Identity SLA",
+      "kind": "ops",
+      "cut": "Identity",
+      "note": "Identity SLA is 92 percent on time with 4 breached still open. Access requests are stacking into a second week. Can we brief from the pulse instead of a screenshot?"
+    },
+    {
+      "id": "nursing-ot",
+      "label": "Nursing overtime",
+      "kind": "workforce",
+      "cut": "Nursing",
+      "note": "Nursing overtime is 24,000 hours over 12 months and 20 roles are open. People argue the pack. We need one as-of before anyone layers a model on it."
+    },
+    {
+      "id": "applications-flow",
+      "label": "Applications flow",
+      "kind": "ops",
+      "cut": "Applications",
+      "note": "Applications opened 48 last week and resolved 44. Open is 52, six already breached. Slack is full of screenshots. Want the week board, then a one-page briefing."
+    }
+  ]
+}

@@ -19,7 +19,7 @@
       <h1>Narrative layer on a metrics model</h1>
     </div>
     
-    <p class="lede">Case note wrapping the live briefing demo. Python over a metrics table; an LLM can sit on the same contract later. No API key required for the live demo.</p>
+      <p class="lede">Case note wrapping the live Insights demo. A short ops note in, a briefing out, from the same sample snapshots. An LLM can sit on that contract later. No API key on the public page.</p>
     <div class="prose">
       <h2>Situation</h2>
       <p>A dashboard answers “what is the number.” Standups still spend time turning that number into five sentences. That last step is a function over a metrics model, not a new report.</p>
@@ -27,12 +27,12 @@
       <p>Do not send a model the whole warehouse. Give it a small JSON slice: this department, this as-of, these four cards, the top unit, the new names. If the key is missing, still print something a human can check.</p>
       <h2>Build</h2>
       <ol class="steps">
-        <li><strong>Same snapshot.</strong> <a href="../data/workforce.fake.json">workforce.fake.json</a> — invented Northwind Health Ops, round figures, invented people including Alex Rivera.</li>
-        <li><strong>Contract.</strong> <code>brief_workforce(snapshot, department) -&gt; list[str]</code> of length five: cut, vacancy, trend, overtime, next check.</li>
-        <li><strong>Fallback first.</strong> The page runs that function in JavaScript. No key required. A hosted model would receive the same slice and must return the same shape.</li>
+        <li><strong>Same snapshots.</strong> <a href="../data/workforce.fake.json">workforce.fake.json</a> and <a href="../data/ops-pulse.fake.json">ops-pulse.fake.json</a> — invented Northwind Health Ops and Lanternfield Service Ops.</li>
+        <li><strong>Try-it box.</strong> Paste a note or pick a synthetic ticket. Client-side logic classifies the cut and writes a briefing. Unmatched notes stay unmatched — no invented number.</li>
+        <li><strong>Fallback first.</strong> The page is the contract: same note, same briefing. A hosted model would receive the same JSON slice. You still own the last mile when the model is wrong.</li>
       </ol>
       <h2>Result</h2>
-      <p>A briefing you can regenerate with a slicer. Live: <a href="../demo/llm.html">demo/llm.html</a>. This note is new work for a public evidence page. It is not a republish of a client notebook.</p>
+      <p>A briefing you can try without a key. Live: <a href="../demo/llm.html">demo/llm.html</a>. This note is new work for a public evidence page. It is not a republish of a client notebook.</p>
     </div>
 
   </main>

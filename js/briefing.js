@@ -1,6 +1,6 @@
 /**
  * Deterministic briefing over a metrics snapshot.
- * Same contract as the Python sketch on demo/llm.html.
+ * Same contract as the Insights try-it on demo/llm.html.
  * No API key. Same inputs always yield the same five bullets.
  */
 (function (global) {
@@ -67,5 +67,54 @@
     return [b1, b2, b3, b4, b5];
   }
 
-  global.NimblyticaBriefing = { briefWorkforce };
+  function filterQueues(data, queue) {
+    if (!queue || queue === "all") return data.queues;
+    return data.queues.filter((q) => q.name === queue);
+  }
+
+  function agingPastEight(rows) {
+    return rows.reduce((n, q) => {
+      const a = q.aging || {};
+      return n + (Number(a["8-14"]) || 0) + (Number(a["15+"]) || 0);
+    }, 0);
+  }
+
+  function slaWeighted(rows) {
+    const open = sum(rows, "open");
+    if (!open) return 0;
+    return Math.round(rows.reduce((n, q) => n + q.sla_pct * q.open, 0) / open);
+  }
+
+  /**
+   * @param {object} data ops-pulse.fake.json
+   * @param {string} queue queue name or "all"
+   * @returns {string[]} exactly five bullets
+   */
+  function briefOps(data, queue) {
+    const rows = filterQueues(data, queue);
+    const label = !queue || queue === "all" ? data.org : queue;
+    const open = sum(rows, "open");
+    const breached = sum(rows, "breached");
+    const sla = slaWeighted(rows);
+    const aged = agingPastEight(rows);
+    const heavy = rows.slice().sort((a, b) => b.open - a.open)[0];
+    const oldest = rows.slice().sort((a, b) => {
+      const ae = (a.aging["8-14"] || 0) + (a.aging["15+"] || 0);
+      const be = (b.aging["8-14"] || 0) + (b.aging["15+"] || 0);
+      return be - ae;
+    })[0];
+
+    const b1 = `${label} pulse as of ${data.as_of}: ${open} open, ${sla} percent SLA on time, ${breached} breached still open.`;
+    const b2 = `Breached work is ${open ? Math.round((breached / open) * 100) : 0} percent of this cut. Treat the SLA number as a cut, not a ticket list.`;
+    const b3 = `${aged} tickets on this cut are eight days or older. Heaviest aging sits in ${oldest.name} (${(oldest.aging["8-14"] || 0) + (oldest.aging["15+"] || 0)} past eight days).`;
+    const b4 = `Largest open pile: ${heavy.name} at ${heavy.open} open, ${heavy.sla_pct} percent SLA, median age ${heavy.median_age_days} days.`;
+    const b5 =
+      aged > 0
+        ? `Next check: pull the ${aged} aged items in ${oldest.name} and mark blocked vs unowned before anyone drafts a model summary.`
+        : `Next check: no eight-day aging on this cut. Confirm whether ${heavy.name} volume is a real load or a routing rule.`;
+
+    return [b1, b2, b3, b4, b5];
+  }
+
+  global.NimblyticaBriefing = { briefWorkforce, briefOps };
 })(window);
