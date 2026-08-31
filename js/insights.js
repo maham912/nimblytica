@@ -45,7 +45,7 @@
     if (/\b(sla|queues?|tickets?|breach(?:ed|es)?|aging|backlog)\b/.test(t)) {
       return { kind: "ops", cut: "all" };
     }
-    if (/\b(overtime|headcount|attrition|vacanc(?:y|ies)|hires?|span of control)\b/.test(t)) {
+    if (/\b(overtime|headcount|attrition|open roles?|hires?|span of control)\b/.test(t)) {
       return { kind: "workforce", cut: "all" };
     }
     return { kind: "unstructured", cut: null };
@@ -89,7 +89,7 @@
     const ot = sum(rows, "overtime_hours_12mo");
     return [
       { n: hc.toLocaleString("en-US"), l: "Headcount", d: cut === "all" ? WF.org : cut },
-      { n: String(open), l: "Open roles", d: hc ? Math.round((open / hc) * 100) + "% vacancy" : "" },
+      { n: String(open), l: "Open roles", d: "This cut" },
       { n: ot.toLocaleString("en-US"), l: "OT hours / 12 mo", d: "Heaviest load first" }
     ];
   }

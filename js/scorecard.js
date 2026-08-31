@@ -34,8 +34,11 @@
   }
 
   function fmt(metric, value) {
-    if (metric.unit === "%") return Number(value) + "%";
-    if (metric.id === "engagement") return Number(value).toFixed(1);
+    const n = Number(value);
+    if (metric.unit === "%") return n + "%";
+    if (metric.unit === "hours" || metric.id === "ot_hours" || metric.id === "open_roles") {
+      return n.toLocaleString("en-US");
+    }
     return String(value);
   }
 

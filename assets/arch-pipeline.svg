@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 240" role="img" aria-labelledby="archTitle archDesc">
   <title id="archTitle">People-analytics export to the live board</title>
-  <desc id="archDesc">Visier export, Azure Data Factory, blob staging, Snowflake, then the live board. Power BI optional on the same grain.</desc>
+  <desc id="archDesc">People-analytics export, Azure Data Factory, blob staging, Snowflake, then the live board. Power BI optional on the same grain.</desc>
   <rect width="920" height="240" fill="#0a0a0a"/>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -9,8 +9,8 @@
   </defs>
   <g font-family="Geist, ui-sans-serif, system-ui, sans-serif">
     <rect x="24" y="56" width="150" height="96" fill="#000" stroke="#2a2a2a"/>
-    <text x="99" y="96" text-anchor="middle" fill="#f2f2f2" font-size="14" font-weight="600">Visier</text>
-    <text x="99" y="118" text-anchor="middle" fill="#6e6e6e" font-size="12">export</text>
+    <text x="99" y="96" text-anchor="middle" fill="#f2f2f2" font-size="14" font-weight="600">Export</text>
+    <text x="99" y="118" text-anchor="middle" fill="#6e6e6e" font-size="12">people analytics</text>
 
     <rect x="214" y="56" width="150" height="96" fill="#000" stroke="#2a2a2a"/>
     <text x="289" y="96" text-anchor="middle" fill="#f2f2f2" font-size="14" font-weight="600">Data Factory</text>

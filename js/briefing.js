@@ -55,7 +55,7 @@
     const owner = rows.length === 1 ? rows[0].owner : data.snapshot_owner;
 
     const b1 = `${label} snapshot as of ${data.as_of}: headcount ${hc}, ${open} open roles, span of control ${span}. Owner on the file: ${owner}.`;
-    const b2 = `Attrition on this cut is ${attr} percent over 12 months. Open roles are ${open} against ${hc} people — a vacancy rate of ${Math.round((open / hc) * 100)} percent if every req is real.`;
+    const b2 = `Attrition on this cut is ${attr} percent over 12 months. Open roles are ${open} against ${hc} people.`;
     const b3 = `Headcount trend is ${dir}: ${td.start} in ${data.trend_headcount[0].month} to ${td.end} in ${data.trend_headcount[data.trend_headcount.length - 1].month} (${td.delta >= 0 ? "+" : ""}${td.delta}).`;
     const b4 = `Overtime hours on this cut total ${ot.toLocaleString("en-US")} over 12 months. Heaviest unit: ${top.name} at ${top.overtime_hours_12mo.toLocaleString("en-US")} hours.`;
     const next =

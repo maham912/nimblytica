@@ -4,8 +4,8 @@
   "as_of": "2026-08-01",
   "metrics": [
     {
-      "id": "turnover",
-      "label": "Voluntary turnover",
+      "id": "attrition",
+      "label": "Attrition",
       "unit": "%",
       "direction": "lower",
       "outstanding": 6,
@@ -13,47 +13,47 @@
       "threshold": 14
     },
     {
-      "id": "vacancy",
-      "label": "Vacancy ratio",
-      "unit": "%",
+      "id": "open_roles",
+      "label": "Open roles",
+      "unit": "",
       "direction": "lower",
-      "outstanding": 3,
-      "target": 5,
-      "threshold": 8
+      "outstanding": 8,
+      "target": 20,
+      "threshold": 36
     },
     {
-      "id": "engagement",
-      "label": "Engagement score",
-      "unit": "",
-      "direction": "higher",
-      "outstanding": 4.5,
-      "target": 4.0,
-      "threshold": 3.5
+      "id": "ot_hours",
+      "label": "OT hours",
+      "unit": "hours",
+      "direction": "lower",
+      "outstanding": 8000,
+      "target": 20000,
+      "threshold": 30000
     }
   ],
   "tree": {
     "id": "system",
     "name": "Northwind Health Ops",
     "level": "System",
-    "values": { "turnover": 8, "vacancy": 4, "engagement": 4.2 },
+    "values": { "attrition": 8, "open_roles": 48, "ot_hours": 37700 },
     "children": [
       {
         "id": "acute",
         "name": "Acute",
         "level": "Division",
-        "values": { "turnover": 10, "vacancy": 5, "engagement": 4.0 },
+        "values": { "attrition": 10, "open_roles": 28, "ot_hours": 24000 },
         "children": [
           {
             "id": "harbor-acute",
             "name": "Harbor",
             "level": "Region",
-            "values": { "turnover": 12, "vacancy": 6, "engagement": 3.8 }
+            "values": { "attrition": 12, "open_roles": 16, "ot_hours": 14000 }
           },
           {
             "id": "midland-acute",
             "name": "Midland",
             "level": "Region",
-            "values": { "turnover": 8, "vacancy": 4, "engagement": 4.2 }
+            "values": { "attrition": 8, "open_roles": 12, "ot_hours": 10000 }
           }
         ]
       },
@@ -61,19 +61,19 @@
         "id": "ambulatory",
         "name": "Ambulatory",
         "level": "Division",
-        "values": { "turnover": 6, "vacancy": 3, "engagement": 4.4 },
+        "values": { "attrition": 6, "open_roles": 12, "ot_hours": 8000 },
         "children": [
           {
             "id": "ridge-amb",
             "name": "Ridge",
             "level": "Region",
-            "values": { "turnover": 6, "vacancy": 2, "engagement": 4.6 }
+            "values": { "attrition": 6, "open_roles": 4, "ot_hours": 3000 }
           },
           {
             "id": "harbor-amb",
             "name": "Harbor",
             "level": "Region",
-            "values": { "turnover": 6, "vacancy": 4, "engagement": 4.2 }
+            "values": { "attrition": 6, "open_roles": 8, "ot_hours": 5000 }
           }
         ]
       },
@@ -81,13 +81,13 @@
         "id": "shared",
         "name": "Shared services",
         "level": "Division",
-        "values": { "turnover": 4, "vacancy": 2, "engagement": 4.4 },
+        "values": { "attrition": 4, "open_roles": 8, "ot_hours": 5700 },
         "children": [
           {
             "id": "midland-shared",
             "name": "Midland",
             "level": "Region",
-            "values": { "turnover": 4, "vacancy": 2, "engagement": 4.4 }
+            "values": { "attrition": 4, "open_roles": 8, "ot_hours": 5700 }
           }
         ]
       }
