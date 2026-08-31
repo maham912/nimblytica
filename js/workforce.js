@@ -55,36 +55,8 @@
   }
 
   function renderTrend() {
-    const hc = series("hc");
-    const ot = series("ot");
-    const axis = {
-      gridcolor: "#1c1c1c",
-      linecolor: "#2a2a2a",
-      tickfont: { color: "#6e6e6e", family: "Geist, ui-sans-serif, sans-serif", size: 11 },
-      zeroline: false
-    };
-    const layout = {
-      paper_bgcolor: "rgba(0,0,0,0)",
-      plot_bgcolor: "rgba(0,0,0,0)",
-      font: { color: "#f2f2f2", family: "Geist, ui-sans-serif, sans-serif" },
-      margin: { t: 16, r: 16, b: 40, l: 48 },
-      legend: { orientation: "h", y: 1.12, font: { size: 12 } },
-      xaxis: axis,
-      yaxis: Object.assign({ title: "" }, axis),
-      hovermode: "x unified"
-    };
-    Plotly.react(
-      "chart-hc",
-      [{ x: hc.x, y: hc.y, type: "scatter", mode: "lines+markers", name: "Headcount", line: { color: "#f2f2f2", width: 1.5 }, marker: { size: 5 } }],
-      layout,
-      { displayModeBar: false, responsive: true }
-    );
-    Plotly.react(
-      "chart-ot",
-      [{ x: ot.x, y: ot.y, type: "bar", name: "Overtime hours", marker: { color: "#a3a3a3" } }],
-      layout,
-      { displayModeBar: false, responsive: true }
-    );
+    NimblyticaCharts.headcount("chart-hc", series("hc"));
+    NimblyticaCharts.overtime("chart-ot", series("ot"));
   }
 
   function renderLists() {

@@ -3,8 +3,8 @@
   let DATA = null;
   let QUEUE = "all";
 
-  const AGING_KEYS = ["0-1", "2-3", "4-7", "8-14", "15+"];
-  const PRIORITY_KEYS = ["Critical", "High", "Medium", "Low"];
+  const AGING_KEYS = NimblyticaCharts.AGING_KEYS;
+  const PRIORITY_KEYS = NimblyticaCharts.PRIORITY_KEYS;
   const fmt = (n) => Number(n).toLocaleString("en-US");
 
   function queues() {
@@ -71,32 +71,6 @@
       <article class="kpi"><div class="n">${fmt(aged)}</div><div class="l">Aging 8+ days</div><div class="d">${fmt(aging["15+"])} at 15 days or more</div></article>`;
   }
 
-  function axis() {
-    return {
-      gridcolor: "#1c1c1c",
-      linecolor: "#2a2a2a",
-      tickfont: { color: "#6e6e6e", family: "Geist, ui-sans-serif, sans-serif", size: 11 },
-      zeroline: false
-    };
-  }
-
-  function layout(extra) {
-    const a = axis();
-    return Object.assign(
-      {
-        paper_bgcolor: "rgba(0,0,0,0)",
-        plot_bgcolor: "rgba(0,0,0,0)",
-        font: { color: "#f2f2f2", family: "Geist, ui-sans-serif, sans-serif" },
-        margin: { t: 16, r: 16, b: 40, l: 48 },
-        legend: { orientation: "h", y: 1.12, font: { size: 12 } },
-        xaxis: a,
-        yaxis: Object.assign({ title: "" }, a),
-        hovermode: "x unified"
-      },
-      extra || {}
-    );
-  }
-
   function series(src) {
     const field = QUEUE === "all" ? "all" : QUEUE;
     return {
@@ -106,50 +80,10 @@
   }
 
   function renderCharts() {
-    const opened = series(DATA.trend_opened);
-    const resolved = series(DATA.trend_resolved);
-    Plotly.react(
-      "chart-flow",
-      [
-        { x: opened.x, y: opened.y, type: "scatter", mode: "lines+markers", name: "Opened", line: { color: "#f2f2f2", width: 1.5 }, marker: { size: 5 } },
-        { x: resolved.x, y: resolved.y, type: "scatter", mode: "lines+markers", name: "Resolved", line: { color: "#6e6e6e", width: 1.5 }, marker: { size: 5 } }
-      ],
-      layout(),
-      { displayModeBar: false, responsive: true }
-    );
-
-    const aging = agingTotals(queues());
-    const agingColors = AGING_KEYS.map((k) => (k === "8-14" || k === "15+" ? "#f2f2f2" : "#3a3a3a"));
-    Plotly.react(
-      "chart-aging",
-      [{ x: AGING_KEYS.map((k) => k + " days"), y: AGING_KEYS.map((k) => aging[k]), type: "bar", name: "Open", marker: { color: agingColors } }],
-      layout({ hovermode: "closest" }),
-      { displayModeBar: false, responsive: true }
-    );
-
-    const r = queues();
-    Plotly.react(
-      "chart-queue",
-      [{ x: r.map((q) => q.name), y: r.map((q) => q.open), type: "bar", name: "Open", marker: { color: "#a3a3a3" } }],
-      layout({ hovermode: "closest" }),
-      { displayModeBar: false, responsive: true }
-    );
-
-    const pri = priorityTotals(r);
-    Plotly.react(
-      "chart-priority",
-      [
-        {
-          x: PRIORITY_KEYS,
-          y: PRIORITY_KEYS.map((k) => pri[k]),
-          type: "bar",
-          name: "Open",
-          marker: { color: ["#f2f2f2", "#c4c4c4", "#8a8a8a", "#3a3a3a"] }
-        }
-      ],
-      layout({ hovermode: "closest" }),
-      { displayModeBar: false, responsive: true }
-    );
+    NimblyticaCharts.flow("chart-flow", series(DATA.trend_opened), series(DATA.trend_resolved));
+    NimblyticaCharts.aging("chart-aging", agingTotals(queues()));
+    NimblyticaCharts.queue("chart-queue", queues());
+    NimblyticaCharts.priority("chart-priority", priorityTotals(queues()));
   }
 
   function renderLists() {
