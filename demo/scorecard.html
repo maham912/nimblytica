@@ -24,12 +24,53 @@
     <div class="page-head">
       <p class="crumb"><a href="../index.html">Home</a> / Scorecard</p>
       <h1>Scorecard</h1>
-      <p class="lede"><span id="org-name">Northwind Health Ops</span> · as of <span id="as-of">—</span>. Attrition, open roles, OT hours. Drill System → Division → Region. Invented geography only: Harbor, Midland, Ridge.</p>
+      <p class="lede"><span id="org-name">Northwind Health Ops</span> · as of <span id="as-of">2026-08-01</span>. Attrition, open roles, OT hours. Drill System → Division → Region. Invented geography only: Harbor, Midland, Ridge.</p>
       <p class="banner" id="banner">Fictional demo · outstanding / target / threshold · no individual records</p>
     </div>
-    <div class="drill" id="sc-drill"></div>
-    <div class="score-grid" id="sc-scores"></div>
-    <div id="sc-children"></div>
+    <div class="drill" id="sc-drill"><span class="here">System · Northwind Health Ops</span></div>
+    <div class="score-grid" id="sc-scores">
+      <article class="score">
+        <h2>Attrition</h2>
+        <div class="n">8%</div>
+        <div class="status">Target</div>
+        <div class="bands">
+          <div>Outstanding 6%</div>
+          <div>Target 10%</div>
+          <div>Threshold 14%</div>
+          <div>Lower is better</div>
+        </div>
+      </article>
+      <article class="score">
+        <h2>Open roles</h2>
+        <div class="n">48</div>
+        <div class="status">Watch</div>
+        <div class="bands">
+          <div>Outstanding 8</div>
+          <div>Target 20</div>
+          <div>Threshold 36</div>
+          <div>Lower is better</div>
+        </div>
+      </article>
+      <article class="score">
+        <h2>OT hours</h2>
+        <div class="n">37,700</div>
+        <div class="status">Watch</div>
+        <div class="bands">
+          <div>Outstanding 8,000</div>
+          <div>Target 20,000</div>
+          <div>Threshold 30,000</div>
+          <div>Lower is better</div>
+        </div>
+      </article>
+    </div>
+    <div id="sc-children">
+      <p class="meta">Division</p>
+      <div class="children">
+        <button type="button" class="row" data-id="acute"><span class="nm">Acute</span><span class="cell">10% · Target</span><span class="cell">28 · Threshold</span><span class="cell">24,000 · Threshold</span></button>
+        <button type="button" class="row" data-id="ambulatory"><span class="nm">Ambulatory</span><span class="cell">6% · Outstanding</span><span class="cell">12 · Target</span><span class="cell">8,000 · Outstanding</span></button>
+        <button type="button" class="row" data-id="shared"><span class="nm">Shared services</span><span class="cell">4% · Outstanding</span><span class="cell">8 · Outstanding</span><span class="cell">5,700 · Outstanding</span></button>
+      </div>
+    </div>
     <p class="caption">Lower is better on attrition, open roles, and OT hours. Static JSON, round numbers.</p>
   </main>
   <footer class="site" data-chrome="footer"></footer>

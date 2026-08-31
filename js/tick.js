@@ -1,6 +1,7 @@
 /* Number ticks and reduced-motion helpers. */
 (function (global) {
   const reduce = () => document.documentElement.classList.contains("reduce-motion");
+  const running = new WeakMap();
 
   function fmt(n, digits) {
     const num = Number(n);
@@ -11,12 +12,15 @@
 
   function tick(el, to, opts) {
     if (!el) return;
+    const prev = running.get(el);
+    if (prev) cancelAnimationFrame(prev);
     const digits = opts && opts.digits;
     const suffix = (opts && opts.suffix) || "";
     const prefix = (opts && opts.prefix) || "";
     const ms = (opts && opts.ms) || 640;
     const target = Number(to);
     if (!Number.isFinite(target) || reduce()) {
+      running.delete(el);
       el.textContent = prefix + fmt(target, digits) + suffix;
       return;
     }
@@ -28,9 +32,10 @@
       const e = 1 - Math.pow(1 - t, 3);
       const v = start + (target - start) * e;
       el.textContent = prefix + fmt(digits != null ? v : Math.round(v), digits) + suffix;
-      if (t < 1) requestAnimationFrame(frame);
+      if (t < 1) running.set(el, requestAnimationFrame(frame));
+      else running.delete(el);
     }
-    requestAnimationFrame(frame);
+    running.set(el, requestAnimationFrame(frame));
   }
 
   global.NimblyticaTick = { reduce, fmt, tick };

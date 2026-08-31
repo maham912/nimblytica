@@ -22,6 +22,7 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="css/site.css">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 </head>
 <body>
   <header class="top" data-chrome="header"></header>
@@ -66,23 +67,79 @@
         <p class="scene-label" id="sample-title">Sample</p>
         <p class="lede">Invented Northwind Health Ops. Department or hierarchy. Click a cut, then tell us what yours should show.</p>
       </div>
-      <div class="product" id="live-board">
+      <div class="product" id="live-board" data-cycle="off">
         <div class="product-frame">
           <div class="mode-row">
             <div class="mode" id="wb-mode" role="group" aria-label="Cut">
               <button type="button" data-mode="department" aria-pressed="true">Department</button>
               <button type="button" data-mode="hierarchy" aria-pressed="false">Hierarchy</button>
             </div>
-            <p class="meta" style="margin:0"><span id="wb-cut">Northwind Health Ops</span> · <span id="wb-asof">—</span></p>
+            <p class="meta" style="margin:0"><span id="wb-cut">Northwind Health Ops</span> · <span id="wb-asof">2026-08-01</span></p>
           </div>
-          <div class="slicer" id="wb-slicer" role="group" aria-label="Slice"></div>
+          <div class="slicer" id="wb-slicer" role="group" aria-label="Slice">
+            <button type="button" aria-pressed="true">All</button>
+            <button type="button" aria-pressed="false">Nursing</button>
+            <button type="button" aria-pressed="false">Clinical Support</button>
+            <button type="button" aria-pressed="false">Revenue Cycle</button>
+            <button type="button" aria-pressed="false">Operations</button>
+            <button type="button" aria-pressed="false">IT</button>
+            <button type="button" aria-pressed="false">Finance</button>
+            <button type="button" aria-pressed="false">Quality</button>
+            <button type="button" aria-pressed="false">Administration</button>
+          </div>
           <div class="kpis">
-            <article class="kpi"><div class="n" id="wb-hc">—</div><div class="l">Headcount</div></article>
-            <article class="kpi"><div class="n" id="wb-open">—</div><div class="l">Open roles</div></article>
-            <article class="kpi"><div class="n" id="wb-attr">—</div><div class="l">Attrition, 12 mo</div></article>
-            <article class="kpi"><div class="n" id="wb-ot">—</div><div class="l">OT hours, 12 mo</div></article>
+            <article class="kpi"><div class="n" id="wb-hc">1,200</div><div class="l">Headcount</div><div class="d" id="wb-hc-d">Northwind Health Ops</div></article>
+            <article class="kpi"><div class="n" id="wb-open">48</div><div class="l">Open roles</div><div class="d" id="wb-open-d">60 hires / 90 days (org)</div></article>
+            <article class="kpi"><div class="n" id="wb-attr">12%</div><div class="l">Attrition, 12 months</div><div class="d" id="wb-attr-d">140 terms (org)</div></article>
+            <article class="kpi"><div class="n" id="wb-span">8</div><div class="l">Span of control</div><div class="d" id="wb-ot-d">37,700 OT hours / 12 mo</div></article>
           </div>
-          <ul class="unit-list" id="wb-list"></ul>
+          <div class="grid-2 board-charts">
+            <div class="panel">
+              <h2>Headcount trend</h2>
+              <div id="wb-chart-hc" class="chart"></div>
+            </div>
+            <div class="panel">
+              <h2>Overtime hours</h2>
+              <div id="wb-chart-ot" class="chart"></div>
+            </div>
+          </div>
+          <div class="grid-2 board-tables">
+            <div class="panel">
+              <h2>Top units</h2>
+              <div class="table-scroll">
+                <table class="data">
+                  <thead>
+                    <tr><th>#</th><th>Unit</th><th>OT hours</th><th>Open</th><th>Attrition</th><th>Owner</th></tr>
+                  </thead>
+                  <tbody id="wb-top-body">
+                    <tr><td>1</td><td>Nursing</td><td>24,000</td><td>20</td><td>16%</td><td>Alex Rivera</td></tr>
+                    <tr><td>2</td><td>Clinical Support</td><td>6,000</td><td>8</td><td>10%</td><td>Jordan Hale</td></tr>
+                    <tr><td>3</td><td>Revenue Cycle</td><td>4,000</td><td>8</td><td>14%</td><td>Sam Okonkwo</td></tr>
+                    <tr><td>4</td><td>Operations</td><td>2,000</td><td>4</td><td>8%</td><td>Casey Nguyen</td></tr>
+                    <tr><td>5</td><td>IT</td><td>1,000</td><td>4</td><td>6%</td><td>Priya Shah</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="panel">
+              <h2>New names</h2>
+              <div class="table-scroll">
+                <table class="data">
+                  <thead>
+                    <tr><th>Start</th><th>Name</th><th>Role</th><th>Unit</th></tr>
+                  </thead>
+                  <tbody id="wb-new-body">
+                    <tr><td>2026-06-02</td><td>Alex Rivera</td><td>Director, Nursing</td><td>Nursing</td></tr>
+                    <tr><td>2026-07-06</td><td>Quinn Patel</td><td>Staff Nurse</td><td>Nursing</td></tr>
+                    <tr><td>2026-07-13</td><td>Taylor Brooks</td><td>Coder</td><td>Revenue Cycle</td></tr>
+                    <tr><td>2026-07-20</td><td>Jamie Ortiz</td><td>Analyst</td><td>IT</td></tr>
+                    <tr><td>2026-07-27</td><td>Chris Adeyemi</td><td>Coordinator</td><td>Operations</td></tr>
+                    <tr><td>2026-06-16</td><td>Morgan Ellis</td><td>Manager, Finance</td><td>Finance</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
           <p class="caption">Fake figures only. Harbor, Midland, and Ridge sit on the <a href="demo/shift-board.html">Shift Board</a> demo. <a href="demo/ops-pulse.html">Lanternfield pulse</a> is the queue cut.</p>
         </div>
       </div>
@@ -123,6 +180,7 @@
   <footer class="site" data-chrome="footer"></footer>
   <script src="js/site.js"></script>
   <script src="js/tick.js"></script>
+  <script src="js/board-charts.js"></script>
   <script src="js/live-board.js"></script>
   <script src="js/contact.js"></script>
 </body>
