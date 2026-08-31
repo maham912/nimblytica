@@ -1,0 +1,51 @@
+{
+  "disclaimer": "FICTIONAL DEMO. Invented employer. Round numbers only. Not a client diagram.",
+  "org": "Northwind Health Ops",
+  "pattern": "People-analytics export → Azure Data Factory → blob staging → Snowflake",
+  "stages": [
+    {
+      "id": "export",
+      "step": "01",
+      "title": "People-analytics export",
+      "short": "Export",
+      "hint": "people analytics",
+      "as_of": "2026-08-01",
+      "clock": "06:00",
+      "body": "A scheduled extract. The cut the board is allowed to see — not a warehouse tour.",
+      "kpi": { "n": 8, "label": "Departments in the cut" }
+    },
+    {
+      "id": "adf",
+      "step": "02",
+      "title": "Azure Data Factory",
+      "short": "Data Factory",
+      "hint": "scheduled copy",
+      "as_of": "2026-08-01",
+      "clock": "06:12",
+      "body": "The factory owns the clock. Copy, light type, fail in run history instead of a personal inbox.",
+      "kpi": { "n": 12, "label": "Minutes on the clock" }
+    },
+    {
+      "id": "blob",
+      "step": "03",
+      "title": "Blob staging",
+      "short": "Blob",
+      "hint": "staging",
+      "as_of": "2026-08-01",
+      "clock": "06:14",
+      "body": "Latest file wins. BI and the board never open the live system of record.",
+      "kpi": { "n": 4, "label": "Files in staging" }
+    },
+    {
+      "id": "snowflake",
+      "step": "04",
+      "title": "Snowflake",
+      "short": "Snowflake",
+      "hint": "warehouse",
+      "as_of": "2026-08-01",
+      "clock": "06:18",
+      "body": "The warehouse the live board and, if you want it, Power BI both read. Same as-of.",
+      "kpi": { "n": 1200, "label": "Headcount on the grain" }
+    }
+  ]
+}

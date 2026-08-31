@@ -581,6 +581,108 @@ table.data .factor { font-weight: 600; letter-spacing: -0.03em; }
   padding: 8px;
 }
 
+.warehouse { margin: 0; }
+.warehouse-kpis {
+  grid-template-columns: repeat(2, 1fr);
+  margin: 18px 0 8px;
+}
+@media (min-width: 720px) {
+  .warehouse-kpis { grid-template-columns: repeat(2, 1fr); }
+}
+.wh-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: stretch;
+}
+.wh-arrow {
+  flex: 0 0 auto;
+  align-self: center;
+  color: var(--mute);
+  font-size: 1.1rem;
+  letter-spacing: 0;
+}
+.wh-stage {
+  flex: 1 1 8.5rem;
+  display: grid;
+  gap: 4px;
+  text-align: left;
+  font-family: inherit;
+  color: var(--ink);
+  background: #000;
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  padding: 14px 14px 16px;
+  cursor: pointer;
+  transition: transform 420ms var(--spring), border-color 220ms ease, background 220ms ease;
+}
+.wh-stage:hover { border-color: var(--ink-dim); }
+.wh-stage[aria-checked="true"] {
+  border-color: var(--ink);
+  background: var(--bg-2);
+}
+.wh-stage:active { transform: scale(0.98); }
+.wh-stage .step,
+.warehouse-copy .step {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin: 0;
+}
+.wh-name {
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.wh-hint {
+  font-size: 0.75rem;
+  color: var(--mute);
+  letter-spacing: -0.01em;
+}
+.wh-sinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+  opacity: 0.4;
+  transition: opacity 220ms ease;
+}
+#warehouse.is-grain .wh-sinks { opacity: 1; }
+.wh-sink {
+  min-width: 7.2rem;
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: -0.01em;
+  color: var(--ink-dim);
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.wh-sink.on {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.warehouse-copy {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  display: grid;
+  gap: 6px;
+}
+.warehouse-copy h3 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  margin: 0;
+}
+.warehouse-copy p {
+  margin: 0;
+  color: var(--ink-dim);
+  max-width: 36rem;
+}
+.warehouse-foot { padding-bottom: 48px; }
+
 /* insights / forms */
 .trybox {
   display: grid;
