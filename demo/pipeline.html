@@ -20,40 +20,81 @@
 </head>
 <body>
   <header class="top" data-chrome="header"></header>
-  <main class="wrap">
-    <div class="page-head">
+  <main>
+    <div class="wrap page-head">
       <p class="crumb"><a href="../index.html">Home</a> / Pipeline</p>
       <h1>Metric kernel</h1>
       <p class="lede">People-analytics export → Azure Data Factory → blob staging → Snowflake. The live board reads that grain. Power BI is optional on the same files.</p>
+      <p class="meta"><span id="org-name">Northwind Health Ops</span> · as of <span id="as-of">—</span></p>
     </div>
-    <div class="kernel">
-      <ol>
-        <li>
-          <span class="step">01</span>
-          <h3>People-analytics export</h3>
-          <p>A scheduled extract. The cut the board is allowed to see — not a warehouse tour.</p>
-        </li>
-        <li>
-          <span class="step">02</span>
-          <h3>Azure Data Factory</h3>
-          <p>The factory owns the clock. Copy, light type, fail in run history instead of a personal inbox.</p>
-        </li>
-        <li>
-          <span class="step">03</span>
-          <h3>Blob staging</h3>
-          <p>Latest file wins. BI and the board never open the live system of record.</p>
-        </li>
-        <li>
-          <span class="step">04</span>
-          <h3>Snowflake</h3>
-          <p>The warehouse the live board and, if you want it, Power BI both read. Same as-of.</p>
-        </li>
-      </ol>
+
+    <div class="product" id="warehouse">
+      <div class="product-frame warehouse">
+        <div class="mode-row">
+          <p class="meta" style="margin:0">Click or hover a stage</p>
+          <p class="meta" style="margin:0"><span id="wh-asof">—</span></p>
+        </div>
+
+        <div class="wh-rail" id="wh-rail" role="radiogroup" aria-label="Kernel stages"></div>
+
+        <div class="wh-sinks" aria-hidden="true">
+          <span class="wh-sink on">Live board</span>
+          <span class="wh-sink">Power BI</span>
+        </div>
+
+        <div class="kpis warehouse-kpis">
+          <article class="kpi">
+            <div class="n" id="wh-n">—</div>
+            <div class="l" id="wh-n-label">On this stage</div>
+          </article>
+          <article class="kpi">
+            <div class="n" id="wh-clock">—</div>
+            <div class="l">Stage clock</div>
+          </article>
+        </div>
+
+        <div class="warehouse-copy" aria-live="polite">
+          <span class="step" id="wh-step">01</span>
+          <h3 id="wh-title">People-analytics export</h3>
+          <p id="wh-body">A scheduled extract. The cut the board is allowed to see — not a warehouse tour.</p>
+        </div>
+      </div>
     </div>
-    <img class="arch" src="../assets/arch-pipeline.svg" alt="People-analytics export to Azure Data Factory, blob staging, Snowflake, then the live board">
-    <p class="caption">UKG can feed the same pattern for time and attendance. Unbranded. Invented setting. Not a client diagram.</p>
+
+    <noscript>
+      <div class="wrap kernel">
+        <ol>
+          <li>
+            <span class="step">01</span>
+            <h3>People-analytics export</h3>
+            <p>A scheduled extract. The cut the board is allowed to see — not a warehouse tour.</p>
+          </li>
+          <li>
+            <span class="step">02</span>
+            <h3>Azure Data Factory</h3>
+            <p>The factory owns the clock. Copy, light type, fail in run history instead of a personal inbox.</p>
+          </li>
+          <li>
+            <span class="step">03</span>
+            <h3>Blob staging</h3>
+            <p>Latest file wins. BI and the board never open the live system of record.</p>
+          </li>
+          <li>
+            <span class="step">04</span>
+            <h3>Snowflake</h3>
+            <p>The warehouse the live board and, if you want it, Power BI both read. Same as-of.</p>
+          </li>
+        </ol>
+      </div>
+    </noscript>
+
+    <div class="wrap warehouse-foot">
+      <p class="caption">UKG can feed the same pattern for time and attendance. Unbranded. Invented setting. Not a client diagram. <a href="workforce.html">Open the board that reads this grain</a>.</p>
+    </div>
   </main>
   <footer class="site" data-chrome="footer"></footer>
   <script src="../js/site.js"></script>
+  <script src="../js/tick.js"></script>
+  <script src="../js/pipeline.js"></script>
 </body>
 </html>
