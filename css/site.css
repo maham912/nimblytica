@@ -213,6 +213,15 @@ h1 {
   color: var(--ink-dim);
   max-width: 32rem;
 }
+.offer .caption {
+  color: var(--mute);
+  margin: 16px 0 0;
+}
+.offer .caption a {
+  color: var(--ink-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 .product {
   position: relative;
@@ -670,6 +679,24 @@ table.data .factor { font-weight: 600; letter-spacing: -0.03em; }
 }
 
 .page-head { padding: 36px 0 8px; }
+.offer-page .page-head h1 {
+  font-size: clamp(1.35rem, 3.6vw, 2rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.offer-page .offer {
+  margin-top: 22px;
+  max-width: 36rem;
+}
+.offer-page .offer h2 {
+  font-size: clamp(1.85rem, 6.4vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  margin: 0 0 12px;
+}
+.offer-page .offer p { max-width: 34rem; }
+.offer-page .kernel { margin-top: 8px; }
 .note {
   font-size: 0.88rem;
   color: var(--mute);

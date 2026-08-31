@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-root="" data-page="two-weeks">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#000000">
+  <meta name="view-transition" content="same-origin">
+  <title>Two weeks · Nimblytica</title>
+  <meta name="description" content="A live board in two weeks. Spreadsheets and screenshot packs, replaced with one as-of you can trust.">
+  <meta property="og:title" content="Two weeks · Nimblytica">
+  <meta property="og:description" content="A live board in two weeks.">
+  <meta property="og:image" content="https://nimblytica.com/assets/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nimblytica.com/two-weeks.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Two weeks · Nimblytica">
+  <meta name="twitter:description" content="A live board in two weeks.">
+  <meta name="twitter:image" content="https://nimblytica.com/assets/og.png">
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <header class="top" data-chrome="header"></header>
+  <main class="offer-page">
+    <div class="wrap page-head">
+      <p class="crumb"><a href="index.html">Home</a> / Two weeks</p>
+      <h1>Nimblytica</h1>
+      <article class="offer" id="offer" aria-labelledby="offer-title">
+        <p class="meta">Two weeks</p>
+        <h2 id="offer-title">A live board in two weeks</h2>
+        <p>Spreadsheets and screenshot packs, replaced with one as-of you can trust. Click a demo, then tell us what yours should show.</p>
+        <div class="cta-row">
+          <a class="btn" href="mailto:hello@nimblytica.com?subject=Live%20ops%20board&amp;body=What%20I%20want%20to%20see%3A%0A%0AWhere%20the%20data%20lives%20today%20%28Excel%2C%20UKG%2C%20SQL%2C%20tickets%2C%20a%20folder%20of%20files%29%3A%0A%0AHow%20often%20it%20should%20refresh%3A%0A%0AWho%20looks%20at%20it%3A%0A%0AName%20%2F%20company%3A%0A">Tell us what you need</a>
+          <a class="btn ghost" href="demo/shift-board.html">See a sample board</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="wrap">
+      <p class="scene-label">What you get</p>
+      <ol class="kernel">
+        <li>
+          <span class="step">01</span>
+          <h3>One as-of</h3>
+          <p>The huddle view. Headcount, open roles, overtime — the cut you named, not a mailed pack.</p>
+        </li>
+        <li>
+          <span class="step">02</span>
+          <h3>On the sources you already have</h3>
+          <p>Excel, UKG, SQL, tickets, a folder of files. Same list as the brief.</p>
+        </li>
+        <li>
+          <span class="step">03</span>
+          <h3>On your clock</h3>
+          <p>How often it should refresh, and who looks at it. Two weeks. Then the board is live.</p>
+        </li>
+      </ol>
+    </div>
+
+    <section aria-labelledby="sample-title">
+      <div class="wrap">
+        <p class="scene-label" id="sample-title">Sample</p>
+        <p class="lede">Invented Northwind Health Ops. Department or hierarchy. Click a cut, then tell us what yours should show.</p>
+      </div>
+      <div class="product" id="live-board">
+        <div class="product-frame">
+          <div class="mode-row">
+            <div class="mode" id="wb-mode" role="group" aria-label="Cut">
+              <button type="button" data-mode="department" aria-pressed="true">Department</button>
+              <button type="button" data-mode="hierarchy" aria-pressed="false">Hierarchy</button>
+            </div>
+            <p class="meta" style="margin:0"><span id="wb-cut">Northwind Health Ops</span> · <span id="wb-asof">—</span></p>
+          </div>
+          <div class="slicer" id="wb-slicer" role="group" aria-label="Slice"></div>
+          <div class="kpis">
+            <article class="kpi"><div class="n" id="wb-hc">—</div><div class="l">Headcount</div></article>
+            <article class="kpi"><div class="n" id="wb-open">—</div><div class="l">Open roles</div></article>
+            <article class="kpi"><div class="n" id="wb-attr">—</div><div class="l">Attrition, 12 mo</div></article>
+            <article class="kpi"><div class="n" id="wb-ot">—</div><div class="l">OT hours, 12 mo</div></article>
+          </div>
+          <ul class="unit-list" id="wb-list"></ul>
+          <p class="caption">Fake figures only. Harbor, Midland, and Ridge sit on the <a href="demo/shift-board.html">Shift Board</a> demo. <a href="demo/ops-pulse.html">Lanternfield pulse</a> is the queue cut.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 id="contact-title">Tell us what you need</h2>
+        <p class="lede">Goes to hello@nimblytica.com. Subject: Live ops board.</p>
+        <form id="contact-sheet">
+          <div class="field">
+            <label for="want">What I want to see</label>
+            <textarea id="want" name="want" required></textarea>
+          </div>
+          <div class="field">
+            <label for="data">Where the data lives today (Excel, UKG, SQL, tickets, a folder of files)</label>
+            <input id="data" name="data" type="text">
+          </div>
+          <div class="field">
+            <label for="refresh">How often it should refresh</label>
+            <input id="refresh" name="refresh" type="text">
+          </div>
+          <div class="field">
+            <label for="who">Who looks at it</label>
+            <input id="who" name="who" type="text">
+          </div>
+          <div class="field">
+            <label for="name">Name / company</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="cta-row">
+            <button type="submit" class="btn">Send to hello@nimblytica.com</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site" data-chrome="footer"></footer>
+  <script src="js/site.js"></script>
+  <script src="js/tick.js"></script>
+  <script src="js/live-board.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>
