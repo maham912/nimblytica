@@ -109,7 +109,7 @@
         findings: bullets.slice(0, 4),
         nextCheck: bullets[4],
         lastMile:
-          "A model can draft these lines from the same JSON slice. You confirm whether aged work is blocked, unowned, or a bad rule — and you keep that call.",
+          "The pulse is the product. These lines are optional. You confirm whether aged work is blocked, unowned, or a bad rule.",
         source: "demo/synthetic · ops-pulse.fake.json · deterministic, no API"
       };
     }
@@ -124,7 +124,7 @@
         findings: bullets.slice(0, 4),
         nextCheck: bullets[4],
         lastMile:
-          "A model can sit on this snapshot. You own the last mile: confirm the as-of, then decide whether overtime is unfilled shifts or a scheduling rule.",
+          "The board is the product. Confirm the as-of, then decide whether overtime is unfilled shifts or a scheduling rule.",
         source: "demo/synthetic · workforce.fake.json · deterministic, no API"
       };
     }
@@ -135,15 +135,15 @@
       kpis: [
         { n: "—", l: "Trusted as-of", d: "Not on file" },
         { n: "—", l: "Queue / unit", d: "Not matched" },
-        { n: "—", l: "Next model step", d: "Board first" }
+        { n: "—", l: "Next step", d: "Board first" }
       ],
       findings: [
         "The note does not name a sample queue or unit, so this page will not invent a number.",
         "That is the Week Board job: one as-of, then a briefing function on that slice.",
-        "AI belongs on top of that board. Without it, a model is guessing from Slack screenshots."
+        "Without a Week Board, a briefing is guessing from screenshots."
       ],
       nextCheck: "Name the queue or unit, or ask for a two-week Week Board so the next paste has a snapshot behind it.",
-      lastMile: "You still own the last mile when a model is wrong. This demo will not fake a confident answer.",
+      lastMile: "This page will not fake a confident answer. Name the queue or unit, or ask for a Week Board.",
       source: "demo/synthetic · unmatched note · no API"
     };
   }

@@ -3,40 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="index,follow">
-  <title>Ops pulse note · Nimblytica</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/site.css">
+  <meta name="theme-color" content="#000000">
+  <meta name="view-transition" content="same-origin">
+  <title>Pulse · Nimblytica</title>
   <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/site.css">
 </head>
 <body>
   <header class="top" data-chrome="header"></header>
   <main class="wrap">
     <div class="page-head">
-      <p class="crumb"><a href="../index.html">Home</a> / work / ops-pulse</p>
-      <h1>A daily pulse without the ticket dump</h1>
+      <p class="crumb"><a href="../index.html">Home</a> / Pulse</p>
+      <h1>A daily pulse without the dump</h1>
+      <p class="lede">Open, SLA, aging, queue — the standing ops view. Invented Lanternfield Service Ops. No ticket rows.</p>
     </div>
-
-    <p class="lede">Case note. Open work, SLA, aging, and queue — the standing ops view. Public demo uses invented Lanternfield Service Ops data, not any live workbook.</p>
-    <div class="prose">
-      <h2>Situation</h2>
-      <p>Standups asked the same four questions: how much is open, what is late, what is aging, and which queue is holding it. The answers lived in a wide ticket extract. People scrolled rows instead of reading a pulse.</p>
-      <h2>Constraint</h2>
-      <p>The public page cannot carry ticket identifiers, people, or a real volume. The useful product is the cut: cards, a week trend, aging, queue. Row-level work stays off the site.</p>
-      <h2>Build</h2>
-      <ol class="steps">
-        <li><strong>Overview cards.</strong> Open, SLA on time, breached still open, aging past eight days.</li>
-        <li><strong>Flow.</strong> Twelve weeks of opened and resolved on the same grain as the cards.</li>
-        <li><strong>Queue slicer.</strong> One control. Cards, charts, and the table follow.</li>
-        <li><strong>Aging and priority.</strong> Where work is stalling, and how sharp the mix is. No ticket list.</li>
-      </ol>
-      <h2>Result</h2>
-      <p>The pulse is a short page, not an extract. The public version is the <a href="../demo/ops-pulse.html">ops-pulse demo</a> on round, invented numbers. Lanternfield Service Ops is a made-up employer on that file.</p>
-      <p>No live metrics from any engagement appear here.</p>
-    </div>
-
+    <p class="caption"><a href="../demo/ops-pulse.html">Open the pulse</a>.</p>
   </main>
   <footer class="site" data-chrome="footer"></footer>
   <script src="../js/site.js"></script>

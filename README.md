@@ -1,13 +1,11 @@
 # nimblytica.com
 
-Public portfolio for Maham Marashizadeh / Nimblytica Inc.
+Public product site for Nimblytica Inc.
 
-Live (GitHub Pages): https://maham912.github.io/nimblytica/
+Live (GitHub Pages): https://nimblytica.com/
 
-Custom domain `nimblytica.com` is pointed after DNS is switched off Squarespace parking.
+Static only. No Node server. Public contact: hello@nimblytica.com.
 
-Demos use invented figures (Northwind Health Ops; Lanternfield Service Ops). No client data.
+Demos use invented figures (Northwind Health Ops; Lanternfield Service Ops) and invented geography (Harbor, Midland, Ridge). No client data.
 
-The ops-pulse page is a synthetic rebuild of a generic ticket-ops view — rounded fake volumes only, no workbook, no ticket rows.
-
-The Insights page (`demo/llm.html`) is a client-side try-it box over those snapshots. No API key. Public contact: hello@nimblytica.com.
+The homepage is the Week Board. Shift Board, scorecard, pulse, and metric kernel are first-class demo pages.

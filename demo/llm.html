@@ -4,24 +4,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index,follow">
-  <title>Insights · Nimblytica</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/site.css">
+  <meta name="theme-color" content="#000000">
+  <meta name="view-transition" content="same-origin">
+  <title>Briefing · Nimblytica</title>
+  <meta name="description" content="Optional briefing on the Week Board. Same note, same lines.">
+  <meta property="og:title" content="Briefing · Nimblytica">
+  <meta property="og:description" content="Optional briefing on the Week Board. Same note, same lines.">
+  <meta property="og:image" content="https://nimblytica.com/assets/og.png">
   <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="stylesheet" href="../css/site.css">
 </head>
 <body>
   <header class="top" data-chrome="header"></header>
   <main class="wrap">
     <div class="page-head">
-      <p class="crumb"><a href="../index.html">Home</a> / demo / insights</p>
-      <h1>Insights</h1>
-      <p class="lede">Paste a short ops note or pick a sample ticket. This page writes a briefing from invented snapshots. No model key. Same note, same briefing — the contract an LLM would sit behind, with you owning the last mile.</p>
+      <p class="crumb"><a href="../index.html">Home</a> / Briefing</p>
+      <h1>Briefing</h1>
+      <p class="lede">Optional. Paste a short ops note or pick a sample. This page writes lines from invented snapshots. The board is still the product.</p>
     </div>
-    <p class="banner" id="banner">FICTIONAL DEMO · synthetic tickets · client-side only · no API</p>
+    <p class="banner" id="banner">Fictional demo · client-side only · no API</p>
 
-    <p class="section-label" id="samples-label">Sample tickets</p>
+    <p class="kicker" id="samples-label">Sample notes</p>
     <div class="slicer" id="samples" role="group" aria-labelledby="samples-label"></div>
 
     <div class="trybox">
@@ -39,8 +45,7 @@
         <div id="out" aria-live="polite"></div>
       </div>
     </div>
-
-    <p class="note">Reads <a href="../data/ops-pulse.fake.json">ops-pulse.fake.json</a> and <a href="../data/workforce.fake.json">workforce.fake.json</a>. Invented orgs only. Case note: <a href="../work/llm-insights.html">narrative layer on a metrics model</a>. Contact: <a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a>.</p>
+    <p class="caption">Same input, same output. Unmatched notes stay unmatched — no invented number. Contact: <a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a>.</p>
   </main>
   <footer class="site" data-chrome="footer"></footer>
   <script src="../js/site.js"></script>

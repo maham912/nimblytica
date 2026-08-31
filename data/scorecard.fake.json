@@ -1,0 +1,96 @@
+{
+  "disclaimer": "FICTIONAL DEMO. Invented employer. Round numbers only. Not a client. No individual records.",
+  "org": "Northwind Health Ops",
+  "as_of": "2026-08-01",
+  "metrics": [
+    {
+      "id": "turnover",
+      "label": "Voluntary turnover",
+      "unit": "%",
+      "direction": "lower",
+      "outstanding": 6,
+      "target": 10,
+      "threshold": 14
+    },
+    {
+      "id": "vacancy",
+      "label": "Vacancy ratio",
+      "unit": "%",
+      "direction": "lower",
+      "outstanding": 3,
+      "target": 5,
+      "threshold": 8
+    },
+    {
+      "id": "engagement",
+      "label": "Engagement score",
+      "unit": "",
+      "direction": "higher",
+      "outstanding": 4.5,
+      "target": 4.0,
+      "threshold": 3.5
+    }
+  ],
+  "tree": {
+    "id": "system",
+    "name": "Northwind Health Ops",
+    "level": "System",
+    "values": { "turnover": 8, "vacancy": 4, "engagement": 4.2 },
+    "children": [
+      {
+        "id": "acute",
+        "name": "Acute",
+        "level": "Division",
+        "values": { "turnover": 10, "vacancy": 5, "engagement": 4.0 },
+        "children": [
+          {
+            "id": "harbor-acute",
+            "name": "Harbor",
+            "level": "Region",
+            "values": { "turnover": 12, "vacancy": 6, "engagement": 3.8 }
+          },
+          {
+            "id": "midland-acute",
+            "name": "Midland",
+            "level": "Region",
+            "values": { "turnover": 8, "vacancy": 4, "engagement": 4.2 }
+          }
+        ]
+      },
+      {
+        "id": "ambulatory",
+        "name": "Ambulatory",
+        "level": "Division",
+        "values": { "turnover": 6, "vacancy": 3, "engagement": 4.4 },
+        "children": [
+          {
+            "id": "ridge-amb",
+            "name": "Ridge",
+            "level": "Region",
+            "values": { "turnover": 6, "vacancy": 2, "engagement": 4.6 }
+          },
+          {
+            "id": "harbor-amb",
+            "name": "Harbor",
+            "level": "Region",
+            "values": { "turnover": 6, "vacancy": 4, "engagement": 4.2 }
+          }
+        ]
+      },
+      {
+        "id": "shared",
+        "name": "Shared services",
+        "level": "Division",
+        "values": { "turnover": 4, "vacancy": 2, "engagement": 4.4 },
+        "children": [
+          {
+            "id": "midland-shared",
+            "name": "Midland",
+            "level": "Region",
+            "values": { "turnover": 4, "vacancy": 2, "engagement": 4.4 }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -110,7 +110,7 @@
     const b4 = `Largest open pile: ${heavy.name} at ${heavy.open} open, ${heavy.sla_pct} percent SLA, median age ${heavy.median_age_days} days.`;
     const b5 =
       aged > 0
-        ? `Next check: pull the ${aged} aged items in ${oldest.name} and mark blocked vs unowned before anyone drafts a model summary.`
+        ? `Next check: pull the ${aged} aged items in ${oldest.name} and mark blocked vs unowned before the next standup.`
         : `Next check: no eight-day aging on this cut. Confirm whether ${heavy.name} volume is a real load or a routing rule.`;
 
     return [b1, b2, b3, b4, b5];
