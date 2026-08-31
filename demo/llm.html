@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-root=".." data-page="llm">
+<html lang="en" data-root=".." data-page="insights">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index,follow">
-  <title>Metrics briefing · Nimblytica</title>
+  <title>Insights · Nimblytica</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,600&display=swap" rel="stylesheet">
@@ -15,74 +15,36 @@
   <header class="top" data-chrome="header"></header>
   <main class="wrap">
     <div class="page-head">
-      <p class="crumb"><a href="../index.html">Home</a> / demo / briefing</p>
-      <h1>Metrics briefing</h1>
-      <p class="lede">A Python-shaped function over the same workforce JSON. No model key. Same inputs, same five bullets. This is the pattern for an LLM layer on a metrics model — the hosted model would sit behind this contract, with this function as the fallback.</p>
+      <p class="crumb"><a href="../index.html">Home</a> / demo / insights</p>
+      <h1>Insights</h1>
+      <p class="lede">Paste a short ops note or pick a sample ticket. This page writes a briefing from invented snapshots. No model key. Same note, same briefing — the contract an LLM would sit behind, with you owning the last mile.</p>
     </div>
-    <p class="banner">FICTIONAL DEMO · reads data/workforce.fake.json · deterministic, no API</p>
+    <p class="banner" id="banner">FICTIONAL DEMO · synthetic tickets · client-side only · no API</p>
 
-    <label for="dept" class="section-label" style="margin-top:8px">Department</label>
-    <div class="slicer" id="slicer" role="group" aria-label="Department"></div>
+    <p class="section-label" id="samples-label">Sample tickets</p>
+    <div class="slicer" id="samples" role="group" aria-labelledby="samples-label"></div>
 
-    <div class="grid-2">
-      <div>
-        <h2 class="section-label">Briefing</h2>
-        <div class="brief" id="out" aria-live="polite">Loading snapshot…</div>
+    <div class="trybox">
+      <div class="composer">
+        <h2>Your note</h2>
+        <label class="field-label" for="note">A standup line, a queue complaint, or a workforce flag.</label>
+        <textarea id="note" name="note" maxlength="800" placeholder="e.g. Workplace has 12 tickets older than 8 days and standup is still scrolling the extract."></textarea>
+        <div class="actions">
+          <button type="button" class="btn" id="brief-btn">Brief this note</button>
+          <button type="button" class="btn ghost" id="clear-btn">Clear</button>
+        </div>
       </div>
-      <div>
-        <h2 class="section-label">Python sketch of the same contract</h2>
-        <pre class="code"><span class="cm"># briefing.py — same bullets as the page. No network.</span>
-<span class="kw">def</span> <span class="fn">brief_workforce</span>(snapshot: dict, department: str | None = <span class="st">None</span>) -> list[str]:
-    rows = snapshot[<span class="st">"departments"</span>]
-    <span class="kw">if</span> department:
-        rows = [r <span class="kw">for</span> r <span class="kw">in</span> rows <span class="kw">if</span> r[<span class="st">"name"</span>] == department]
-    hc = sum(r[<span class="st">"headcount"</span>] <span class="kw">for</span> r <span class="kw">in</span> rows)
-    open_roles = sum(r[<span class="st">"open_roles"</span>] <span class="kw">for</span> r <span class="kw">in</span> rows)
-    top = max(rows, key=<span class="kw">lambda</span> r: r[<span class="st">"overtime_hours_12mo"</span>])
-    <span class="cm"># five bullets: cut, vacancy, trend, overtime, next check</span>
-    <span class="kw">return</span> five_bullets(snapshot, rows, hc, open_roles, top)
-
-<span class="cm"># Swap this function for a model call that is given the same
-# JSON slice. Keep the fallback so a missing key still prints.</span></pre>
-        <p class="lede" style="margin-top:16px">See the case note: <a href="../work/llm-insights.html">narrative layer on a metrics model</a>.</p>
+      <div class="briefing-card">
+        <h2>Briefing</h2>
+        <div id="out" aria-live="polite"></div>
       </div>
     </div>
-    <p class="note">Source: <a href="../js/briefing.js">js/briefing.js</a> · data: <a href="../data/workforce.fake.json">workforce.fake.json</a></p>
+
+    <p class="note">Reads <a href="../data/ops-pulse.fake.json">ops-pulse.fake.json</a> and <a href="../data/workforce.fake.json">workforce.fake.json</a>. Invented orgs only. Case note: <a href="../work/llm-insights.html">narrative layer on a metrics model</a>. Contact: <a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a>.</p>
   </main>
   <footer class="site" data-chrome="footer"></footer>
   <script src="../js/site.js"></script>
   <script src="../js/briefing.js"></script>
-  <script>
-    (function () {
-      const url = new URL("../data/workforce.fake.json", document.baseURI);
-      let DATA = null;
-      let DEPT = "all";
-
-      function paint() {
-        const bullets = NimblyticaBriefing.briefWorkforce(DATA, DEPT);
-        document.getElementById("out").innerHTML =
-          "<ol>" + bullets.map((b) => "<li>" + b + "</li>").join("") + "</ol>";
-        const names = ["all", ...DATA.departments.map((d) => d.name)];
-        const el = document.getElementById("slicer");
-        el.innerHTML = "";
-        names.forEach((name) => {
-          const b = document.createElement("button");
-          b.type = "button";
-          b.textContent = name === "all" ? "All units" : name;
-          b.setAttribute("aria-pressed", name === DEPT ? "true" : "false");
-          b.addEventListener("click", () => { DEPT = name; paint(); });
-          el.appendChild(b);
-        });
-      }
-
-      fetch(url)
-        .then((r) => r.json())
-        .then((j) => { DATA = j; paint(); })
-        .catch((e) => {
-          document.getElementById("out").textContent =
-            "Serve this folder with python3 -m http.server so the JSON can load. (" + e.message + ")";
-        });
-    })();
-  </script>
+  <script src="../js/insights.js"></script>
 </body>
 </html>

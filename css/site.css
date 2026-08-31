@@ -151,6 +151,10 @@ nav.links a:hover, nav.links a[aria-current="page"] { color: var(--ink); }
   border-color: var(--line-strong);
 }
 .btn.ghost:hover { border-color: var(--brass); color: var(--brass); }
+button.btn {
+  cursor: pointer;
+  font-family: var(--sans);
+}
 
 /* sections */
 section { padding: 28px 0 12px; }
@@ -210,6 +214,151 @@ section { padding: 28px 0 12px; }
   margin-bottom: 10px;
 }
 .card a.more { font-size: 0.88rem; font-weight: 500; }
+
+.offer {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brass);
+  padding: 22px 24px 24px;
+}
+.offer .meta {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+.offer h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  margin: 0 0 10px;
+  font-size: clamp(1.35rem, 3vw, 1.7rem);
+  letter-spacing: -0.015em;
+}
+.offer p {
+  margin: 0 0 18px;
+  color: var(--ink-dim);
+  max-width: 40rem;
+}
+
+.trybox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+.composer, .briefing-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 18px 20px 20px;
+  min-height: 100%;
+}
+.composer h2, .briefing-card h2 {
+  font-size: 0.78rem;
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 12px;
+  font-weight: 500;
+}
+.composer label.field-label {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+  margin: 0 0 8px;
+}
+.composer textarea {
+  width: 100%;
+  min-height: 168px;
+  background: #0d0f0c;
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding: 12px 14px;
+  border-radius: 2px;
+  resize: vertical;
+}
+.composer textarea:focus {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+.composer .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.composer button.btn {
+  cursor: pointer;
+  font: inherit;
+}
+
+.briefing-empty {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 24px 0;
+  max-width: 28rem;
+}
+.briefing-card .headline {
+  font-family: var(--serif);
+  font-size: 1.28rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  letter-spacing: -0.015em;
+}
+.briefing-card .cut {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--sage);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+.briefing-card .signals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0 0 16px;
+}
+.briefing-card .signals .kpi { padding: 10px 12px; }
+.briefing-card .signals .n { font-size: 1.35rem; }
+.briefing-card ol.findings {
+  margin: 0 0 16px;
+  padding-left: 1.15rem;
+  color: var(--ink);
+}
+.briefing-card ol.findings li { margin: 0 0 8px; }
+.briefing-card .next, .briefing-card .last-mile {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-top: 4px;
+}
+.briefing-card .next strong, .briefing-card .last-mile strong {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.briefing-card .next p, .briefing-card .last-mile p {
+  margin: 0;
+  color: var(--ink-dim);
+  font-size: 0.92rem;
+}
+.briefing-card .source {
+  margin: 16px 0 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
 
 .note {
   font-size: 0.88rem;
@@ -398,10 +547,10 @@ pre.code, .brief {
 
 @media (max-width: 860px) {
   .grid-3, .kpis { grid-template-columns: 1fr 1fr; }
-  .grid-2 { grid-template-columns: 1fr; }
+  .grid-2, .trybox { grid-template-columns: 1fr; }
   .hero { padding-top: 40px; }
 }
 @media (max-width: 540px) {
-  .grid-3, .kpis { grid-template-columns: 1fr; }
+  .grid-3, .kpis, .briefing-card .signals { grid-template-columns: 1fr; }
   body::before { width: 3px; }
 }

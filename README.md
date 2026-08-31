@@ -9,3 +9,5 @@ Custom domain `nimblytica.com` is pointed after DNS is switched off Squarespace 
 Demos use invented figures (Northwind Health Ops; Lanternfield Service Ops). No client data.
 
 The ops-pulse page is a synthetic rebuild of a generic ticket-ops view — rounded fake volumes only, no workbook, no ticket rows.
+
+The Insights page (`demo/llm.html`) is a client-side try-it box over those snapshots. No API key. Public contact: hello@nimblytica.com.
