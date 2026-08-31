@@ -5,15 +5,32 @@
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const name = (form.elements.namedItem("name").value || "").trim();
-    const company = (form.elements.namedItem("company").value || "").trim();
     const want = (form.elements.namedItem("want").value || "").trim();
-    if (!name || !want) return;
-    const body = "Name: " + name + "\nCompany: " + (company || "—") + "\n\n" + want;
-    const subject = "Week Board — " + name;
+    const data = (form.elements.namedItem("data").value || "").trim();
+    const refresh = (form.elements.namedItem("refresh").value || "").trim();
+    const who = (form.elements.namedItem("who").value || "").trim();
+    const name = (form.elements.namedItem("name").value || "").trim();
+    if (!want || !name) return;
+    const body = [
+      "What I want to see:",
+      want,
+      "",
+      "Where the data lives today (Excel, UKG, SQL, tickets, a folder of files):",
+      data,
+      "",
+      "How often it should refresh:",
+      refresh,
+      "",
+      "Who looks at it:",
+      who,
+      "",
+      "Name / company:",
+      name,
+      ""
+    ].join("\n");
     window.location.href =
       "mailto:hello@nimblytica.com?subject=" +
-      encodeURIComponent(subject) +
+      encodeURIComponent("Live ops board") +
       "&body=" +
       encodeURIComponent(body);
   });

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 240" role="img" aria-labelledby="archTitle archDesc">
-  <title id="archTitle">People-analytics export to the Week Board</title>
-  <desc id="archDesc">Visier export, Azure Data Factory, blob staging, Snowflake, then the Week Board. Power BI optional on the same grain.</desc>
+  <title id="archTitle">People-analytics export to the live board</title>
+  <desc id="archDesc">Visier export, Azure Data Factory, blob staging, Snowflake, then the live board. Power BI optional on the same grain.</desc>
   <rect width="920" height="240" fill="#0a0a0a"/>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -25,7 +25,7 @@
     <text x="669" y="118" text-anchor="middle" fill="#6e6e6e" font-size="12">warehouse</text>
 
     <rect x="784" y="28" width="116" height="70" fill="#000" stroke="#f2f2f2"/>
-    <text x="842" y="68" text-anchor="middle" fill="#f2f2f2" font-size="13" font-weight="600">Week Board</text>
+    <text x="842" y="68" text-anchor="middle" fill="#f2f2f2" font-size="13" font-weight="600">Live board</text>
 
     <rect x="784" y="118" width="116" height="56" fill="#000" stroke="#2a2a2a"/>
     <text x="842" y="150" text-anchor="middle" fill="#a3a3a3" font-size="12">Power BI</text>

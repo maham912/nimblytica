@@ -139,11 +139,11 @@
       ],
       findings: [
         "The note does not name a sample queue or unit, so this page will not invent a number.",
-        "That is the Week Board job: one as-of, then a briefing function on that slice.",
-        "Without a Week Board, a briefing is guessing from screenshots."
+        "That is the live board job: one as-of, then a briefing function on that slice.",
+        "Without a live board, a briefing is guessing from screenshots."
       ],
-      nextCheck: "Name the queue or unit, or ask for a two-week Week Board so the next paste has a snapshot behind it.",
-      lastMile: "This page will not fake a confident answer. Name the queue or unit, or ask for a Week Board.",
+      nextCheck: "Name the queue or unit, or ask for a live board so the next paste has a snapshot behind it.",
+      lastMile: "This page will not fake a confident answer. Name the queue or unit, or tell us what you need.",
       source: "demo/synthetic · unmatched note · no API"
     };
   }

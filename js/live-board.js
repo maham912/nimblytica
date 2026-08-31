@@ -1,6 +1,6 @@
-/* Homepage Week Board — department / hierarchy toggle, in-page ticks. */
+/* Homepage live board — department / hierarchy toggle, in-page ticks. */
 (function () {
-  const mount = document.getElementById("week-board");
+  const mount = document.getElementById("live-board");
   if (!mount) return;
 
   const DATA_URL = new URL("../data/workforce.fake.json", document.currentScript.src);

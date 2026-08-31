@@ -7,15 +7,15 @@
   <meta name="theme-color" content="#000000">
   <meta name="view-transition" content="same-origin">
   <title>Nimblytica</title>
-  <meta name="description" content="A Week Board instead of spreadsheet screenshots.">
+  <meta name="description" content="A live board in two weeks.">
   <meta property="og:title" content="Nimblytica">
-  <meta property="og:description" content="A Week Board instead of spreadsheet screenshots.">
+  <meta property="og:description" content="A live board in two weeks.">
   <meta property="og:image" content="https://nimblytica.com/assets/og.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nimblytica.com/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Nimblytica">
-  <meta name="twitter:description" content="A Week Board instead of spreadsheet screenshots.">
+  <meta name="twitter:description" content="A live board in two weeks.">
   <meta name="twitter:image" content="https://nimblytica.com/assets/og.png">
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
@@ -30,18 +30,19 @@
       <canvas id="product-loop" class="hero-loop" aria-hidden="true"></canvas>
       <div class="wrap hero-copy">
         <h1 class="hero-title" id="site-title">Nimblytica</h1>
-        <p class="line">A Week Board instead of spreadsheet screenshots.</p>
-        <article class="offer" id="week-board-offer" aria-labelledby="offer-title">
-          <p class="meta">Two weeks · Week Board · live snapshot</p>
-          <h2 id="offer-title">Queues, overtime, a folder of packs — one as-of.</h2>
-          <p>The board is the product. A briefing layer is optional.</p>
+        <p class="line">A live board instead of spreadsheet screenshots.</p>
+        <article class="offer" id="offer" aria-labelledby="offer-title">
+          <p class="meta">Two weeks</p>
+          <h2 id="offer-title">A live board in two weeks</h2>
+          <p>Spreadsheets and screenshot packs, replaced with one as-of you can trust. Click a demo, then tell us what yours should show.</p>
           <div class="cta-row">
-            <a class="btn" href="mailto:hello@nimblytica.com?subject=Week%20Board%20%E2%80%94%20two-week%20ops%20snapshot&amp;body=I%27d%20like%20a%20two-week%20Week%20Board.%0A%0ATeam%20%2F%20queue%3A%20">Ask for a Week Board</a>
+            <a class="btn" href="mailto:hello@nimblytica.com?subject=Live%20ops%20board&amp;body=What%20I%20want%20to%20see%3A%0A%0AWhere%20the%20data%20lives%20today%20%28Excel%2C%20UKG%2C%20SQL%2C%20tickets%2C%20a%20folder%20of%20files%29%3A%0A%0AHow%20often%20it%20should%20refresh%3A%0A%0AWho%20looks%20at%20it%3A%0A%0AName%20%2F%20company%3A%0A">Tell us what you need</a>
+            <a class="btn ghost" href="demo/shift-board.html">See a sample board</a>
           </div>
         </article>
       </div>
 
-      <div class="product" id="week-board">
+      <div class="product" id="live-board">
         <div class="product-frame">
           <div class="mode-row">
             <div class="mode" id="wb-mode" role="group" aria-label="Cut">
@@ -74,7 +75,7 @@
             <article class="kpi"><div class="n" id="sc-board-b">48</div><div class="l">Open roles</div></article>
             <article class="kpi"><div class="n" id="sc-board-c">12%</div><div class="l">Attrition</div></article>
           </div>
-          <p class="caption">The Week Board is what you stand in front of. <a href="demo/shift-board.html">Shift Board</a> ranks who gets flexed off when volume is low.</p>
+          <p class="caption">The live board is what you stand in front of. <a href="demo/shift-board.html">Shift Board</a> ranks who gets flexed off when volume is low.</p>
         </div>
       </div>
     </section>
@@ -107,27 +108,35 @@
             <p id="sc-brief-1">Overtime on this cut is 24,000 hours over 12 months.</p>
             <p id="sc-brief-2">Next check: night coverage before opening more roles.</p>
           </div>
-          <p class="caption">A briefing layer can sit on the Week Board. It is not the product. <a href="demo/llm.html">Try a briefing</a>.</p>
+          <p class="caption">A briefing can sit on the board. It is not the product. <a href="demo/llm.html">Try a briefing</a>.</p>
         </div>
       </div>
     </section>
 
     <section class="sheet" aria-labelledby="contact-title">
       <div class="wrap">
-        <h2 id="contact-title">Ask for a Week Board</h2>
-        <p class="lede">Name, company, what you want. Goes to hello@nimblytica.com.</p>
+        <h2 id="contact-title">Tell us what you need</h2>
+        <p class="lede">Goes to hello@nimblytica.com. Subject: Live ops board.</p>
         <form id="contact-sheet">
           <div class="field">
-            <label for="name">Name</label>
+            <label for="want">What I want to see</label>
+            <textarea id="want" name="want" required></textarea>
+          </div>
+          <div class="field">
+            <label for="data">Where the data lives today (Excel, UKG, SQL, tickets, a folder of files)</label>
+            <input id="data" name="data" type="text">
+          </div>
+          <div class="field">
+            <label for="refresh">How often it should refresh</label>
+            <input id="refresh" name="refresh" type="text">
+          </div>
+          <div class="field">
+            <label for="who">Who looks at it</label>
+            <input id="who" name="who" type="text">
+          </div>
+          <div class="field">
+            <label for="name">Name / company</label>
             <input id="name" name="name" type="text" autocomplete="name" required>
-          </div>
-          <div class="field">
-            <label for="company">Company</label>
-            <input id="company" name="company" type="text" autocomplete="organization">
-          </div>
-          <div class="field">
-            <label for="want">What you want</label>
-            <textarea id="want" name="want" required placeholder="A two-week Week Board for our ops snapshot."></textarea>
           </div>
           <div class="cta-row">
             <button type="submit" class="btn">Send to hello@nimblytica.com</button>
@@ -139,7 +148,7 @@
   <footer class="site" data-chrome="footer"></footer>
   <script src="js/site.js"></script>
   <script src="js/tick.js"></script>
-  <script src="js/week-board.js"></script>
+  <script src="js/live-board.js"></script>
   <script src="js/loop.js"></script>
   <script src="js/scenes.js"></script>
   <script src="js/contact.js"></script>
