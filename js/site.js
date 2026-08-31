@@ -27,7 +27,7 @@
     footer.innerHTML = `
       <div class="wrap foot">
         <div>Nimblytica Inc. · Maham Marashizadeh, president</div>
-        <div><a href="mailto:maham6648@gmail.com">maham6648@gmail.com</a></div>
+        <div><a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a></div>
       </div>`;
   }
 })();
