@@ -792,6 +792,36 @@ table.data .factor { font-weight: 600; letter-spacing: -0.03em; }
   margin-top: 22px;
 }
 
+/* honeypot — hidden from people, tempting to bots */
+.honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* form submission feedback */
+.form-status {
+  min-height: 1.2em;
+  margin: 2px 0 0;
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
+  color: var(--ink-dim);
+}
+.form-status.is-pending { color: var(--ink-dim); }
+.form-status.is-success {
+  color: var(--ink);
+  border-left: 2px solid var(--ink);
+  padding-left: 10px;
+}
+.form-status.is-error {
+  color: #ff6b6b;
+  border-left: 2px solid #ff6b6b;
+  padding-left: 10px;
+}
+.btn[disabled] { opacity: 0.6; cursor: progress; }
+
 .grid-2 { display: grid; gap: 16px; }
 @media (min-width: 860px) {
   .grid-2 { grid-template-columns: 1fr 1fr; }

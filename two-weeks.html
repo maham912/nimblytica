@@ -35,7 +35,8 @@
         <h2 id="offer-title">A live board in two weeks</h2>
         <p>Spreadsheets and screenshot packs, replaced with one as-of you can trust. Click a demo, then tell us what yours should show.</p>
         <div class="cta-row">
-          <a class="btn" href="mailto:hello@nimblytica.com?subject=Live%20ops%20board&amp;body=What%20I%20want%20to%20see%3A%0A%0AWhere%20the%20data%20lives%20today%20%28Excel%2C%20UKG%2C%20SQL%2C%20tickets%2C%20a%20folder%20of%20files%29%3A%0A%0AHow%20often%20it%20should%20refresh%3A%0A%0AWho%20looks%20at%20it%3A%0A%0AName%20%2F%20company%3A%0A">Tell us what you need</a>
+          <a class="btn" href="#contact">Tell us what you need</a>
+          <button type="button" class="btn ghost" data-book-call>Book a call</button>
           <a class="btn ghost" href="demo/shift-board.html">See a sample board</a>
         </div>
       </article>
@@ -150,6 +151,10 @@
         <h2 id="contact-title">Tell us what you need</h2>
         <p class="lede">Goes to hello@nimblytica.com. Subject: Live ops board.</p>
         <form id="contact-sheet">
+          <div class="honeypot" aria-hidden="true">
+            <label for="botcheck">Leave this field empty</label>
+            <input id="botcheck" name="botcheck" type="text" tabindex="-1" autocomplete="off">
+          </div>
           <div class="field">
             <label for="want">What I want to see</label>
             <textarea id="want" name="want" required></textarea>
@@ -173,15 +178,19 @@
           <div class="cta-row">
             <button type="submit" class="btn">Send to hello@nimblytica.com</button>
           </div>
+          <p id="contact-status" class="form-status" aria-live="polite"></p>
         </form>
       </div>
     </section>
   </main>
   <footer class="site" data-chrome="footer"></footer>
+  <script src="js/config.js"></script>
+  <script src="js/analytics.js"></script>
   <script src="js/site.js"></script>
   <script src="js/tick.js"></script>
   <script src="js/board-charts.js"></script>
   <script src="js/live-board.js"></script>
   <script src="js/contact.js"></script>
+  <script src="js/booking.js"></script>
 </body>
 </html>
