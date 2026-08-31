@@ -30,7 +30,11 @@
     footer.innerHTML = `
       <div class="wrap foot">
         <div>Nimblytica</div>
-        <div><a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a></div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="${p("two-weeks.html")}">Two weeks</a>
+          <a href="${p("trust.html")}">Trust</a>
+          <a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a>
+        </nav>
       </div>`;
   }
 })();

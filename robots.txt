@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nimblytica.com/
+Sitemap: https://nimblytica.com/sitemap.xml

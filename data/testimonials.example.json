@@ -1,0 +1,20 @@
+{
+  "_comment": "Copy real, permission-granted quotes/logos into data/testimonials.json to make the 'Proof' section appear on the homepage. Only use genuine, approved endorsements. Leave data/testimonials.json empty to hide the section.",
+  "quotes": [
+    {
+      "quote": "We replaced a three-hour screenshot pack with one board the whole team trusts.",
+      "name": "Full Name",
+      "role": "Title",
+      "org": "Organization"
+    },
+    {
+      "quote": "Overtime is finally visible by unit, in real time, on one as-of.",
+      "name": "Full Name",
+      "role": "Title",
+      "org": "Organization"
+    }
+  ],
+  "logos": [
+    { "alt": "Client name", "src": "assets/logos/example.svg" }
+  ]
+}
