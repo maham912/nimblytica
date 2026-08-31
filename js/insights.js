@@ -42,8 +42,10 @@
       const name = WF_DEPTS[i];
       if (t.indexOf(name.toLowerCase()) !== -1) return { kind: "workforce", cut: name };
     }
-    if (/sla|queue|ticket|breach|aging|backlog/.test(t)) return { kind: "ops", cut: "all" };
-    if (/overtime|headcount|attrition|vacanc|hire|span of control/.test(t)) {
+    if (/\b(sla|queues?|tickets?|breach(?:ed|es)?|aging|backlog)\b/.test(t)) {
+      return { kind: "ops", cut: "all" };
+    }
+    if (/\b(overtime|headcount|attrition|vacanc(?:y|ies)|hires?|span of control)\b/.test(t)) {
       return { kind: "workforce", cut: "all" };
     }
     return { kind: "unstructured", cut: null };
