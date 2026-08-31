@@ -4,7 +4,6 @@
   if (!mount) return;
 
   const DATA_URL = new URL("../data/pipeline.fake.json", document.currentScript.src);
-  const hoverOk = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   let DATA = null;
   let PINNED = "export";
@@ -83,9 +82,10 @@
       const target = mount.querySelector("[data-stage='" + ids[next] + "']");
       if (target) target.focus();
     });
-    if (!hoverOk) return;
     btn.addEventListener("pointerenter", () => preview(id));
+    btn.addEventListener("mouseenter", () => preview(id));
     btn.addEventListener("pointerleave", (e) => clearPreview(e.relatedTarget));
+    btn.addEventListener("mouseleave", (e) => clearPreview(e.relatedTarget));
   }
 
   function renderRail() {
