@@ -21,6 +21,7 @@
       <p class="one-liner">Data &amp; BI | Dashboards, Pipelines, Automation &amp; Analytics</p>
       <div class="chips" aria-label="Stack">
         <span class="chip">Power BI</span>
+        <span class="chip">Tableau</span>
         <span class="chip">SQL</span>
         <span class="chip">Python</span>
         <span class="chip">Azure Data Factory</span>
@@ -29,6 +30,7 @@
       </div>
       <div class="cta-row">
         <a class="btn" href="demo/workforce.html">Workforce snapshot</a>
+        <a class="btn ghost" href="demo/ops-pulse.html">Ops pulse</a>
         <a class="btn ghost" href="demo/llm.html">Briefing demo</a>
       </div>
     </div>
@@ -36,12 +38,18 @@
     <div class="wrap">
       <section>
         <h2 class="section-label">Live demos</h2>
-        <div class="grid-2">
+        <div class="grid-3">
           <article class="card">
             <div class="meta">Interactive · fake data</div>
             <h3>Workforce snapshot</h3>
             <p>Cards, 12-month trend, department slicer, top units and new names. Plotly on a static JSON file. Invented org: Northwind Health Ops.</p>
             <a class="more" href="demo/workforce.html">Open the dashboard →</a>
+          </article>
+          <article class="card">
+            <div class="meta">Interactive · fake data</div>
+            <h3>Ops pulse</h3>
+            <p>Open work, SLA, aging, and queue. Plotly on a static JSON file. Invented org: Lanternfield Service Ops. No ticket rows.</p>
+            <a class="more" href="demo/ops-pulse.html">Open the dashboard →</a>
           </article>
           <article class="card">
             <div class="meta">Python-flavored · no API key</div>
@@ -54,7 +62,7 @@
 
       <section>
         <h2 class="section-label">Work notes</h2>
-        <div class="grid-3">
+        <div class="grid-2">
           <article class="card">
             <div class="meta">Azure SQL · Blob · ADF · Power BI</div>
             <h3>Firewalled warehouse</h3>
@@ -73,10 +81,16 @@
             <p>Same snapshot, a function that writes what moved and what to check next. Wraps the live demo.</p>
             <a class="more" href="work/llm-insights.html">Case note →</a>
           </article>
+          <article class="card">
+            <div class="meta">Tableau-style · queues</div>
+            <h3>Daily ops pulse</h3>
+            <p>Open, SLA, aging, queue — a short page instead of a ticket extract. Wraps the live demo.</p>
+            <a class="more" href="work/ops-pulse.html">Case note →</a>
+          </article>
         </div>
       </section>
 
-      <p class="note">Demos use invented figures and names (Northwind Health Ops). They show the working pattern, not a live client report.</p>
+      <p class="note">Demos use invented figures and names (Northwind Health Ops, Lanternfield Service Ops). They show the working pattern, not a live client report.</p>
     </div>
   </main>
   <footer class="site" data-chrome="footer"></footer>

@@ -12,10 +12,12 @@
         <a class="wordmark" href="${p("index.html")}">Nimblytica</a>
         <nav class="links" aria-label="Primary">
           <a href="${p("demo/workforce.html")}" ${current === "workforce" ? 'aria-current="page"' : ""}>Workforce</a>
+          <a href="${p("demo/ops-pulse.html")}" ${current === "ops-pulse" ? 'aria-current="page"' : ""}>Ops pulse</a>
           <a href="${p("demo/llm.html")}" ${current === "llm" ? 'aria-current="page"' : ""}>Briefing</a>
           <a href="${p("work/pipeline.html")}" ${current === "pipeline" ? 'aria-current="page"' : ""}>Pipeline</a>
           <a href="${p("work/self-serve.html")}" ${current === "self-serve" ? 'aria-current="page"' : ""}>Self-serve</a>
           <a href="${p("work/llm-insights.html")}" ${current === "llm-insights" ? 'aria-current="page"' : ""}>Insights layer</a>
+          <a href="${p("work/ops-pulse.html")}" ${current === "ops-pulse-note" ? 'aria-current="page"' : ""}>Ops pulse note</a>
         </nav>
       </div>`;
   }
