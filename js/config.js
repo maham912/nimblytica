@@ -36,5 +36,15 @@ window.NIMBLYTICA_CONFIG = {
     // When set, "Book a call" buttons open the Calendly popup; empty = the
     // buttons fall back to the email contact flow.
     calendlyUrl: ""
+  },
+
+  pricing: {
+    /*
+     * Optional. Shown on the Two weeks page when set; both lines stay hidden
+     * while empty. Only put a real number and a promise you will honour here —
+     * these are commitments to prospects.
+     */
+    price: "", // e.g. "$4,500 flat for the first board"
+    riskReversal: "" // e.g. "If the first board isn't useful, you don't pay."
   }
 };

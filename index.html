@@ -22,6 +22,25 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Nimblytica",
+    "url": "https://nimblytica.com/",
+    "email": "hello@nimblytica.com",
+    "logo": "https://nimblytica.com/assets/icon-512.png",
+    "description": "A live operations board in two weeks — headcount, overtime, open roles, and service pulse on one as-of you can trust."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Nimblytica",
+    "url": "https://nimblytica.com/"
+  }
+  </script>
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 </head>
 <body>
@@ -136,7 +155,7 @@
             <article class="kpi"><div class="n" id="sc-board-b">48</div><div class="l">Open roles</div></article>
             <article class="kpi"><div class="n" id="sc-board-c">12%</div><div class="l">Attrition</div></article>
           </div>
-          <p class="caption">The live board is what you stand in front of. <a href="demo/shift-board.html">Shift Board</a> ranks who gets flexed off when volume is low.</p>
+          <p class="caption">The live board is what you stand in front of. <a href="demo/shift-board.html">Shift Board</a> ranks who gets flexed off when volume is low. For nursing overtime specifically, see <a href="solutions/nursing-overtime.html">the nursing overtime board</a>.</p>
         </div>
       </div>
     </section>
@@ -180,6 +199,15 @@
           </div>
           <p class="caption">A briefing can sit on the board. It is not the product. <a href="demo/llm.html">Try a briefing</a>.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="sheet proof" id="proof" hidden aria-labelledby="proof-title">
+      <div class="wrap">
+        <p class="scene-label">Proof</p>
+        <h2 id="proof-title">What operators say</h2>
+        <div class="proof-grid" id="testimonials"></div>
+        <div class="logos" id="client-logos" hidden></div>
       </div>
     </section>
 
@@ -228,6 +256,7 @@
   <script src="js/board-charts.js"></script>
   <script src="js/live-board.js"></script>
   <script src="js/scenes.js"></script>
+  <script src="js/testimonials.js"></script>
   <script src="js/contact.js"></script>
   <script src="js/booking.js"></script>
 </body>
