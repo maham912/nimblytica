@@ -1,0 +1,33 @@
+{
+  "disclaimer": "FICTIONAL DEMO. Invented employer, invented staff, invented sites. Round numbers only. Not a client. Pattern only — a huddle / low-census view. Not a republish of any report.",
+  "org": "Northwind Health Ops",
+  "last_refreshed": "2026-08-28T06:00:00",
+  "refresh_note": "Twice daily",
+  "source": "UKG",
+  "report_dates": ["2026-08-28", "2026-08-29"],
+  "shifts": ["Day", "Evening", "Night"],
+  "sites": ["Harbor", "Midland", "Ridge"],
+  "role_groups": ["Nursing", "Support", "Operations"],
+  "rows": [
+    {"name": "Rowan Hale", "staff_id": "NW-2401", "site": "Harbor", "unit": "Acute", "job": "RN", "role_group": "Nursing", "shift": "Night", "report_date": "2026-08-28", "shift_start": "19:00", "duration_hours": 12, "call_off_factor": 4.2, "period_hours": 48, "ytd_hours": 1400, "fte": 0.9},
+    {"name": "Mina Okonkwo", "staff_id": "NW-2408", "site": "Harbor", "unit": "Float", "job": "RN", "role_group": "Nursing", "shift": "Night", "report_date": "2026-08-28", "shift_start": "19:00", "duration_hours": 12, "call_off_factor": 3.8, "period_hours": 48, "ytd_hours": 1320, "fte": 0.9},
+    {"name": "Ellis Cho", "staff_id": "NW-2414", "site": "Midland", "unit": "Acute", "job": "Charge RN", "role_group": "Nursing", "shift": "Night", "report_date": "2026-08-28", "shift_start": "19:00", "duration_hours": 12, "call_off_factor": 3.4, "period_hours": 40, "ytd_hours": 1200, "fte": 1.0},
+    {"name": "Sable Ortega", "staff_id": "NW-2420", "site": "Ridge", "unit": "Observation", "job": "RN", "role_group": "Nursing", "shift": "Night", "report_date": "2026-08-28", "shift_start": "19:00", "duration_hours": 12, "call_off_factor": 3.2, "period_hours": 36, "ytd_hours": 1100, "fte": 0.8},
+    {"name": "Kit Brennan", "staff_id": "NW-2431", "site": "Harbor", "unit": "Short Stay", "job": "Tech", "role_group": "Support", "shift": "Night", "report_date": "2026-08-28", "shift_start": "19:00", "duration_hours": 8, "call_off_factor": 3.0, "period_hours": 40, "ytd_hours": 980, "fte": 1.0},
+    {"name": "Noor Alvi", "staff_id": "NW-2436", "site": "Midland", "unit": "Float", "job": "Tech", "role_group": "Support", "shift": "Night", "report_date": "2026-08-28", "shift_start": "23:00", "duration_hours": 8, "call_off_factor": 2.8, "period_hours": 32, "ytd_hours": 860, "fte": 0.8},
+    {"name": "Jules Keene", "staff_id": "NW-2442", "site": "Ridge", "unit": "Acute", "job": "RN", "role_group": "Nursing", "shift": "Night", "report_date": "2026-08-28", "shift_start": "19:00", "duration_hours": 12, "call_off_factor": 2.6, "period_hours": 48, "ytd_hours": 1500, "fte": 1.0},
+    {"name": "Imani Brooks", "staff_id": "NW-2448", "site": "Harbor", "unit": "Procedure", "job": "Unit Coordinator", "role_group": "Operations", "shift": "Night", "report_date": "2026-08-28", "shift_start": "19:00", "duration_hours": 8, "call_off_factor": 2.4, "period_hours": 40, "ytd_hours": 1040, "fte": 1.0},
+    {"name": "Theo Voss", "staff_id": "NW-2455", "site": "Midland", "unit": "Observation", "job": "RN", "role_group": "Nursing", "shift": "Night", "report_date": "2026-08-28", "shift_start": "19:00", "duration_hours": 12, "call_off_factor": 2.2, "period_hours": 36, "ytd_hours": 900, "fte": 0.6},
+    {"name": "Remy Sato", "staff_id": "NW-2460", "site": "Ridge", "unit": "Float", "job": "Tech", "role_group": "Support", "shift": "Night", "report_date": "2026-08-28", "shift_start": "19:00", "duration_hours": 8, "call_off_factor": 2.0, "period_hours": 40, "ytd_hours": 1120, "fte": 1.0},
+    {"name": "Harper Lind", "staff_id": "NW-2466", "site": "Harbor", "unit": "Acute", "job": "RN", "role_group": "Nursing", "shift": "Night", "report_date": "2026-08-28", "shift_start": "19:00", "duration_hours": 12, "call_off_factor": 1.8, "period_hours": 48, "ytd_hours": 1600, "fte": 1.0},
+    {"name": "Nico Alvarez", "staff_id": "NW-2471", "site": "Midland", "unit": "Short Stay", "job": "Scheduler", "role_group": "Operations", "shift": "Night", "report_date": "2026-08-28", "shift_start": "19:00", "duration_hours": 8, "call_off_factor": 1.4, "period_hours": 40, "ytd_hours": 800, "fte": 1.0},
+    {"name": "Eden Walsh", "staff_id": "NW-2502", "site": "Harbor", "unit": "Acute", "job": "RN", "role_group": "Nursing", "shift": "Day", "report_date": "2026-08-28", "shift_start": "07:00", "duration_hours": 12, "call_off_factor": 3.6, "period_hours": 48, "ytd_hours": 1440, "fte": 0.9},
+    {"name": "Blair Mendez", "staff_id": "NW-2508", "site": "Ridge", "unit": "Procedure", "job": "Tech", "role_group": "Support", "shift": "Day", "report_date": "2026-08-28", "shift_start": "07:00", "duration_hours": 8, "call_off_factor": 2.8, "period_hours": 40, "ytd_hours": 1000, "fte": 1.0},
+    {"name": "Soren Pike", "staff_id": "NW-2514", "site": "Midland", "unit": "Float", "job": "RN", "role_group": "Nursing", "shift": "Day", "report_date": "2026-08-28", "shift_start": "07:00", "duration_hours": 12, "call_off_factor": 2.4, "period_hours": 36, "ytd_hours": 920, "fte": 0.8},
+    {"name": "Amara Cole", "staff_id": "NW-2520", "site": "Harbor", "unit": "Observation", "job": "Unit Coordinator", "role_group": "Operations", "shift": "Day", "report_date": "2026-08-28", "shift_start": "07:00", "duration_hours": 8, "call_off_factor": 1.6, "period_hours": 40, "ytd_hours": 880, "fte": 1.0},
+    {"name": "Levi Hart", "staff_id": "NW-2604", "site": "Ridge", "unit": "Acute", "job": "RN", "role_group": "Nursing", "shift": "Evening", "report_date": "2026-08-28", "shift_start": "15:00", "duration_hours": 8, "call_off_factor": 3.0, "period_hours": 40, "ytd_hours": 1080, "fte": 1.0},
+    {"name": "Quinn Patel", "staff_id": "NW-2610", "site": "Harbor", "unit": "Float", "job": "Tech", "role_group": "Support", "shift": "Evening", "report_date": "2026-08-28", "shift_start": "15:00", "duration_hours": 8, "call_off_factor": 2.2, "period_hours": 32, "ytd_hours": 760, "fte": 0.8},
+    {"name": "Casey Nguyen", "staff_id": "NW-2701", "site": "Midland", "unit": "Acute", "job": "RN", "role_group": "Nursing", "shift": "Night", "report_date": "2026-08-29", "shift_start": "19:00", "duration_hours": 12, "call_off_factor": 3.8, "period_hours": 48, "ytd_hours": 1280, "fte": 0.9},
+    {"name": "Priya Shah", "staff_id": "NW-2706", "site": "Harbor", "unit": "Short Stay", "job": "Analyst", "role_group": "Operations", "shift": "Day", "report_date": "2026-08-29", "shift_start": "07:00", "duration_hours": 8, "call_off_factor": 1.2, "period_hours": 40, "ytd_hours": 720, "fte": 1.0}
+  ]
+}

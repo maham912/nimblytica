@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-root=".." data-page="shift-board">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#000000">
+  <meta name="view-transition" content="same-origin">
+  <title>Shift Board · Nimblytica</title>
+  <meta name="description" content="Who gets flexed off this shift when volume is low.">
+  <meta property="og:title" content="Shift Board · Nimblytica">
+  <meta property="og:description" content="Who gets flexed off this shift when volume is low.">
+  <meta property="og:image" content="https://nimblytica.com/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+  <header class="top" data-chrome="header"></header>
+  <main>
+    <div class="wrap page-head">
+      <p class="crumb"><a href="../index.html">Home</a> / Shift Board</p>
+      <h1>Shift Board</h1>
+      <p class="lede">Who gets flexed off this shift when volume is low. Ranked by call-off factor. <span id="org-name">Northwind Health Ops</span>. Invented staff, invented sites.</p>
+      <p class="banner" id="banner">Fictional demo · Harbor, Midland, Ridge · not a live roster</p>
+    </div>
+
+    <div class="product-frame" style="margin-top:8px">
+      <div class="wrap">
+        <div class="kpis" style="margin-bottom:8px">
+          <article class="kpi">
+            <div class="n" id="sb-count">—</div>
+            <div class="l" id="sb-count-label">staff on this cut</div>
+          </article>
+        </div>
+        <div class="filters">
+          <div class="field">
+            <label for="sb-date">Report date</label>
+            <select id="sb-date"></select>
+          </div>
+          <div class="field">
+            <label for="sb-shift">Shift</label>
+            <select id="sb-shift"></select>
+          </div>
+          <div class="field">
+            <label for="sb-site">Site</label>
+            <select id="sb-site"></select>
+          </div>
+          <div class="field">
+            <label for="sb-role">Role group</label>
+            <select id="sb-role"></select>
+          </div>
+          <div class="field grow">
+            <label for="sb-q">Name or staff ID</label>
+            <input id="sb-q" type="search" placeholder="Search">
+          </div>
+          <div class="field" style="flex:0 0 auto; justify-content:flex-end">
+            <label for="sb-clear">&nbsp;</label>
+            <button type="button" class="btn ghost" id="sb-clear">Clear filters</button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Site / unit</th>
+                <th>Job</th>
+                <th>Start</th>
+                <th>Hours</th>
+                <th>Call-off factor</th>
+                <th>Period hours</th>
+                <th>YTD hours</th>
+                <th>FTE</th>
+              </tr>
+            </thead>
+            <tbody id="sb-body"></tbody>
+          </table>
+        </div>
+        <div class="board-foot">
+          <span id="sb-refreshed">Last refreshed —</span>
+          <span id="sb-source">Twice daily</span>
+        </div>
+        <p class="caption">Highest call-off factor is first to flex on a low-census shift. Export the cut from UKG if you need a file — this page is the huddle view.</p>
+      </div>
+    </div>
+  </main>
+  <footer class="site" data-chrome="footer"></footer>
+  <script src="../js/site.js"></script>
+  <script src="../js/tick.js"></script>
+  <script src="../js/shift-board.js"></script>
+</body>
+</html>

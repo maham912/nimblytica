@@ -1,40 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 280" role="img" aria-labelledby="archTitle archDesc">
-  <title id="archTitle">Scheduled pipeline when the warehouse is firewalled</title>
-  <desc id="archDesc">Azure SQL behind a firewall, daily extract into Blob staging, Azure Data Factory copy, Power BI model on staged files.</desc>
-  <rect width="920" height="280" fill="#1b1e18"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 240" role="img" aria-labelledby="archTitle archDesc">
+  <title id="archTitle">People-analytics export to the live board</title>
+  <desc id="archDesc">Visier export, Azure Data Factory, blob staging, Snowflake, then the live board. Power BI optional on the same grain.</desc>
+  <rect width="920" height="240" fill="#0a0a0a"/>
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a227"/>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f2f2f2"/>
     </marker>
   </defs>
-  <!-- boxes -->
-  <g font-family="IBM Plex Sans, Segoe UI, sans-serif">
-    <rect x="24" y="70" width="160" height="100" fill="#20241c" stroke="#c9a227" stroke-width="1.5"/>
-    <text x="104" y="108" text-anchor="middle" fill="#ece7d8" font-size="14" font-weight="600">Azure SQL</text>
-    <text x="104" y="128" text-anchor="middle" fill="#8c887a" font-size="11">warehouse</text>
-    <text x="104" y="146" text-anchor="middle" fill="#c45c3e" font-size="11">firewall — no live BI</text>
+  <g font-family="Geist, ui-sans-serif, system-ui, sans-serif">
+    <rect x="24" y="56" width="150" height="96" fill="#000" stroke="#2a2a2a"/>
+    <text x="99" y="96" text-anchor="middle" fill="#f2f2f2" font-size="14" font-weight="600">Visier</text>
+    <text x="99" y="118" text-anchor="middle" fill="#6e6e6e" font-size="12">export</text>
 
-    <rect x="268" y="70" width="160" height="100" fill="#20241c" stroke="#3d4336" stroke-width="1.5"/>
-    <text x="348" y="108" text-anchor="middle" fill="#ece7d8" font-size="14" font-weight="600">Extract</text>
-    <text x="348" y="128" text-anchor="middle" fill="#8c887a" font-size="11">daily CSV overwrite</text>
-    <text x="348" y="146" text-anchor="middle" fill="#8c887a" font-size="11">allow-listed job</text>
+    <rect x="214" y="56" width="150" height="96" fill="#000" stroke="#2a2a2a"/>
+    <text x="289" y="96" text-anchor="middle" fill="#f2f2f2" font-size="14" font-weight="600">Data Factory</text>
+    <text x="289" y="118" text-anchor="middle" fill="#6e6e6e" font-size="12">scheduled copy</text>
 
-    <rect x="512" y="70" width="160" height="100" fill="#20241c" stroke="#3d4336" stroke-width="1.5"/>
-    <text x="592" y="108" text-anchor="middle" fill="#ece7d8" font-size="14" font-weight="600">Azure Blob</text>
-    <text x="592" y="128" text-anchor="middle" fill="#8c887a" font-size="11">staging container</text>
-    <text x="592" y="146" text-anchor="middle" fill="#8c887a" font-size="11">latest file wins</text>
+    <rect x="404" y="56" width="150" height="96" fill="#000" stroke="#2a2a2a"/>
+    <text x="479" y="96" text-anchor="middle" fill="#f2f2f2" font-size="14" font-weight="600">Blob</text>
+    <text x="479" y="118" text-anchor="middle" fill="#6e6e6e" font-size="12">staging</text>
 
-    <rect x="736" y="28" width="160" height="84" fill="#20241c" stroke="#8fa37a" stroke-width="1.5"/>
-    <text x="816" y="62" text-anchor="middle" fill="#ece7d8" font-size="14" font-weight="600">Data Factory</text>
-    <text x="816" y="82" text-anchor="middle" fill="#8c887a" font-size="11">scheduled copy</text>
+    <rect x="594" y="56" width="150" height="96" fill="#000" stroke="#2a2a2a"/>
+    <text x="669" y="96" text-anchor="middle" fill="#f2f2f2" font-size="14" font-weight="600">Snowflake</text>
+    <text x="669" y="118" text-anchor="middle" fill="#6e6e6e" font-size="12">warehouse</text>
 
-    <rect x="736" y="132" width="160" height="84" fill="#20241c" stroke="#c9a227" stroke-width="1.5"/>
-    <text x="816" y="166" text-anchor="middle" fill="#ece7d8" font-size="14" font-weight="600">Power BI</text>
-    <text x="816" y="186" text-anchor="middle" fill="#8c887a" font-size="11">model on staged files</text>
+    <rect x="784" y="28" width="116" height="70" fill="#000" stroke="#f2f2f2"/>
+    <text x="842" y="68" text-anchor="middle" fill="#f2f2f2" font-size="13" font-weight="600">Live board</text>
+
+    <rect x="784" y="118" width="116" height="56" fill="#000" stroke="#2a2a2a"/>
+    <text x="842" y="150" text-anchor="middle" fill="#a3a3a3" font-size="12">Power BI</text>
   </g>
-  <line x1="184" y1="120" x2="264" y2="120" stroke="#c9a227" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="428" y1="120" x2="508" y2="120" stroke="#c9a227" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="672" y1="100" x2="732" y2="70" stroke="#c9a227" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="816" y1="112" x2="816" y2="130" stroke="#c9a227" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="24" y="250" fill="#8c887a" font-size="12" font-family="IBM Plex Mono, monospace">Unbranded pattern. Invented labels. Not a client diagram.</text>
+  <line x1="174" y1="104" x2="214" y2="104" stroke="#f2f2f2" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="364" y1="104" x2="404" y2="104" stroke="#f2f2f2" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="554" y1="104" x2="594" y2="104" stroke="#f2f2f2" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="744" y1="90" x2="784" y2="62" stroke="#f2f2f2" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="744" y1="118" x2="784" y2="146" stroke="#6e6e6e" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="24" y="214" fill="#6e6e6e" font-size="12" font-family="Geist, ui-sans-serif, system-ui, sans-serif">Unbranded pattern. Invented labels. Not a client diagram.</text>
 </svg>

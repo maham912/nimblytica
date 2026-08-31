@@ -20,14 +20,14 @@
       "label": "Nursing overtime",
       "kind": "workforce",
       "cut": "Nursing",
-      "note": "Nursing overtime is 24,000 hours over 12 months and 20 roles are open. People argue the pack. We need one as-of before anyone layers a model on it."
+      "note": "Nursing overtime is 24,000 hours over 12 months and 20 roles are open. People argue the pack. We need one as-of before the next standup."
     },
     {
       "id": "applications-flow",
       "label": "Applications flow",
       "kind": "ops",
       "cut": "Applications",
-      "note": "Applications opened 48 last week and resolved 44. Open is 52, six already breached. Slack is full of screenshots. Want the week board, then a one-page briefing."
+      "note": "Applications opened 48 last week and resolved 44. Open is 52, six already breached. Slack is full of screenshots. Want the live board, then a one-page briefing."
     }
   ]
 }
