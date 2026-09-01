@@ -14,7 +14,7 @@ window.NIMBLYTICA_CONFIG = {
      * contact forms submit to Web3Forms and email the lead to the address you
      * registered, instead of opening the visitor's mail client.
      */
-    web3formsAccessKey: "",
+    web3formsAccessKey: "52e5e160-79bf-46d0-beeb-ec295151db54",
     endpoint: "https://api.web3forms.com/submit",
     subject: "Live ops board — new inquiry",
     // Fallback address used when no access key is configured (mailto flow).
@@ -35,7 +35,7 @@ window.NIMBLYTICA_CONFIG = {
     // Calendly scheduling URL, e.g. "https://calendly.com/your-org/intro".
     // When set, "Book a call" buttons open the Calendly popup; empty = the
     // buttons fall back to the email contact flow.
-    calendlyUrl: ""
+    calendlyUrl: "https://calendly.com/maham6648/30min"
   },
 
   pricing: {
