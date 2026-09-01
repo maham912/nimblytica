@@ -45,7 +45,7 @@
         {
           href: "demo/pipeline.html",
           title: "Metric kernel",
-          caption: "People-analytics export → Data Factory → blob → Snowflake."
+          caption: "People-analytics export to warehouse kernel."
         }
       ]
     },
