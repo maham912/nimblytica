@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-root=".." data-page="program-complete">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#000000">
+  <meta name="view-transition" content="same-origin">
+  <title>Program complete · Nimblytica</title>
+  <meta name="description" content="When a cohort finishes, mail goes out — invented Northwind Charge Nurse Program.">
+  <meta property="og:title" content="Program complete · Nimblytica">
+  <meta property="og:description" content="When a cohort finishes, mail goes out — invented Northwind Charge Nurse Program.">
+  <meta property="og:image" content="https://nimblytica.com/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+  <header class="top" data-chrome="header"></header>
+  <main class="wrap">
+    <div class="page-head">
+      <p class="crumb"><a href="../index.html">Home</a> / <a href="samples.html">Samples</a> / Program complete</p>
+      <h1>Program complete</h1>
+      <p class="lede">When the last person finishes, mail goes out. Invented Northwind Charge Nurse Program. Not a live mailbox.</p>
+      <p class="banner">Fictional demo · invented cohort · no client names</p>
+    </div>
+
+    <p class="kicker" id="mail-slicer-label">Which mail</p>
+    <div class="slicer" id="mail-slicer" role="group" aria-labelledby="mail-slicer-label">
+      <button type="button" data-mail="manager" aria-pressed="true">Manager recap</button>
+      <button type="button" data-mail="participant" aria-pressed="false">Participant note</button>
+    </div>
+
+    <article class="mail" id="mail-manager" aria-label="Manager recap">
+      <dl class="mail-meta">
+        <div><dt>From</dt><dd>People Ops · Northwind Health Ops</dd></div>
+        <div><dt>To</dt><dd>Unit managers</dd></div>
+        <div><dt>Subject</dt><dd>Charge nurse program — 12 of 12 complete</dd></div>
+        <div><dt>Sent</dt><dd>2026-08-28 · 07:00</dd></div>
+      </dl>
+      <div class="mail-body">
+        <p class="hi">The Summer 2026 charge nurse cohort is complete. 12 of 12 finished.</p>
+        <p>As of 2026-08-28. Same cut the board already shows — not a list copied into Outlook.</p>
+        <p>Next check: night coverage on Harbor Acute before opening more charge roles.</p>
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr><th>Name</th><th>Unit</th><th>Finished</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Alex Rivera</td><td>Harbor / Acute</td><td>2026-08-12</td></tr>
+              <tr><td>Quinn Patel</td><td>Harbor / Acute</td><td>2026-08-14</td></tr>
+              <tr><td>Ellis Cho</td><td>Midland / Acute</td><td>2026-08-18</td></tr>
+              <tr><td>Mina Okonkwo</td><td>Harbor / Float</td><td>2026-08-20</td></tr>
+              <tr><td>Sable Ortega</td><td>Ridge / Observation</td><td>2026-08-21</td></tr>
+              <tr><td>Rowan Hale</td><td>Harbor / Acute</td><td>2026-08-22</td></tr>
+              <tr><td>Kit Brennan</td><td>Harbor / Short Stay</td><td>2026-08-24</td></tr>
+              <tr><td>Noor Alvi</td><td>Midland / Float</td><td>2026-08-25</td></tr>
+              <tr><td>Jules Keene</td><td>Ridge / Acute</td><td>2026-08-26</td></tr>
+              <tr><td>Imani Brooks</td><td>Harbor / Procedure</td><td>2026-08-26</td></tr>
+              <tr><td>Theo Voss</td><td>Midland / Observation</td><td>2026-08-27</td></tr>
+              <tr><td>Remy Sato</td><td>Ridge / Float</td><td>2026-08-28</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+
+    <article class="mail" id="mail-participant" aria-label="Participant note" hidden>
+      <dl class="mail-meta">
+        <div><dt>From</dt><dd>People Ops · Northwind Health Ops</dd></div>
+        <div><dt>To</dt><dd>Remy Sato</dd></div>
+        <div><dt>Subject</dt><dd>You're complete — Charge nurse program</dd></div>
+        <div><dt>Sent</dt><dd>2026-08-28 · 07:00</dd></div>
+      </dl>
+      <div class="mail-body">
+        <p class="hi">You're complete. Summer 2026 charge nurse program, as of 2026-08-28.</p>
+        <p>12 of 12 finished. Your manager already has the recap — no extra form to file.</p>
+        <p>Next check sits with Alex Rivera on Harbor Acute. Questions go to People Ops, not a ticket pile.</p>
+      </div>
+    </article>
+
+    <noscript>
+      <article class="mail" aria-label="Participant note">
+        <dl class="mail-meta">
+          <div><dt>From</dt><dd>People Ops · Northwind Health Ops</dd></div>
+          <div><dt>To</dt><dd>Remy Sato</dd></div>
+          <div><dt>Subject</dt><dd>You're complete — Charge nurse program</dd></div>
+          <div><dt>Sent</dt><dd>2026-08-28 · 07:00</dd></div>
+        </dl>
+        <div class="mail-body">
+          <p class="hi">You're complete. Summer 2026 charge nurse program, as of 2026-08-28.</p>
+          <p>12 of 12 finished. Your manager already has the recap — no extra form to file.</p>
+          <p>Next check sits with Alex Rivera on Harbor Acute. Questions go to People Ops, not a ticket pile.</p>
+        </div>
+      </article>
+    </noscript>
+
+    <p class="caption">Invented names, invented sites. The pattern is the product: program complete → one mail, on the same clock as the board. <a href="samples.html">All samples</a>. Contact: <a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a>.</p>
+    <div class="cta-row" style="margin: 18px 0 48px">
+      <a class="btn" href="../index.html#contact">Tell us what you need</a>
+      <button type="button" class="btn ghost" data-book-call>Book a call</button>
+    </div>
+  </main>
+  <footer class="site" data-chrome="footer"></footer>
+  <script src="../js/config.js"></script>
+  <script src="../js/analytics.js"></script>
+  <script src="../js/site.js"></script>
+  <script src="../js/booking.js"></script>
+  <script src="../js/program-complete.js"></script>
+</body>
+</html>
