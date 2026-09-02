@@ -26,7 +26,7 @@ window.NIMBLYTICA_CONFIG = {
     plausibleDomain: "",
     plausibleSrc: "https://plausible.io/js/script.js",
     // GA4: set your measurement id, e.g. "G-XXXXXXX". Empty = off.
-    ga4MeasurementId: "",
+    ga4MeasurementId: "G-TELFPBVSSD",
     // When true, every tracked event is also logged to the browser console.
     debug: false
   },
