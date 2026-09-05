@@ -1160,6 +1160,7 @@ pre.code, .brief {
 
 #sample-unlock { margin-top: 22px; }
 #sample-unlock[hidden],
+#sample-unlock [hidden],
 #sample-gate[hidden] { display: none; }
 
 footer.site {
