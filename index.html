@@ -137,6 +137,7 @@
           <div class="cta-row">
             <a class="btn" href="#contact">Tell us what you need</a>
             <button type="button" class="btn ghost" data-book-call>Book a call</button>
+            <a class="btn ghost" href="#sample-board">Get the sample board</a>
             <a class="btn ghost" href="demo/samples.html" data-samples-menu data-track="samples_menu_open">See samples</a>
           </div>
           <p class="caption"><a href="two-weeks.html">What you get in two weeks</a></p>
@@ -211,6 +212,40 @@
       </div>
     </section>
 
+    <section class="sheet" id="sample-board" aria-labelledby="sample-board-title">
+      <div class="wrap">
+        <p class="scene-label">Sample</p>
+        <h2 id="sample-board-title">Get the sample board</h2>
+        <p class="lede">Name and email. Then the live Northwind and Lanternfield boards, plus a one-pager you can keep.</p>
+        <form id="sample-gate">
+          <div class="honeypot" aria-hidden="true">
+            <label for="sample-botcheck">Leave this field empty</label>
+            <input id="sample-botcheck" name="botcheck" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="sample-name">Name</label>
+            <input id="sample-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="sample-email">Email</label>
+            <input id="sample-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="cta-row">
+            <button type="submit" class="btn">Get the sample board</button>
+          </div>
+          <p id="sample-status" class="form-status" aria-live="polite"></p>
+        </form>
+        <div id="sample-unlock" hidden>
+          <div class="cta-row">
+            <a class="btn" href="demo/workforce.html">Northwind workforce board</a>
+            <a class="btn ghost" href="demo/ops-pulse.html">Lanternfield pulse board</a>
+            <a class="btn ghost" data-sample-pdf href="assets/northwind-sample-board.pdf" download>Download the one-pager</a>
+            <a class="btn ghost" data-sample-html href="assets/northwind-sample-board.html" hidden>HTML one-pager</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="sheet" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
         <h2 id="contact-title">Tell us what you need</h2>
@@ -260,5 +295,6 @@
   <script src="js/contact.js"></script>
   <script src="js/booking.js"></script>
   <script src="js/samples.js"></script>
+  <script src="js/sample-gate.js"></script>
 </body>
 </html>

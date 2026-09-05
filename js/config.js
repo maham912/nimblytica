@@ -46,5 +46,11 @@ window.NIMBLYTICA_CONFIG = {
      */
     price: "", // e.g. "$4,500 flat for the first board"
     riskReversal: "" // e.g. "If the first board isn't useful, you don't pay."
+  },
+
+  stripe: {
+    liveBoard: { paymentLink: "" },
+    opsPulse: { paymentLink: "" },
+    biHours: { paymentLink: "" }
   }
 };

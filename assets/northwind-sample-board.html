@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northwind sample board · Nimblytica</title>
+  <style>
+    @font-face {
+      font-family: Geist;
+      src: url("../fonts/geist-latin-400.woff2") format("woff2");
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: Geist;
+      src: url("../fonts/geist-latin-500.woff2") format("woff2");
+      font-weight: 500;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: Geist;
+      src: url("../fonts/geist-latin-600.woff2") format("woff2");
+      font-weight: 600;
+      font-display: swap;
+    }
+    @page { size: letter portrait; margin: 0.42in; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #000;
+      color: #f2f2f2;
+      font-family: Geist, ui-sans-serif, system-ui, sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid #1c1c1c;
+      padding: 0 0 10px;
+    }
+    .wordmark { font-weight: 600; letter-spacing: -0.03em; font-size: 13px; }
+    .mail { color: #a3a3a3; font-size: 11px; }
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.055em;
+      line-height: 0.95;
+      margin: 16px 0 6px;
+    }
+    .lede { color: #a3a3a3; margin: 0 0 16px; max-width: 38em; }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 0 0 16px;
+    }
+    .kpi {
+      background: #0a0a0a;
+      border: 1px solid #1c1c1c;
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+    .kpi .n {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.05em;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .kpi .l {
+      margin-top: 6px;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6e6e6e;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
+    }
+    th {
+      text-align: left;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6e6e6e;
+      font-weight: 500;
+      border-bottom: 1px solid #1c1c1c;
+      padding: 7px 10px 7px 0;
+    }
+    td {
+      padding: 8px 10px 8px 0;
+      border-bottom: 1px solid #1c1c1c;
+    }
+    tr:last-child td { border-bottom: none; }
+    .panel {
+      background: #0a0a0a;
+      border: 1px solid #1c1c1c;
+      border-radius: 12px;
+      padding: 12px 14px 6px;
+    }
+    .panel h2 {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6e6e6e;
+      font-weight: 500;
+      margin: 0 0 6px;
+    }
+    footer {
+      margin-top: 14px;
+      border-top: 1px solid #1c1c1c;
+      padding-top: 10px;
+      color: #6e6e6e;
+      font-size: 10px;
+    }
+    footer a { color: #a3a3a3; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wordmark">Nimblytica</div>
+    <div class="mail">hello@nimblytica.com</div>
+  </header>
+  <h1>Northwind Health Ops</h1>
+  <p class="lede">Invented workforce sample as of 2026-08-01. Headcount, open roles, attrition, overtime. Department cut. Not a client.</p>
+  <div class="kpis">
+    <article class="kpi"><div class="n">1,200</div><div class="l">Headcount</div></article>
+    <article class="kpi"><div class="n">48</div><div class="l">Open roles</div></article>
+    <article class="kpi"><div class="n">12%</div><div class="l">Attrition, 12 months</div></article>
+    <article class="kpi"><div class="n">8</div><div class="l">Span of control</div></article>
+  </div>
+  <div class="panel">
+    <h2>Top units</h2>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Unit</th><th>OT hours</th><th>Open</th><th>Attrition</th><th>Owner</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Nursing</td><td>24,000</td><td>20</td><td>16%</td><td>Alex Rivera</td></tr>
+        <tr><td>2</td><td>Clinical Support</td><td>6,000</td><td>8</td><td>10%</td><td>Jordan Hale</td></tr>
+        <tr><td>3</td><td>Revenue Cycle</td><td>4,000</td><td>8</td><td>14%</td><td>Sam Okonkwo</td></tr>
+        <tr><td>4</td><td>Operations</td><td>2,000</td><td>4</td><td>8%</td><td>Casey Nguyen</td></tr>
+        <tr><td>5</td><td>IT</td><td>1,000</td><td>4</td><td>6%</td><td>Priya Shah</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <footer>
+    Live boards on nimblytica.com: Northwind workforce and Lanternfield pulse.
+  </footer>
+</body>
+</html>
