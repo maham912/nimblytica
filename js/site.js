@@ -10,12 +10,13 @@
 
   const header = document.querySelector("[data-chrome='header']");
   if (header) {
-    const contactHref = current === "home" || current === "two-weeks" ? "#contact" : p("index.html") + "#contact";
+    const contactHref = document.getElementById("contact") ? "#contact" : p("index.html") + "#contact";
     header.innerHTML = `
       <div class="wrap top-inner">
         <a class="wordmark" href="${p("index.html")}">Nimblytica</a>
         <nav class="links" aria-label="Primary">
           <a href="${p("two-weeks.html")}" ${current === "two-weeks" ? 'aria-current="page"' : ""}>Two weeks</a>
+          <a href="${p("packages.html")}" ${current === "packages" ? 'aria-current="page"' : ""}>Packages</a>
           <a href="${p("demo/samples.html")}" ${current === "samples" || current === "program-complete" ? 'aria-current="page"' : ""}>Samples</a>
           <a href="${p("demo/shift-board.html")}" ${current === "shift-board" ? 'aria-current="page"' : ""}>Shift Board</a>
           <a href="${p("demo/scorecard.html")}" ${current === "scorecard" ? 'aria-current="page"' : ""}>Scorecard</a>
@@ -33,6 +34,7 @@
         <div>Nimblytica</div>
         <nav class="foot-links" aria-label="Footer">
           <a href="${p("two-weeks.html")}">Two weeks</a>
+          <a href="${p("packages.html")}">Packages</a>
           <a href="${p("trust.html")}">Trust</a>
           <a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a>
         </nav>
