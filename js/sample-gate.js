@@ -12,6 +12,7 @@
   var status = document.getElementById("sample-status");
   var submitBtn = form.querySelector('button[type="submit"]');
   var submitLabel = submitBtn ? submitBtn.textContent : "Get the sample board";
+  var submitting = false;
 
   function stored() {
     try {
@@ -26,11 +27,99 @@
     return el ? (el.value || "").trim() : "";
   }
 
+  function fieldEl(name) {
+    return form.elements.namedItem(name);
+  }
+
   function setStatus(kind, message) {
     if (!status) return;
     status.textContent = message || "";
     status.className = "form-status" + (kind ? " is-" + kind : "");
-    if (message) status.setAttribute("role", kind === "error" ? "alert" : "status");
+    if (message) {
+      status.setAttribute("role", kind === "error" ? "alert" : "status");
+      status.setAttribute("aria-live", kind === "error" ? "assertive" : "polite");
+    } else {
+      status.removeAttribute("role");
+      status.setAttribute("aria-live", "polite");
+    }
+  }
+
+  function setBusy(busy, label) {
+    submitting = busy;
+    form.classList.toggle("is-busy", busy);
+    form.setAttribute("aria-busy", busy ? "true" : "false");
+    if (!submitBtn) return;
+    submitBtn.disabled = !!busy;
+    submitBtn.setAttribute("aria-disabled", busy ? "true" : "false");
+    if (busy) {
+      submitBtn.classList.add("is-loading");
+      submitBtn.textContent = label || "Sending…";
+    } else {
+      submitBtn.classList.remove("is-loading");
+      submitBtn.textContent = label || submitLabel;
+    }
+  }
+
+  function clearFieldError(name) {
+    var el = fieldEl(name);
+    if (!el) return;
+    var wrap = el.closest(".field");
+    if (wrap) wrap.classList.remove("is-invalid");
+    el.removeAttribute("aria-invalid");
+    var errId = el.getAttribute("aria-describedby");
+    if (!errId) return;
+    var err = document.getElementById(errId);
+    if (!err || !err.classList.contains("field-error")) return;
+    err.textContent = "";
+    err.hidden = true;
+  }
+
+  function setFieldError(name, message) {
+    var el = fieldEl(name);
+    if (!el) return null;
+    var wrap = el.closest(".field");
+    if (wrap) wrap.classList.add("is-invalid");
+    el.setAttribute("aria-invalid", "true");
+    var errId = el.id ? el.id + "-error" : "";
+    var err = errId ? document.getElementById(errId) : null;
+    if (!err && wrap) {
+      err = document.createElement("p");
+      err.className = "field-error";
+      if (errId) err.id = errId;
+      wrap.appendChild(err);
+      if (errId) el.setAttribute("aria-describedby", errId);
+    }
+    if (err) {
+      err.textContent = message || "";
+      err.hidden = !message;
+    }
+    return el;
+  }
+
+  function clearAllFieldErrors() {
+    ["name", "email"].forEach(clearFieldError);
+  }
+
+  function emailOk(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  function validate() {
+    clearAllFieldErrors();
+    var name = val("name");
+    var email = val("email");
+    var first = null;
+
+    if (!name) {
+      first = first || setFieldError("name", "Add your name.");
+    }
+    if (!email) {
+      first = first || setFieldError("email", "Add an email so we can send the sample.");
+    } else if (!emailOk(email)) {
+      first = first || setFieldError("email", "That email doesn't look right.");
+    }
+
+    return { ok: !first, name: name, email: email, first: first };
   }
 
   function revealPdfFallback() {
@@ -86,24 +175,52 @@
 
   render(stored());
 
+  ["name", "email"].forEach(function (name) {
+    var el = fieldEl(name);
+    if (!el) return;
+    el.addEventListener("input", function () {
+      clearFieldError(name);
+      if (status && status.classList.contains("is-error")) setStatus("", "");
+    });
+    el.addEventListener("blur", function () {
+      var v = val(name);
+      if (!v) return;
+      if (name === "email" && !emailOk(v)) {
+        setFieldError("email", "That email doesn't look right.");
+      }
+    });
+  });
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    if (submitting) return;
 
     if (val("botcheck")) {
       setStatus("success", "Thanks — we'll be in touch.");
       return;
     }
 
-    var name = val("name");
-    var email = val("email");
-    if (!name || !email) {
-      setStatus("error", "Please enter your name and email.");
+    var check = validate();
+    if (!check.ok) {
+      setStatus("error", "Check the highlighted fields and try again.");
+      if (check.first && typeof check.first.focus === "function") {
+        try {
+          check.first.focus({ preventScroll: false });
+        } catch (err) {
+          check.first.focus();
+        }
+      }
       return;
     }
 
+    var name = check.name;
+    var email = check.email;
     var key = cfg.web3formsAccessKey;
+
     if (!key) {
       var to = cfg.contactEmail || "hello@nimblytica.com";
+      setBusy(true, "Opening email…");
+      setStatus("pending", "Opening your email app…");
       window.location.href =
         "mailto:" +
         to +
@@ -111,12 +228,18 @@
         encodeURIComponent("Sample board — new lead") +
         "&body=" +
         encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n");
-      setStatus("success", "Opening your email app… if nothing happens, email " + to + ".");
       persistUnlock();
       track("sample_gate_success", {
         page: document.documentElement.getAttribute("data-page") || "",
         mode: "mailto"
       });
+      window.setTimeout(function () {
+        setBusy(false);
+        setStatus(
+          "success",
+          "Unlocked below. If email didn't open, write " + to + "."
+        );
+      }, 600);
       return;
     }
 
@@ -129,11 +252,8 @@
       botcheck: ""
     };
 
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Sending…";
-    }
-    setStatus("pending", "Sending…");
+    setBusy(true, "Sending…");
+    setStatus("pending", "Unlocking the sample gallery…");
 
     fetch(cfg.endpoint || "https://api.web3forms.com/submit", {
       method: "POST",
@@ -148,28 +268,33 @@
       .then(function (out) {
         if (out && out.success) {
           form.reset();
+          clearAllFieldErrors();
           setStatus("success", "Unlocked. Sample gallery and one-pager are below.");
           persistUnlock();
           track("sample_gate_success", {
             page: document.documentElement.getAttribute("data-page") || "",
             mode: "backend"
           });
+          submitting = false;
+          form.classList.remove("is-busy");
+          form.setAttribute("aria-busy", "false");
+          if (submitBtn) {
+            submitBtn.classList.remove("is-loading");
+            submitBtn.disabled = false;
+            submitBtn.removeAttribute("aria-disabled");
+            submitBtn.textContent = submitLabel;
+          }
         } else {
           throw new Error((out && out.message) || "Submission failed");
         }
       })
       .catch(function () {
         var fallback = cfg.contactEmail || "hello@nimblytica.com";
+        setBusy(false);
         setStatus(
           "error",
-          "Something went wrong sending that. Please email " + fallback + " and we'll jump on it."
+          "Couldn't send just now. Email " + fallback + " and we'll jump on it."
         );
-      })
-      .finally(function () {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = submitLabel;
-        }
       });
   });
 })();

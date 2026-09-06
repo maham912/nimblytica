@@ -49,6 +49,7 @@ A page/feature is done only when all of these pass:
 | Trust page stacked cards + trust FAQ-lite @390 | PR trust-poster-polish | Done |
 | Homepage BA poster-first silent punch polish | PR trust-poster-polish | Done |
 | Accessibility / Lighthouse pass (skip-link, contrast, nav/FAQ focus aria) | PR a11y-lighthouse | Done |
+| Contact + sample-gate UX polish (inline validation, loading, double-submit guard, field order @390) | PR contact-form-ux | Done |
 
 ---
 
@@ -103,4 +104,6 @@ Acceptance: headless or real Chrome at **390×844** — `document.documentElemen
 3. Do not ship a desktop-only layout “to polish later.”
 4. Owner: **Nimblytica** maintains this file; Cloud Desk implements.
 
-Last updated: 2026-09-06 (a11y / Lighthouse pass — no SFV)
+Last updated: 2026-09-06 (contact form UX polish @390×844 — no SFV/home-call; HOLD #22 and #25 skipped forever)
+
+**Skip forever:** PR #22 (FAQ accordion) and PR #25 (SFV/home-call). Do not revive.
