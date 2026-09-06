@@ -1,24 +1,38 @@
 (function () {
   var table = (window.NIMBLYTICA_CONFIG && window.NIMBLYTICA_CONFIG.stripe) || {};
 
-  document.querySelectorAll("[data-pay-sku]").forEach(function (btn) {
-    var sku = btn.getAttribute("data-pay-sku");
+  function resolvePackageCta(sku) {
     var entry = Object.prototype.hasOwnProperty.call(table, sku) ? table[sku] : null;
     var link = entry && typeof entry.paymentLink === "string" ? entry.paymentLink.trim() : "";
+    if (link) return { kind: "pay", sku: sku, href: link };
+    return { kind: "book", sku: sku };
+  }
 
-    if (link) {
-      btn.setAttribute("href", link);
-      btn.classList.remove("is-soon");
-      btn.removeAttribute("aria-disabled");
+  function applyPackageCta(node, cta) {
+    node.classList.remove("is-soon");
+    node.removeAttribute("aria-disabled");
+
+    if (cta.kind === "pay") {
+      node.setAttribute("href", cta.href);
       return;
     }
 
-    btn.removeAttribute("href");
-    btn.classList.add("is-soon");
-    btn.setAttribute("aria-disabled", "true");
-    btn.textContent = "Coming soon";
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = node.className;
+    btn.setAttribute("data-pay-sku", cta.sku);
+    btn.setAttribute("data-book-call", "");
+    btn.textContent = "Book a 20-min board diagnostic";
+    node.replaceWith(btn);
+
+    var row = btn.closest(".cta-row");
+    if (!row) return;
+    Array.prototype.forEach.call(row.querySelectorAll("[data-book-call]"), function (sib) {
+      if (sib !== btn) sib.hidden = true;
     });
+  }
+
+  document.querySelectorAll("[data-pay-sku]").forEach(function (node) {
+    applyPackageCta(node, resolvePackageCta(node.getAttribute("data-pay-sku")));
   });
 })();

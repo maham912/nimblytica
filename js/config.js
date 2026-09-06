@@ -27,6 +27,8 @@ window.NIMBLYTICA_CONFIG = {
     plausibleSrc: "https://plausible.io/js/script.js",
     // GA4: set your measurement id, e.g. "G-XXXXXXX". Empty = off.
     ga4MeasurementId: "G-TELFPBVSSD",
+    // Microsoft Clarity: set your project id. Empty = off.
+    clarityProjectId: "",
     // When true, every tracked event is also logged to the browser console.
     debug: false
   },
