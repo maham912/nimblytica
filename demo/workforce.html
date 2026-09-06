@@ -29,34 +29,38 @@
     <p class="banner" id="banner">Fictional demo · owner on file: Alex Rivera</p>
     <div class="slicer" id="slicer" role="group" aria-label="Department"></div>
     <div class="kpis" id="kpis"></div>
-    <div class="grid-2" style="display:grid; gap:16px">
+    <div class="grid-2">
       <div class="panel">
         <h2>Headcount trend</h2>
-        <div id="chart-hc" style="height:280px"></div>
+        <div id="chart-hc" class="chart chart-lg"></div>
       </div>
       <div class="panel">
         <h2>Overtime hours</h2>
-        <div id="chart-ot" style="height:280px"></div>
+        <div id="chart-ot" class="chart chart-lg"></div>
       </div>
     </div>
-    <div class="grid-2" style="display:grid; gap:16px; margin-top:16px">
+    <div class="grid-2" style="margin-top:16px">
       <div class="panel">
         <h2>Top units</h2>
-        <table class="data">
-          <thead>
-            <tr><th>#</th><th>Unit</th><th>OT hours</th><th>Open</th><th>Attrition</th><th>Owner</th></tr>
-          </thead>
-          <tbody id="top-body"></tbody>
-        </table>
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr><th>#</th><th>Unit</th><th>OT hours</th><th>Open</th><th>Attrition</th><th>Owner</th></tr>
+            </thead>
+            <tbody id="top-body"></tbody>
+          </table>
+        </div>
       </div>
       <div class="panel">
         <h2>New names</h2>
-        <table class="data">
-          <thead>
-            <tr><th>Start</th><th>Name</th><th>Role</th><th>Unit</th></tr>
-          </thead>
-          <tbody id="new-body"></tbody>
-        </table>
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr><th>Start</th><th>Name</th><th>Role</th><th>Unit</th></tr>
+            </thead>
+            <tbody id="new-body"></tbody>
+          </table>
+        </div>
       </div>
     </div>
     <p class="caption">Overview, trend, slicer, top and new — so a ticketed pack can retire. Same file feeds the homepage board.</p>

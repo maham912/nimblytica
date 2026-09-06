@@ -3,7 +3,7 @@
  *
  * Everything here is optional and safe to leave blank: with empty values the
  * site behaves exactly as before (contact forms open the visitor's email
- * client, no analytics load, "Book a call" falls back to email). Fill a value
+ * client, no analytics load, "Book a 20-min board diagnostic" falls back to email). Fill a value
  * in to switch the corresponding feature on — no other code changes needed.
  */
 window.NIMBLYTICA_CONFIG = {
@@ -35,8 +35,9 @@ window.NIMBLYTICA_CONFIG = {
 
   booking: {
     // Calendly scheduling URL, e.g. "https://calendly.com/your-org/intro".
-    // When set, "Book a call" buttons open the Calendly popup; empty = the
-    // buttons fall back to the email contact flow.
+    // When set, "Book a 20-min board diagnostic" buttons open the Calendly popup;
+    // empty = the buttons fall back to the email contact flow.
+    // Keep this URL as-is until a 20-min Calendly event exists.
     calendlyUrl: "https://calendly.com/maham6648/30min"
   },
 

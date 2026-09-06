@@ -29,34 +29,36 @@
     <p class="banner" id="banner">Fictional demo · synthetic volumes only</p>
     <div class="slicer" id="slicer" role="group" aria-label="Queue"></div>
     <div class="kpis" id="kpis"></div>
-    <div class="grid-2" style="display:grid; gap:16px">
+    <div class="grid-2">
       <div class="panel">
         <h2>Opened vs resolved</h2>
-        <div id="chart-flow" style="height:280px"></div>
+        <div id="chart-flow" class="chart chart-lg"></div>
       </div>
       <div class="panel">
         <h2>Aging of open work</h2>
-        <div id="chart-aging" style="height:280px"></div>
+        <div id="chart-aging" class="chart chart-lg"></div>
       </div>
     </div>
-    <div class="grid-2" style="display:grid; gap:16px; margin-top:16px">
+    <div class="grid-2" style="margin-top:16px">
       <div class="panel">
         <h2>Open by queue</h2>
-        <div id="chart-queue" style="height:280px"></div>
+        <div id="chart-queue" class="chart chart-lg"></div>
       </div>
       <div class="panel">
         <h2>Open by priority</h2>
-        <div id="chart-priority" style="height:280px"></div>
+        <div id="chart-priority" class="chart chart-lg"></div>
       </div>
     </div>
     <div class="panel" style="margin-top:16px">
       <h2>Queue snapshot</h2>
-      <table class="data">
-        <thead>
-          <tr><th>Queue</th><th>Open</th><th>SLA</th><th>Breached</th><th>Median age</th><th>8+ days</th></tr>
-        </thead>
-        <tbody id="queue-body"></tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="data">
+          <thead>
+            <tr><th>Queue</th><th>Open</th><th>SLA</th><th>Breached</th><th>Median age</th><th>8+ days</th></tr>
+          </thead>
+          <tbody id="queue-body"></tbody>
+        </table>
+      </div>
     </div>
     <p class="caption">Open, SLA, aging, queue — a short page instead of a ticket extract.</p>
     <p class="note">Data: <a href="../data/ops-pulse.fake.json">ops-pulse.fake.json</a>. Invented org, rounded figures, no ticket rows.</p>
