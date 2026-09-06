@@ -13,6 +13,7 @@
   <meta property="og:image" content="https://nimblytica.com/assets/og.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nimblytica.com/">
+  <link rel="canonical" href="https://nimblytica.com/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Nimblytica">
   <meta name="twitter:description" content="A live board in two weeks.">
@@ -45,7 +46,7 @@
 </head>
 <body>
   <header class="top" data-chrome="header"></header>
-  <main>
+  <main id="main">
     <section class="hero" aria-labelledby="site-title">
       <div class="wrap hero-copy">
         <h1 class="hero-title" id="site-title">Nimblytica</h1>
@@ -81,18 +82,18 @@
           <div class="grid-2 board-charts">
             <div class="panel">
               <h2>Headcount trend</h2>
-              <div id="wb-chart-hc" class="chart"></div>
+              <div id="wb-chart-hc" class="chart" aria-label="Headcount trend chart"></div>
             </div>
             <div class="panel">
               <h2>Overtime hours</h2>
-              <div id="wb-chart-ot" class="chart"></div>
+              <div id="wb-chart-ot" class="chart" aria-label="Overtime hours chart"></div>
             </div>
           </div>
           <div class="grid-2 board-tables">
             <div class="panel">
               <h2>Top units</h2>
               <div class="table-scroll">
-                <table class="data">
+                <table class="data" aria-label="Top units by overtime">
                   <thead>
                     <tr><th>#</th><th>Unit</th><th>OT hours</th><th>Open</th><th>Attrition</th><th>Owner</th></tr>
                   </thead>
@@ -109,7 +110,7 @@
             <div class="panel">
               <h2>New names</h2>
               <div class="table-scroll">
-                <table class="data">
+                <table class="data" aria-label="Recent new hires">
                   <thead>
                     <tr><th>Start</th><th>Name</th><th>Role</th><th>Unit</th></tr>
                   </thead>
@@ -239,7 +240,7 @@
       </div>
     </section>
 
-    <section class="scene" data-scene="board">
+    <section class="scene" data-scene="board" aria-label="Board">
       <div class="scene-pin">
         <div class="wrap">
           <p class="scene-label">Board</p>
@@ -255,7 +256,7 @@
       </div>
     </section>
 
-    <section class="scene" data-scene="pulse">
+    <section class="scene" data-scene="pulse" aria-label="Pulse">
       <div class="scene-pin">
         <div class="wrap">
           <p class="scene-label">Pulse</p>
@@ -268,12 +269,12 @@
           </div>
           <div class="scene-stage grid-2 pulse-charts">
             <div class="panel">
-              <h2>Opened vs resolved</h2>
-              <div id="sc-chart-flow" class="chart"></div>
+              <h3>Opened vs resolved</h3>
+              <div id="sc-chart-flow" class="chart" aria-label="Opened versus resolved tickets chart"></div>
             </div>
             <div class="panel">
-              <h2>Open by queue</h2>
-              <div id="sc-chart-queue" class="chart"></div>
+              <h3>Open by queue</h3>
+              <div id="sc-chart-queue" class="chart" aria-label="Open tickets by queue chart"></div>
             </div>
           </div>
           <p class="caption">Cards and a queue cut instead of scrolling rows. <a href="demo/ops-pulse.html">Open the pulse</a>.</p>
@@ -281,7 +282,7 @@
       </div>
     </section>
 
-    <section class="scene" data-scene="briefing">
+    <section class="scene" data-scene="briefing" aria-label="Briefing">
       <div class="scene-pin">
         <div class="wrap">
           <p class="scene-label">Briefing</p>
@@ -454,19 +455,19 @@
           </div>
           <div class="field">
             <label for="want">What I want to see</label>
-            <textarea id="want" name="want" required></textarea>
+            <textarea id="want" name="want" autocomplete="off" required></textarea>
           </div>
           <div class="field">
             <label for="data">Where the data lives today (Excel, UKG, SQL, tickets, a folder of files)</label>
-            <input id="data" name="data" type="text">
+            <input id="data" name="data" type="text" autocomplete="off">
           </div>
           <div class="field">
             <label for="refresh">How often it should refresh</label>
-            <input id="refresh" name="refresh" type="text">
+            <input id="refresh" name="refresh" type="text" autocomplete="off">
           </div>
           <div class="field">
             <label for="who">Who looks at it</label>
-            <input id="who" name="who" type="text">
+            <input id="who" name="who" type="text" autocomplete="organization-title">
           </div>
           <div class="field">
             <label for="name">Name / company</label>
@@ -474,7 +475,7 @@
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required data-clarity-mask>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" enterkeyhint="send" required data-clarity-mask>
           </div>
           <div class="cta-row">
             <button type="submit" class="btn">Send to hello@nimblytica.com</button>

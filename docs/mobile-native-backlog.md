@@ -48,6 +48,7 @@ A page/feature is done only when all of these pass:
 | Gated sample gallery (1-col unlock @390) | PR sample-gallery-gated | Done |
 | Trust page stacked cards + trust FAQ-lite @390 | PR trust-poster-polish | Done |
 | Homepage BA poster-first silent punch polish | PR trust-poster-polish | Done |
+| Accessibility / Lighthouse pass (skip-link, contrast, nav/FAQ focus aria) | PR a11y-lighthouse | Done |
 
 ---
 
@@ -102,4 +103,4 @@ Acceptance: headless or real Chrome at **390×844** — `document.documentElemen
 3. Do not ship a desktop-only layout “to polish later.”
 4. Owner: **Nimblytica** maintains this file; Cloud Desk implements.
 
-Last updated: 2026-09-06 (trust stack + BA poster polish)
+Last updated: 2026-09-06 (a11y / Lighthouse pass — no SFV)

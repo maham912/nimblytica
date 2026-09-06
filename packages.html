@@ -13,6 +13,7 @@
   <meta property="og:image" content="https://nimblytica.com/assets/og.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nimblytica.com/packages.html">
+  <link rel="canonical" href="https://nimblytica.com/packages.html">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Packages · Nimblytica">
   <meta name="twitter:description" content="Live Board, Ops Pulse, hours, or monthly care.">
@@ -35,7 +36,7 @@
 </head>
 <body>
   <header class="top" data-chrome="header"></header>
-  <main class="offer-page">
+  <main id="main" class="offer-page">
     <div class="wrap page-head">
       <p class="crumb"><a href="index.html">Home</a> / Packages</p>
       <h1>Nimblytica</h1>
@@ -211,19 +212,19 @@
           </div>
           <div class="field">
             <label for="want">What I want to see</label>
-            <textarea id="want" name="want" required></textarea>
+            <textarea id="want" name="want" autocomplete="off" required></textarea>
           </div>
           <div class="field">
             <label for="data">Where the data lives today (Excel, UKG, SQL, tickets, a folder of files)</label>
-            <input id="data" name="data" type="text">
+            <input id="data" name="data" type="text" autocomplete="off">
           </div>
           <div class="field">
             <label for="refresh">How often it should refresh</label>
-            <input id="refresh" name="refresh" type="text">
+            <input id="refresh" name="refresh" type="text" autocomplete="off">
           </div>
           <div class="field">
             <label for="who">Who looks at it</label>
-            <input id="who" name="who" type="text">
+            <input id="who" name="who" type="text" autocomplete="organization-title">
           </div>
           <div class="field">
             <label for="name">Name / company</label>
@@ -231,7 +232,7 @@
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required data-clarity-mask>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" enterkeyhint="send" required data-clarity-mask>
           </div>
           <div class="cta-row">
             <button type="submit" class="btn">Send to hello@nimblytica.com</button>

@@ -27,7 +27,7 @@
   --bg-2: #111;
   --ink: #f2f2f2;
   --ink-dim: #a3a3a3;
-  --mute: #6e6e6e;
+  --mute: #8a8a8a; /* ~5.5:1 on #000 — AA for captions/meta/nav */
   --line: #1c1c1c;
   --line-2: #2a2a2a;
   --spring: cubic-bezier(0.22, 1.15, 0.36, 1);
@@ -67,9 +67,50 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+summary:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
+}
+
+/* Skip link — first focusable control for keyboard / Lighthouse a11y */
+.skip-link {
+  position: absolute;
+  left: var(--pad);
+  top: 0;
+  z-index: 100;
+  padding: 10px 16px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  background: var(--ink);
+  color: #000;
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: -0.02em;
+  border-radius: 0 0 12px 12px;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform 160ms ease;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  color: #000;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .wrap {
@@ -231,6 +272,8 @@ h1 {
   margin: 0 0 10px;
 }
 .crumb a { color: var(--mute); }
+.crumb a:hover,
+.crumb a:focus-visible { color: var(--ink); }
 
 /* buttons */
 .cta-row { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -1067,7 +1110,8 @@ table.data .factor { font-weight: 600; letter-spacing: -0.03em; }
   margin-bottom: 16px;
   border-radius: 14px;
 }
-.panel h2 {
+.panel h2,
+.panel h3 {
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1851,6 +1895,11 @@ body.nav-open {
   letter-spacing: -0.02em;
   color: var(--ink);
   line-height: 1.3;
+}
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+  border-radius: 12px;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary::after {
