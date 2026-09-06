@@ -45,6 +45,8 @@ A page/feature is done only when all of these pass:
 | PWA manifest / icons / apple-touch smoke | PR mobile-musthaves | Done |
 | Hamburger scroll lock + focus trap + Escape | PR mobile-musthaves | Done |
 | Homepage before/after silent punch (CSS/SVG loop) | PR homepage-ba-punch | Done |
+| FAQ accordion (packages + two-weeks) | PR faq-demo-drills | Done |
+| Demo drill 390px: scorecard crumb, pipeline rail, shift-board rank | PR faq-demo-drills | Done |
 
 ---
 
@@ -53,7 +55,6 @@ A page/feature is done only when all of these pass:
 Priority order for the next mobile passes:
 
 1. **Live Payment Links UX on phone** — once Stripe links are live, verify Buy → Stripe Checkout → return on 390px (packages + any deposit CTAs). Soft-fail still OK until links land.
-2. **Demo drill paths** — scorecard Acute→Harbor breadcrumb, pipeline stage rail, shift-board rank: all usable at 390px after #16 (regression after sticky CTA / nav a11y pass).
 
 ---
 
@@ -70,7 +71,7 @@ When we add any of these, they go live with a 390px acceptance check in the PR:
 | Before/after demo loops or short video | Shipped homepage CSS/SVG silent loop; keep playsinline/no-sound/max-width 100% if video later |
 | Client login / portal (future) | Thumb auth, no hover menus |
 | Blog / case studies (anonymized) | Readable type scale; images `max-width:100%` |
-| FAQ accordion | Large tap rows; one open at a time OK |
+| FAQ accordion | Large tap rows; one open at a time OK — shipped on packages + two-weeks |
 | Bottom nav / sticky Book | Safe-area padding; doesn’t cover form submit |
 | Dark-mode toggle (if ever) | Respect `prefers-color-scheme`; no flash |
 | Multi-language (unlikely) | Layout doesn’t break with longer strings |
@@ -99,4 +100,4 @@ Acceptance: headless or real Chrome at **390×844** — `document.documentElemen
 3. Do not ship a desktop-only layout “to polish later.”
 4. Owner: **Nimblytica** maintains this file; Cloud Desk implements.
 
-Last updated: 2026-09-06 (homepage before/after punch)
+Last updated: 2026-09-06 (FAQ + demo drill 390px; after homepage punch)

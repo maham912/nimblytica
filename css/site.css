@@ -1697,3 +1697,113 @@ body.nav-open {
     stroke-dashoffset: 0;
   }
 }
+
+/* === faq accordion 2026-09-06 === */
+.faq-list {
+  display: grid;
+  gap: 0;
+  margin: 18px 0 0;
+  border-top: 1px solid var(--line);
+}
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+.faq-item > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  padding: 16px 0;
+  cursor: pointer;
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  width: 1.5rem;
+  text-align: center;
+  color: var(--mute);
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.faq-item[open] > summary::after { content: "–"; }
+.faq-item > summary:hover { color: #fff; }
+.faq-item > p {
+  margin: 0 0 18px;
+  color: var(--ink-dim);
+  max-width: 36rem;
+}
+@media (max-width: 540px) {
+  .faq-item > summary {
+    font-size: 0.98rem;
+    padding: 14px 0;
+  }
+}
+
+/* === demo drill mobile regression 2026-09-06 === */
+@media (max-width: 879px) {
+  /* Scorecard Acute→Harbor breadcrumb: internal scroll, no page overflow */
+  .drill {
+    max-width: 100%;
+    min-width: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+  .drill button,
+  .drill span.here {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    max-width: none;
+  }
+  .drill button {
+    padding: 10px 6px;
+  }
+
+  /* Pipeline stage rail already stacks <720; keep thumb-sized + no page overflow */
+  .wh-rail {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .wh-stage {
+    min-width: 0;
+  }
+  .warehouse,
+  .warehouse .product-frame {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  /* Shift Board rank: keep Name / Site / Call-off factor visible without page pan */
+  html[data-page="shift-board"] table.data th:nth-child(4),
+  html[data-page="shift-board"] table.data td:nth-child(4),
+  html[data-page="shift-board"] table.data th:nth-child(5),
+  html[data-page="shift-board"] table.data td:nth-child(5),
+  html[data-page="shift-board"] table.data th:nth-child(7),
+  html[data-page="shift-board"] table.data td:nth-child(7),
+  html[data-page="shift-board"] table.data th:nth-child(8),
+  html[data-page="shift-board"] table.data td:nth-child(8),
+  html[data-page="shift-board"] table.data th:nth-child(9),
+  html[data-page="shift-board"] table.data td:nth-child(9) {
+    display: none;
+  }
+  html[data-page="shift-board"] table.data th,
+  html[data-page="shift-board"] table.data td {
+    white-space: normal;
+  }
+  html[data-page="shift-board"] table.data th:nth-child(6),
+  html[data-page="shift-board"] table.data td:nth-child(6) {
+    white-space: nowrap;
+    font-weight: 600;
+  }
+}
