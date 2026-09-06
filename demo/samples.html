@@ -24,9 +24,79 @@
     <div class="page-head">
       <p class="crumb"><a href="../index.html">Home</a> / Samples</p>
       <h1>Samples</h1>
-      <p class="lede">Three kinds of work. Invented Northwind Health Ops and Lanternfield Service Ops. Pick a category, then open a demo.</p>
+      <p class="lede">Three kinds of work. Invented Northwind Health Ops and Lanternfield Service Ops. Unlock the gallery with name and email, then open a demo.</p>
       <p class="banner">Fictional demos · no client data · contact stays hello@nimblytica.com</p>
+      <div class="cta-row" style="margin-top:14px">
+        <a class="btn" href="#sample-board">Get the sample board</a>
+        <button type="button" class="btn ghost" data-book-call>Book a 20-min board diagnostic</button>
+      </div>
     </div>
+
+    <section class="sheet sample-gate-sheet" id="sample-board" aria-labelledby="sample-board-title" style="padding-top:8px">
+      <p class="scene-label">Sample</p>
+      <h2 id="sample-board-title">Get the sample board</h2>
+      <p class="lede">Name and email unlock the live sample gallery — invented Northwind and Lanternfield boards, plus a one-pager you can keep.</p>
+      <p class="sample-gate-banner">Free · fictional demos only · goes to hello@nimblytica.com</p>
+      <form id="sample-gate" novalidate>
+        <div class="honeypot" aria-hidden="true">
+          <label for="sample-botcheck">Leave this field empty</label>
+          <input id="sample-botcheck" name="botcheck" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="sample-name">Name</label>
+          <input id="sample-name" name="name" type="text" autocomplete="name" enterkeyhint="next" autocapitalize="words" required data-clarity-mask aria-describedby="sample-name-error">
+          <p class="field-error" id="sample-name-error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="sample-email">Email</label>
+          <input id="sample-email" name="email" type="email" autocomplete="email" inputmode="email" enterkeyhint="go" required data-clarity-mask aria-describedby="sample-email-error">
+          <p class="field-error" id="sample-email-error" hidden></p>
+        </div>
+        <div class="cta-row">
+          <button type="submit" class="btn">Get the sample board</button>
+        </div>
+        <p id="sample-status" class="form-status" aria-live="polite"></p>
+      </form>
+      <div id="sample-unlock" hidden>
+        <p class="lede sample-unlock-lede" id="sample-unlock-status">Unlocked — pick a board below. Gallery and one-pager are ready on this phone-width view.</p>
+        <div class="sample-gallery" role="list">
+          <a class="sample-card" role="listitem" href="workforce.html">
+            <span class="sample-card-kicker">People · Northwind</span>
+            <span class="sample-card-title">Workforce snapshot</span>
+            <span class="sample-card-desc">Headcount, attrition, open roles, OT hours.</span>
+          </a>
+          <a class="sample-card" role="listitem" href="scorecard.html">
+            <span class="sample-card-kicker">People · Northwind</span>
+            <span class="sample-card-title">Scorecard</span>
+            <span class="sample-card-desc">Attrition, open roles, OT — System to Region.</span>
+          </a>
+          <a class="sample-card" role="listitem" href="shift-board.html">
+            <span class="sample-card-kicker">People · Northwind</span>
+            <span class="sample-card-title">Shift Board</span>
+            <span class="sample-card-desc">Who gets flexed off when volume is low.</span>
+          </a>
+          <a class="sample-card" role="listitem" href="ops-pulse.html">
+            <span class="sample-card-kicker">Ops · Lanternfield</span>
+            <span class="sample-card-title">Pulse</span>
+            <span class="sample-card-desc">Open, late, aging — the huddle, not a ticket dump.</span>
+          </a>
+          <a class="sample-card" role="listitem" href="pipeline.html">
+            <span class="sample-card-kicker">Data · Northwind</span>
+            <span class="sample-card-title">Metric kernel</span>
+            <span class="sample-card-desc">People-analytics export into a warehouse kernel.</span>
+          </a>
+          <a class="sample-card" role="listitem" href="program-complete.html">
+            <span class="sample-card-kicker">Email · Northwind</span>
+            <span class="sample-card-title">Program complete</span>
+            <span class="sample-card-desc">Manager recap and participant note. Invented cohort.</span>
+          </a>
+        </div>
+        <div class="cta-row sample-unlock-keep">
+          <a class="btn ghost" data-sample-pdf href="../assets/northwind-sample-board.pdf" download>Download the one-pager</a>
+          <a class="btn ghost" data-sample-html href="../assets/northwind-sample-board.html" hidden>HTML one-pager</a>
+        </div>
+      </div>
+    </section>
 
     <ol class="kernel samples-cats">
       <li id="people">
@@ -65,14 +135,20 @@
     </ol>
 
     <div class="cta-row" style="margin: 8px 0 48px">
-      <a class="btn" href="../index.html#contact">Tell us what you need</a>
+      <a class="btn" href="#sample-board">Get the sample board</a>
+      <a class="btn ghost" href="../index.html#contact">Tell us what you need</a>
       <button type="button" class="btn ghost" data-book-call>Book a 20-min board diagnostic</button>
     </div>
   </main>
+  <div class="mobile-cta-bar" role="region" aria-label="Primary actions">
+    <a class="btn" href="#sample-board">Get the sample board</a>
+    <button type="button" class="btn ghost" data-book-call>Book a 20-min diagnostic</button>
+  </div>
   <footer class="site" data-chrome="footer"></footer>
   <script src="../js/config.js"></script>
   <script src="../js/analytics.js"></script>
   <script src="../js/site.js"></script>
   <script src="../js/booking.js"></script>
+  <script src="../js/sample-gate.js"></script>
 </body>
 </html>

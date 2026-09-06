@@ -229,9 +229,9 @@
           <h2 id="offer-title">A live board in two weeks</h2>
           <p>Spreadsheets and screenshot packs, replaced with one as-of you can trust. Click a demo, then tell us what yours should show.</p>
           <div class="cta-row">
-            <a class="btn" href="#contact">Tell us what you need</a>
+            <a class="btn" href="#sample-board">Get the sample board</a>
             <button type="button" class="btn ghost" data-book-call>Book a 20-min board diagnostic</button>
-            <a class="btn ghost" href="#sample-board">Get the sample board</a>
+            <a class="btn ghost" href="#contact">Tell us what you need</a>
             <a class="btn ghost" href="demo/samples.html" data-samples-menu data-track="samples_menu_open">See samples</a>
           </div>
           <p class="caption">Bring one reporting problem. We'll sketch the board and the first cut.</p>
@@ -378,11 +378,12 @@
       </div>
     </section>
 
-    <section class="sheet" id="sample-board" aria-labelledby="sample-board-title">
+    <section class="sheet sample-gate-sheet" id="sample-board" aria-labelledby="sample-board-title">
       <div class="wrap">
         <p class="scene-label">Sample</p>
         <h2 id="sample-board-title">Get the sample board</h2>
-        <p class="lede">Name and email. Then a gallery of invented Northwind and Lanternfield boards, plus a one-pager you can keep.</p>
+        <p class="lede">Name and email unlock the live sample gallery — invented Northwind and Lanternfield boards, plus a one-pager you can keep.</p>
+        <p class="sample-gate-banner">Free · fictional demos only · goes to hello@nimblytica.com</p>
         <form id="sample-gate" novalidate>
           <div class="honeypot" aria-hidden="true">
             <label for="sample-botcheck">Leave this field empty</label>
@@ -404,7 +405,7 @@
           <p id="sample-status" class="form-status" aria-live="polite"></p>
         </form>
         <div id="sample-unlock" hidden>
-          <p class="lede sample-unlock-lede">Unlocked. Invented Northwind and Lanternfield boards — pick one. One-pager below if you want to keep a snapshot.</p>
+          <p class="lede sample-unlock-lede" id="sample-unlock-status">Unlocked — pick a board below. Gallery and one-pager are ready on this phone-width view.</p>
           <div class="sample-gallery" role="list">
             <a class="sample-card" role="listitem" href="demo/workforce.html">
               <span class="sample-card-kicker">People · Northwind</span>
@@ -490,6 +491,10 @@
       </div>
     </section>
   </main>
+  <div class="mobile-cta-bar" role="region" aria-label="Primary actions">
+    <a class="btn" href="#sample-board">Get the sample board</a>
+    <button type="button" class="btn ghost" data-book-call>Book a 20-min diagnostic</button>
+  </div>
   <footer class="site" data-chrome="footer"></footer>
   <script src="js/config.js"></script>
   <script src="js/analytics.js"></script>
