@@ -9,6 +9,17 @@
     document.documentElement.classList.add("reduce-motion");
   }
 
+  /* Landmark target + skip link (keyboard / Lighthouse). */
+  const main = document.querySelector("main");
+  if (main && !main.id) main.id = "main";
+  if (!document.querySelector(".skip-link") && main) {
+    const skip = document.createElement("a");
+    skip.className = "skip-link";
+    skip.href = "#" + main.id;
+    skip.textContent = "Skip to content";
+    document.body.insertBefore(skip, document.body.firstChild);
+  }
+
   const header = document.querySelector("[data-chrome='header']");
   if (header) {
     const contactHref = document.getElementById("contact") ? "#contact" : p("index.html") + "#contact";
@@ -16,8 +27,8 @@
       <div class="wrap top-inner">
         <a class="wordmark" href="${p("index.html")}">Nimblytica</a>
         <details class="nav-fold">
-          <summary class="nav-toggle">Menu</summary>
-          <nav class="links" aria-label="Primary">
+          <summary class="nav-toggle" aria-label="Site menu" aria-controls="site-nav" aria-expanded="false">Menu</summary>
+          <nav class="links" id="site-nav" aria-label="Primary">
             <a href="${p("two-weeks.html")}" ${current === "two-weeks" ? 'aria-current="page"' : ""}>Two weeks</a>
             <a href="${p("packages.html")}" ${current === "packages" ? 'aria-current="page"' : ""}>Packages</a>
             <a href="${p("demo/samples.html")}" ${current === "samples" || current === "program-complete" ? 'aria-current="page"' : ""}>Samples</a>
@@ -34,6 +45,13 @@
     const summary = fold && fold.querySelector("summary");
     const nav = fold && fold.querySelector("nav.links");
 
+    function syncNavExpanded() {
+      if (!summary || !fold) return;
+      const open = !!fold.open;
+      summary.setAttribute("aria-expanded", open ? "true" : "false");
+      summary.setAttribute("aria-label", open ? "Close site menu" : "Site menu");
+    }
+
     function lockBody(on) {
       if (!mobileNav.matches) {
         document.body.classList.remove("nav-open");
@@ -48,6 +66,7 @@
       if (!fold) return;
       fold.removeAttribute("open");
       lockBody(false);
+      syncNavExpanded();
       if (restoreFocus && summary) summary.focus();
     }
 
@@ -57,8 +76,10 @@
     }
 
     if (fold) {
+      syncNavExpanded();
       fold.addEventListener("toggle", () => {
         lockBody(!!fold.open);
+        syncNavExpanded();
       });
 
       header.querySelectorAll(".links a").forEach((a) => {
@@ -94,6 +115,7 @@
       mobileNav.addEventListener("change", () => {
         if (!mobileNav.matches) lockBody(false);
         else if (fold.open) lockBody(true);
+        syncNavExpanded();
       });
     }
   }
@@ -116,6 +138,30 @@
   const ctaBar = document.querySelector(".mobile-cta-bar");
   if (ctaBar) {
     document.body.classList.add("has-mobile-cta");
+
+    function setCtaBarHidden(cover) {
+      ctaBar.classList.toggle("is-hidden", cover);
+      ctaBar.setAttribute("aria-hidden", cover ? "true" : "false");
+      if ("inert" in ctaBar) {
+        ctaBar.inert = cover;
+      } else {
+        ctaBar.querySelectorAll("a, button").forEach((el) => {
+          if (cover) {
+            if (!el.hasAttribute("data-prev-tabindex")) {
+              el.setAttribute("data-prev-tabindex", el.getAttribute("tabindex") || "");
+            }
+            el.setAttribute("tabindex", "-1");
+          } else {
+            const prev = el.getAttribute("data-prev-tabindex");
+            if (prev === null) return;
+            if (prev === "") el.removeAttribute("tabindex");
+            else el.setAttribute("tabindex", prev);
+            el.removeAttribute("data-prev-tabindex");
+          }
+        });
+      }
+    }
+
     const submits = document.querySelectorAll(
       '#contact-sheet button[type="submit"], #sample-gate button[type="submit"]'
     );
@@ -123,8 +169,7 @@
       const io = new IntersectionObserver(
         (entries) => {
           const cover = entries.some((en) => en.isIntersecting);
-          ctaBar.classList.toggle("is-hidden", cover);
-          ctaBar.setAttribute("aria-hidden", cover ? "true" : "false");
+          setCtaBarHidden(cover);
         },
         { root: null, threshold: 0.15, rootMargin: "0px 0px -12% 0px" }
       );
