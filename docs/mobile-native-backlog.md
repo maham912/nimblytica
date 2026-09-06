@@ -46,6 +46,8 @@ A page/feature is done only when all of these pass:
 | Hamburger scroll lock + focus trap + Escape | PR mobile-musthaves | Done |
 | Homepage before/after silent punch (CSS/SVG loop) | PR homepage-ba-punch | Done |
 | Gated sample gallery (1-col unlock @390) | PR sample-gallery-gated | Done |
+| SFV / local house-call page (Woodland Hills / west SFV) | PR sfv-sticky | Done |
+| Sticky CTA polish (safe-area, form-cover, stack @390) | PR sfv-sticky | Done |
 
 ---
 
@@ -72,10 +74,10 @@ When we add any of these, they go live with a 390px acceptance check in the PR:
 | Client login / portal (future) | Thumb auth, no hover menus |
 | Blog / case studies (anonymized) | Readable type scale; images `max-width:100%` |
 | FAQ accordion | Large tap rows; one open at a time OK |
-| Bottom nav / sticky Book | Safe-area padding; doesn’t cover form submit |
+| Bottom nav / sticky Book | Shipped/polished — safe-area, stack @≤400, hide + reclaim space over form submit |
 | Dark-mode toggle (if ever) | Respect `prefers-color-scheme`; no flash |
 | Multi-language (unlikely) | Layout doesn’t break with longer strings |
-| Nextdoor/SFV house-call page (if added) | Local CTA tel: / SMS friendly |
+| Nextdoor/SFV house-call page | Shipped — `solutions/sfv-home-tech.html`; mailto CTA (no public tel yet); sticky bar |
 
 ---
 
@@ -100,4 +102,4 @@ Acceptance: headless or real Chrome at **390×844** — `document.documentElemen
 3. Do not ship a desktop-only layout “to polish later.”
 4. Owner: **Nimblytica** maintains this file; Cloud Desk implements.
 
-Last updated: 2026-09-06 (gated sample gallery)
+Last updated: 2026-09-06 (SFV house-call + sticky polish)
