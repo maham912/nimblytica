@@ -344,7 +344,7 @@
       <div class="wrap">
         <p class="scene-label">Sample</p>
         <h2 id="sample-board-title">Get the sample board</h2>
-        <p class="lede">Name and email. Then the live Northwind and Lanternfield boards, plus a one-pager you can keep.</p>
+        <p class="lede">Name and email. Then a gallery of invented Northwind and Lanternfield boards, plus a one-pager you can keep.</p>
         <form id="sample-gate">
           <div class="honeypot" aria-hidden="true">
             <label for="sample-botcheck">Leave this field empty</label>
@@ -364,11 +364,43 @@
           <p id="sample-status" class="form-status" aria-live="polite"></p>
         </form>
         <div id="sample-unlock" hidden>
-          <div class="cta-row">
-            <a class="btn" href="demo/workforce.html">Northwind workforce board</a>
-            <a class="btn ghost" href="demo/ops-pulse.html">Lanternfield pulse board</a>
+          <p class="lede sample-unlock-lede">Unlocked. Invented Northwind and Lanternfield boards — pick one. One-pager below if you want to keep a snapshot.</p>
+          <div class="sample-gallery" role="list">
+            <a class="sample-card" role="listitem" href="demo/workforce.html">
+              <span class="sample-card-kicker">People · Northwind</span>
+              <span class="sample-card-title">Workforce snapshot</span>
+              <span class="sample-card-desc">Headcount, attrition, open roles, OT hours.</span>
+            </a>
+            <a class="sample-card" role="listitem" href="demo/scorecard.html">
+              <span class="sample-card-kicker">People · Northwind</span>
+              <span class="sample-card-title">Scorecard</span>
+              <span class="sample-card-desc">Attrition, open roles, OT — System to Region.</span>
+            </a>
+            <a class="sample-card" role="listitem" href="demo/shift-board.html">
+              <span class="sample-card-kicker">People · Northwind</span>
+              <span class="sample-card-title">Shift Board</span>
+              <span class="sample-card-desc">Who gets flexed off when volume is low.</span>
+            </a>
+            <a class="sample-card" role="listitem" href="demo/ops-pulse.html">
+              <span class="sample-card-kicker">Ops · Lanternfield</span>
+              <span class="sample-card-title">Pulse</span>
+              <span class="sample-card-desc">Open, late, aging — the huddle, not a ticket dump.</span>
+            </a>
+            <a class="sample-card" role="listitem" href="demo/pipeline.html">
+              <span class="sample-card-kicker">Data · Northwind</span>
+              <span class="sample-card-title">Metric kernel</span>
+              <span class="sample-card-desc">People-analytics export into a warehouse kernel.</span>
+            </a>
+            <a class="sample-card" role="listitem" href="demo/program-complete.html">
+              <span class="sample-card-kicker">Email · Northwind</span>
+              <span class="sample-card-title">Program complete</span>
+              <span class="sample-card-desc">Manager recap and participant note. Invented cohort.</span>
+            </a>
+          </div>
+          <div class="cta-row sample-unlock-keep">
             <a class="btn ghost" data-sample-pdf href="assets/northwind-sample-board.pdf" download>Download the one-pager</a>
             <a class="btn ghost" data-sample-html href="assets/northwind-sample-board.html" hidden>HTML one-pager</a>
+            <a class="btn ghost" href="demo/samples.html">Full samples list</a>
           </div>
         </div>
       </div>
