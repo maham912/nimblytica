@@ -1,5 +1,5 @@
 /*
- * "Book a call" wiring.
+ * "Book a 20-min board diagnostic" wiring.
  *
  * When a Calendly URL is configured (config.js), buttons marked
  * [data-book-call] open the Calendly popup (the widget assets load lazily,
@@ -17,7 +17,7 @@
   function emailFallback() {
     var to = formCfg.contactEmail || "hello@nimblytica.com";
     window.location.href =
-      "mailto:" + to + "?subject=" + encodeURIComponent("Book a call — live ops board");
+      "mailto:" + to + "?subject=" + encodeURIComponent("Book a 20-min board diagnostic — live ops board");
   }
 
   if (!url) {
