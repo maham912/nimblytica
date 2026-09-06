@@ -54,6 +54,7 @@ window.NIMBLYTICA_CONFIG = {
   stripe: {
     liveBoard: { paymentLink: "" },
     opsPulse: { paymentLink: "" },
-    biHours: { paymentLink: "" }
+    biHours: { paymentLink: "" },
+    boardCare: { paymentLink: "" }
   }
 };

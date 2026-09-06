@@ -996,7 +996,8 @@ table.data .factor { font-weight: 600; letter-spacing: -0.03em; }
 .outcome-pair p { margin: 0; color: var(--ink-dim); }
 .outcome-pair .meta { display: block; margin: 0 0 4px; }
 .outcome-card .caption { margin: 0; max-width: none; }
-.outcomes .cta-row { margin-top: 22px; }
+.outcomes .cta-row,
+.how .cta-row { margin-top: 22px; }
 .quote {
   margin: 0;
   background: var(--bg-1);
@@ -1265,7 +1266,7 @@ pre.code, .brief {
   margin: 28px 0 8px;
 }
 @media (min-width: 860px) {
-  .sku-grid { grid-template-columns: repeat(3, 1fr); }
+  .sku-grid { grid-template-columns: repeat(2, 1fr); }
 }
 .sku {
   background: var(--bg-1);
@@ -1348,7 +1349,8 @@ footer.site a { color: var(--ink-dim); }
   .cta-row > .btn { flex: 1 1 calc(50% - 10px); }
   .sku .cta-row > .btn,
   .offer .cta-row > .btn,
-  .outcomes .cta-row > .btn { flex: 1 1 100%; }
+  .outcomes .cta-row > .btn,
+  .how .cta-row > .btn { flex: 1 1 100%; }
   .chart-lg { height: 220px; }
   .wh-arrow { display: none; }
   .wh-rail { gap: 10px; }
