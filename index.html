@@ -82,13 +82,40 @@
           <div class="grid-2 board-charts">
             <div class="panel">
               <h2>Headcount trend</h2>
-              <div id="wb-chart-hc" class="chart" aria-label="Headcount trend chart"></div>
+              <div id="wb-chart-hc" class="chart" aria-label="Headcount trend chart">
+                <div class="chart-fallback" data-chart-fallback>
+                  <svg viewBox="0 0 320 120" width="100%" height="120" role="img" aria-label="Static headcount trend fallback">
+                    <title>Headcount trend (static)</title>
+                    <polyline fill="none" stroke="#2a2a2a" stroke-width="1" points="0,30 320,30" />
+                    <polyline fill="none" stroke="#2a2a2a" stroke-width="1" points="0,60 320,60" />
+                    <polyline fill="none" stroke="#2a2a2a" stroke-width="1" points="0,90 320,90" />
+                    <polyline fill="none" stroke="#f2f2f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="8,88 48,82 88,78 128,70 168,62 208,54 248,42 288,28 312,22" />
+                    <circle cx="312" cy="22" r="3.5" fill="#f2f2f2" />
+                  </svg>
+                  <p class="chart-fallback-label">Static preview · live chart loads with Plotly</p>
+                </div>
+              </div>
             </div>
             <div class="panel">
               <h2>Overtime hours</h2>
-              <div id="wb-chart-ot" class="chart" aria-label="Overtime hours chart"></div>
+              <div id="wb-chart-ot" class="chart" aria-label="Overtime hours chart">
+                <div class="chart-fallback" data-chart-fallback>
+                  <svg viewBox="0 0 320 120" width="100%" height="120" role="img" aria-label="Static overtime hours fallback">
+                    <title>Overtime hours (static)</title>
+                    <rect x="20" y="48" width="28" height="56" fill="#a3a3a3" />
+                    <rect x="64" y="40" width="28" height="64" fill="#a3a3a3" />
+                    <rect x="108" y="36" width="28" height="68" fill="#a3a3a3" />
+                    <rect x="152" y="44" width="28" height="60" fill="#a3a3a3" />
+                    <rect x="196" y="52" width="28" height="52" fill="#a3a3a3" />
+                    <rect x="240" y="60" width="28" height="44" fill="#a3a3a3" />
+                    <rect x="284" y="70" width="28" height="34" fill="#a3a3a3" />
+                  </svg>
+                  <p class="chart-fallback-label">Static preview · live chart loads with Plotly</p>
+                </div>
+              </div>
             </div>
           </div>
+          <noscript><p class="chart-noscript">JavaScript required for live Plotly charts. Static Northwind previews stay visible above.</p></noscript>
           <div class="grid-2 board-tables">
             <div class="panel">
               <h2>Top units</h2>
@@ -144,10 +171,10 @@
                   <p class="ba-poster-kicker">Before</p>
                   <p class="ba-poster-title">FW: OT pack</p>
                   <div class="ba-sheet ba-poster-sheet">
-                    <div class="ba-sheet-row head"><span></span><span></span><span></span><span></span></div>
-                    <div class="ba-sheet-row"><span></span><span></span><span></span><span></span></div>
-                    <div class="ba-sheet-row"><span></span><span></span><span></span><span></span></div>
-                    <div class="ba-sheet-row"><span></span><span></span><span></span><span></span></div>
+                    <div class="ba-sheet-row head"><span>Unit</span><span>OT hrs</span><span>Open</span><span>Attr</span></div>
+                    <div class="ba-sheet-row"><span>Nursing</span><span>24,000</span><span>20</span><span>16%</span></div>
+                    <div class="ba-sheet-row"><span>Clin. Support</span><span>6,000</span><span>8</span><span>10%</span></div>
+                    <div class="ba-sheet-row"><span>Rev Cycle</span><span>4,000</span><span>8</span><span>14%</span></div>
                   </div>
                   <p class="ba-stamp">Stale by standup</p>
                 </div>
@@ -181,13 +208,13 @@
                 <p class="ba-mail-sub">FW: OT pack — print for standup</p>
                 <p class="ba-mail-from">from: ops-export@northwind.example</p>
               </div>
-              <div class="ba-sheet" aria-hidden="true">
-                <div class="ba-sheet-row head"><span></span><span></span><span></span><span></span><span></span></div>
-                <div class="ba-sheet-row"><span></span><span></span><span></span><span></span><span></span></div>
-                <div class="ba-sheet-row"><span></span><span></span><span></span><span></span><span></span></div>
-                <div class="ba-sheet-row"><span></span><span></span><span></span><span></span><span></span></div>
-                <div class="ba-sheet-row"><span></span><span></span><span></span><span></span><span></span></div>
-                <div class="ba-sheet-row"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="ba-sheet">
+                <div class="ba-sheet-row head"><span>Unit</span><span>OT hours</span><span>Open</span><span>Attrition</span></div>
+                <div class="ba-sheet-row"><span>Nursing</span><span>24,000</span><span>20</span><span>16%</span></div>
+                <div class="ba-sheet-row"><span>Clinical Support</span><span>6,000</span><span>8</span><span>10%</span></div>
+                <div class="ba-sheet-row"><span>Revenue Cycle</span><span>4,000</span><span>8</span><span>14%</span></div>
+                <div class="ba-sheet-row"><span>Operations</span><span>2,000</span><span>4</span><span>8%</span></div>
+                <div class="ba-sheet-row"><span>IT</span><span>1,000</span><span>4</span><span>6%</span></div>
               </div>
               <p class="ba-stamp">Stale by standup</p>
             </div>
