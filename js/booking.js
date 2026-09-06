@@ -1,7 +1,4 @@
 (function () {
-  var buttons = document.querySelectorAll("[data-book-call]");
-  if (!buttons.length) return;
-
   var cfg = (window.NIMBLYTICA_CONFIG && window.NIMBLYTICA_CONFIG.booking) || {};
   var formCfg = (window.NIMBLYTICA_CONFIG && window.NIMBLYTICA_CONFIG.form) || {};
   var url = cfg.calendlyUrl;
@@ -10,16 +7,6 @@
     var to = formCfg.contactEmail || "hello@nimblytica.com";
     window.location.href =
       "mailto:" + to + "?subject=" + encodeURIComponent("Book a 20-min board diagnostic — live ops board");
-  }
-
-  if (!url) {
-    buttons.forEach(function (btn) {
-      btn.addEventListener("click", function (e) {
-        e.preventDefault();
-        emailFallback();
-      });
-    });
-    return;
   }
 
   var loaded = false;
@@ -56,16 +43,24 @@
     }
   }
 
-  buttons.forEach(function (btn) {
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-      ensureWidget(function () {
-        if (window.Calendly && window.Calendly.initPopupWidget) {
-          window.Calendly.initPopupWidget({ url: url });
-        } else {
-          emailFallback();
-        }
-      });
+  function openBooking() {
+    if (!url) {
+      emailFallback();
+      return;
+    }
+    ensureWidget(function () {
+      if (window.Calendly && window.Calendly.initPopupWidget) {
+        window.Calendly.initPopupWidget({ url: url });
+      } else {
+        emailFallback();
+      }
     });
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target && e.target.closest ? e.target.closest("[data-book-call]") : null;
+    if (!btn) return;
+    e.preventDefault();
+    openBooking();
   });
 })();

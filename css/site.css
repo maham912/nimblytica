@@ -170,6 +170,7 @@ h1 {
   cursor: pointer;
   transition: transform 420ms var(--spring), background 200ms ease, color 200ms ease, border-color 200ms ease;
 }
+.btn[hidden] { display: none; }
 .btn:hover { background: #fff; color: #000; }
 .btn:active { transform: scale(0.97); }
 .btn.ghost {
