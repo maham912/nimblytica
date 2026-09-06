@@ -39,7 +39,8 @@
       data: val("data"),
       refresh: val("refresh"),
       who: val("who"),
-      name: val("name")
+      name: val("name"),
+      email: val("email")
     };
   }
 
@@ -59,6 +60,9 @@
       "",
       "Name / company:",
       f.name,
+      "",
+      "Email:",
+      f.email,
       ""
     ].join("\n");
   }
@@ -84,8 +88,8 @@
     }
 
     var f = fields();
-    if (!f.want || !f.name) {
-      setStatus("error", "Please tell us what you want to see and your name / company.");
+    if (!f.want || !f.name || !f.email) {
+      setStatus("error", "Please tell us what you want to see, your name / company, and email.");
       track("form_invalid", { page: page });
       return;
     }
@@ -117,6 +121,7 @@
       "How often it should refresh": f.refresh,
       "Who looks at it": f.who,
       "Name / company": f.name,
+      email: f.email,
       botcheck: ""
     };
 
