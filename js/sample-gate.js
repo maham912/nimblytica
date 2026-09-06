@@ -72,7 +72,7 @@
         try {
           panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
         } catch (err) {}
-        var first = panel.querySelector("a.sample-card, a.btn:not([hidden])");
+        var first = panel.querySelector("a.sample-card:not([hidden]), a.btn:not([hidden])");
         if (first && typeof first.focus === "function") {
           try {
             first.focus({ preventScroll: true });
