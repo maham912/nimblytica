@@ -481,6 +481,37 @@ h1 {
   min-width: 0;
   overflow: hidden;
 }
+.chart-stack {
+  position: relative;
+  min-width: 0;
+}
+.chart-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 6px 4px;
+  pointer-events: none;
+}
+.chart-stack:has(.js-plotly-plot) .chart-fallback {
+  display: none;
+}
+.chart-fallback-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 140px;
+}
+.chart-fallback-copy {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--ink-dim);
+}
+.chart-fallback-bar {
+  fill: #a3a3a3;
+}
 .chart-lg { height: 280px; }
 .product-frame .chart { height: 200px; }
 .panel,
@@ -1670,14 +1701,24 @@ body.nav-open {
 }
 .ba-sheet-row span {
   display: block;
-  height: 12px;
+  min-height: 22px;
+  padding: 4px 6px;
   border-radius: 3px;
-  background: #1a1a1a;
+  background: #161616;
+  color: #ececec;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.ba-sheet-row.head span { background: #242424; height: 10px; }
-.ba-sheet-row:nth-child(3) span:nth-child(3),
-.ba-sheet-row:nth-child(5) span:nth-child(2) {
-  background: #2e2e2e;
+.ba-sheet-row.head span {
+  background: #242424;
+  color: #b8b8b8;
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 .ba-stamp {
   margin: 0;
@@ -2011,6 +2052,14 @@ body.nav-open {
 .ba-poster-sheet { margin-bottom: 8px; }
 .ba-poster-sheet .ba-sheet-row {
   grid-template-columns: 1.2fr 0.7fr 0.7fr 0.6fr;
+}
+.ba-poster-sheet .ba-sheet-row span {
+  min-height: 18px;
+  padding: 3px 5px;
+  font-size: 0.64rem;
+}
+.ba-poster-sheet .ba-sheet-row.head span {
+  font-size: 0.58rem;
 }
 .ba-poster-kpis {
   margin-bottom: 6px;
