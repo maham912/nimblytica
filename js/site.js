@@ -131,4 +131,17 @@
       submits.forEach((el) => io.observe(el));
     }
   }
+
+
+  /* FAQ: one open at a time (details name fallback) */
+  document.querySelectorAll(".faq-list").forEach((list) => {
+    list.addEventListener("toggle", (e) => {
+      const t = e.target;
+      if (!t || t.tagName !== "DETAILS" || !t.open) return;
+      list.querySelectorAll("details.faq-item").forEach((d) => {
+        if (d !== t) d.open = false;
+      });
+    }, true);
+  });
+
 })();
