@@ -38,7 +38,7 @@ window.NIMBLYTICA_CONFIG = {
     // When set, "Book a 20-min board diagnostic" buttons open the Calendly popup;
     // empty = the buttons fall back to the email contact flow.
     // Keep this URL as-is until a 20-min Calendly event exists.
-    calendlyUrl: "https://calendly.com/maham6648/30min"
+    calendlyUrl: "https://calendly.com/maham6648/20-min-board-diagnostic"
   },
 
   pricing: {
