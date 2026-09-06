@@ -28,7 +28,7 @@ window.NIMBLYTICA_CONFIG = {
     // GA4: set your measurement id, e.g. "G-XXXXXXX". Empty = off.
     ga4MeasurementId: "G-TELFPBVSSD",
     // Microsoft Clarity: set your project id. Empty = off.
-    clarityProjectId: "",
+    clarityProjectId: "ye30r367z2",
     // When true, every tracked event is also logged to the browser console.
     debug: false
   },
