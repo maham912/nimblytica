@@ -106,7 +106,7 @@
         return `<button type="button" class="row" data-id="${k.id}"><span class="nm">${k.name}</span>${cells}</button>`;
       })
       .join("");
-    box.innerHTML = `<p class="meta">${next}</p><div class="children">${rows}</div>`;
+    box.innerHTML = `<p class="meta">${next}</p><div class="table-scroll"><div class="children">${rows}</div></div>`;
     box.querySelectorAll("button.row").forEach((b) => {
       b.addEventListener("click", () => {
         path.push(b.getAttribute("data-id"));
