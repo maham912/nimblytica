@@ -129,6 +129,62 @@
         </div>
       </div>
 
+      <div class="wrap ba-wrap">
+        <figure class="ba-punch" id="ba-punch" data-ba-punch aria-labelledby="ba-punch-title">
+          <figcaption class="ba-cap">
+            <p class="scene-label">Before → after</p>
+            <h2 class="ba-title" id="ba-punch-title">Screenshot pack → live as-of</h2>
+            <p class="lede ba-lede">Silent loop. Invented Northwind Health Ops. No sound.</p>
+          </figcaption>
+          <div class="ba-stage" role="img" aria-label="Animated before and after: mailed OT screenshot pack becomes a Northwind live board">
+            <div class="ba-pane ba-before" data-pane="before">
+              <div class="ba-mail">
+                <p class="ba-mail-meta">Inbox · Forwarded · Today 06:41</p>
+                <p class="ba-mail-sub">FW: OT pack — print for standup</p>
+                <p class="ba-mail-from">from: ops-export@northwind.example</p>
+              </div>
+              <div class="ba-sheet" aria-hidden="true">
+                <div class="ba-sheet-row head"><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="ba-sheet-row"><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="ba-sheet-row"><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="ba-sheet-row"><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="ba-sheet-row"><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="ba-sheet-row"><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+              <p class="ba-stamp">Stale by standup</p>
+            </div>
+            <div class="ba-pane ba-after" data-pane="after" hidden>
+              <div class="ba-board">
+                <div class="ba-board-meta">
+                  <span>Northwind Health Ops</span>
+                  <span>as of 2026-08-01</span>
+                </div>
+                <div class="ba-kpis">
+                  <article><div class="n">1,200</div><div class="l">Headcount</div></article>
+                  <article><div class="n">48</div><div class="l">Open roles</div></article>
+                  <article><div class="n">37.7k</div><div class="l">OT hours / 12 mo</div></article>
+                </div>
+                <svg class="ba-chart" viewBox="0 0 320 88" width="100%" height="88" role="presentation" focusable="false" aria-hidden="true">
+                  <title>OT hours trending down</title>
+                  <polyline class="ba-chart-grid" points="0,22 320,22" />
+                  <polyline class="ba-chart-grid" points="0,44 320,44" />
+                  <polyline class="ba-chart-grid" points="0,66 320,66" />
+                  <polyline class="ba-chart-line" fill="none" stroke-linecap="round" stroke-linejoin="round" points="8,70 48,62 88,66 128,48 168,52 208,34 248,28 288,18 312,14" />
+                  <circle class="ba-chart-dot" cx="312" cy="14" r="3.5" />
+                </svg>
+                <p class="ba-stamp live">One as-of · every standup</p>
+              </div>
+            </div>
+          </div>
+          <div class="ba-controls" role="group" aria-label="Before or after">
+            <button type="button" class="ba-tab" data-ba-set="before" aria-pressed="true">Before</button>
+            <button type="button" class="ba-tab" data-ba-set="after" aria-pressed="false">After</button>
+            <button type="button" class="ba-tab ba-pause" data-ba-toggle-loop aria-pressed="true" title="Pause or play the silent loop">Loop on</button>
+          </div>
+          <p class="caption">Fictional Northwind figures. CSS/SVG loop — muted, plays inline, max-width 100%. <a href="demo/workforce.html">Open the full board</a>.</p>
+        </figure>
+      </div>
+
       <div class="wrap hero-copy">
         <article class="offer" id="offer" aria-labelledby="offer-title">
           <p class="meta">Two weeks</p>
@@ -367,6 +423,7 @@
   <script src="js/board-charts.js"></script>
   <script src="js/live-board.js"></script>
   <script src="js/scenes.js"></script>
+  <script src="js/ba-punch.js"></script>
   <script src="js/testimonials.js"></script>
   <script src="js/contact.js"></script>
   <script src="js/booking.js"></script>

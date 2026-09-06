@@ -1521,3 +1521,179 @@ body.nav-open {
     flex: 1 1 100%;
   }
 }
+
+/* === homepage before/after punch (2026-09-06) === */
+.ba-wrap {
+  margin: 28px auto 8px;
+  max-width: 100%;
+}
+.ba-punch {
+  margin: 0;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-1);
+  padding: 18px 16px 14px;
+  overflow: hidden;
+}
+.ba-cap { margin: 0 0 14px; }
+.ba-title {
+  font-size: clamp(1.35rem, 5.5vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  margin: 0 0 6px;
+  max-width: 16em;
+}
+.ba-lede { margin: 0; max-width: 36rem; }
+.ba-stage {
+  position: relative;
+  max-width: 100%;
+  min-height: 248px;
+  border-radius: 14px;
+  border: 1px solid var(--line-2);
+  background: #050505;
+  overflow: hidden;
+}
+.ba-pane {
+  padding: 14px 14px 12px;
+  max-width: 100%;
+}
+.ba-pane[hidden] { display: none !important; }
+.ba-mail-meta,
+.ba-mail-from,
+.ba-board-meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin: 0 0 6px;
+}
+.ba-mail-sub {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-weight: 500;
+}
+.ba-mail-from { margin-bottom: 14px; text-transform: none; letter-spacing: 0; }
+.ba-sheet {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.ba-sheet-row {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 0.8fr 0.7fr 0.7fr;
+  gap: 6px;
+}
+.ba-sheet-row span {
+  display: block;
+  height: 12px;
+  border-radius: 3px;
+  background: #1a1a1a;
+}
+.ba-sheet-row.head span { background: #242424; height: 10px; }
+.ba-sheet-row:nth-child(3) span:nth-child(3),
+.ba-sheet-row:nth-child(5) span:nth-child(2) {
+  background: #2e2e2e;
+}
+.ba-stamp {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--ink-dim);
+}
+.ba-stamp.live { color: var(--ink); }
+.ba-board-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.ba-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.ba-kpis .n {
+  font-size: clamp(1.25rem, 6vw, 1.7rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.ba-kpis .l {
+  margin-top: 4px;
+  font-size: 0.72rem;
+  color: var(--mute);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.ba-chart {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 4px 0 10px;
+}
+.ba-chart-grid {
+  fill: none;
+  stroke: #1c1c1c;
+  stroke-width: 1;
+}
+.ba-chart-line {
+  stroke: var(--ink);
+  stroke-width: 2.25;
+}
+.ba-chart-dot { fill: var(--ink); }
+.ba-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+.ba-tab {
+  appearance: none;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--ink-dim);
+  border-radius: 999px;
+  min-height: 44px;
+  padding: 0 16px;
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.ba-tab[aria-pressed="true"] {
+  background: var(--ink);
+  color: #000;
+  border-color: var(--ink);
+}
+.ba-tab:hover { color: #fff; border-color: var(--ink-dim); }
+.ba-tab[aria-pressed="true"]:hover { color: #000; }
+.ba-punch .ba-after.ba-draw .ba-chart-line {
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: ba-draw 1.1s var(--spring) forwards;
+}
+@keyframes ba-draw {
+  to { stroke-dashoffset: 0; }
+}
+@media (max-width: 540px) {
+  .ba-punch { padding: 14px 12px 12px; border-radius: 14px; }
+  .ba-stage { min-height: 232px; }
+  .ba-sheet-row { grid-template-columns: 1.2fr 0.7fr 0.7fr 0.6fr; }
+  .ba-sheet-row span:nth-child(5) { display: none; }
+  .ba-kpis { gap: 8px; }
+  .ba-tab { flex: 1 1 calc(33.33% - 8px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ba-punch .ba-after.ba-draw .ba-chart-line {
+    animation: none;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}
