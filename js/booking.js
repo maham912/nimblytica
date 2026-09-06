@@ -1,11 +1,3 @@
-/*
- * "Book a call" wiring.
- *
- * When a Calendly URL is configured (config.js), buttons marked
- * [data-book-call] open the Calendly popup (the widget assets load lazily,
- * only on pages that have such a button). When no URL is configured, those
- * buttons fall back to the email contact flow so they are never dead ends.
- */
 (function () {
   var buttons = document.querySelectorAll("[data-book-call]");
   if (!buttons.length) return;
@@ -17,7 +9,7 @@
   function emailFallback() {
     var to = formCfg.contactEmail || "hello@nimblytica.com";
     window.location.href =
-      "mailto:" + to + "?subject=" + encodeURIComponent("Book a call — live ops board");
+      "mailto:" + to + "?subject=" + encodeURIComponent("Book a 20-min board diagnostic — live ops board");
   }
 
   if (!url) {
