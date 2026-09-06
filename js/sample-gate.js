@@ -67,6 +67,21 @@
       sessionStorage.setItem(KEY, "1");
     } catch (e) {}
     render(UNLOCKED);
+    if (panel && !panel.hidden) {
+      requestAnimationFrame(function () {
+        try {
+          panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } catch (err) {}
+        var first = panel.querySelector("a.btn:not([hidden])");
+        if (first && typeof first.focus === "function") {
+          try {
+            first.focus({ preventScroll: true });
+          } catch (err2) {
+            first.focus();
+          }
+        }
+      });
+    }
   }
 
   render(stored());

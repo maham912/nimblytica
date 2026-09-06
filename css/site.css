@@ -1396,3 +1396,128 @@ footer.site a { color: var(--ink-dim); }
   .scene { min-height: auto; }
   .scene-pin { position: relative; height: auto; padding: 48px 0; }
 }
+
+/* === mobile must-haves 2026-09-06 === */
+
+/* A) Live board: thumb-usable chips + constrained charts at ~390px */
+@media (max-width: 879px) {
+  .slicer {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    margin: 0 calc(var(--pad) * -1);
+    padding: 2px var(--pad) 8px;
+    scrollbar-width: thin;
+  }
+  .slicer button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  .product-frame .chart {
+    height: 180px;
+  }
+  .board-charts,
+  .board-tables {
+    gap: 12px;
+  }
+}
+
+/* B) Calendly popup: fit viewport + safe-area; scroll if needed */
+.calendly-overlay {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  box-sizing: border-box;
+}
+.calendly-popup {
+  max-width: min(100%, 100vw) !important;
+}
+.calendly-popup .calendly-popup-content,
+.calendly-overlay .calendly-popup-content {
+  max-height: min(920px, calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 32px)) !important;
+  height: min(920px, calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 32px)) !important;
+}
+@media (max-width: 649px) {
+  .calendly-overlay .calendly-popup {
+    width: calc(100% - 16px) !important;
+    max-width: calc(100% - 16px) !important;
+    left: 8px !important;
+    right: 8px !important;
+    margin: 8px auto !important;
+  }
+}
+
+/* C) Sample unlock: stack full-width on phone */
+@media (max-width: 719px) {
+  #sample-unlock .cta-row {
+    flex-direction: column;
+  }
+  #sample-unlock .cta-row > .btn {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}
+
+/* D/E) Sticky / always-reachable primary CTAs with safe-area */
+.mobile-cta-bar {
+  display: none;
+}
+@media (max-width: 879px) {
+  .mobile-cta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 8px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 36;
+    padding: 10px max(var(--pad), env(safe-area-inset-right, 0px))
+      calc(10px + env(safe-area-inset-bottom, 0px))
+      max(var(--pad), env(safe-area-inset-left, 0px));
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--line);
+  }
+  .mobile-cta-bar > .btn {
+    flex: 1 1 calc(50% - 8px);
+    min-height: 44px;
+  }
+  .mobile-cta-bar.is-hidden {
+    display: none;
+  }
+  body.has-mobile-cta {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  }
+  body.has-mobile-cta footer.site {
+    padding-bottom: 24px;
+  }
+}
+
+/* G) Hamburger open: body scroll lock cue */
+body.nav-open {
+  overflow: hidden;
+  touch-action: none;
+}
+@media (max-width: 879px) {
+  .top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  html {
+    scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px));
+  }
+}
+
+/* Solutions / trust prose CTAs full-width on phone */
+@media (max-width: 719px) {
+  .prose .cta-row > .btn,
+  .page-head .cta-row > .btn {
+    flex: 1 1 100%;
+  }
+}
