@@ -96,6 +96,7 @@
     if (!key) {
       var to = cfg.contactEmail || "hello@nimblytica.com";
       track("form_submit", { page: page, mode: "mailto" });
+      track("contact_submit", { page: page, mode: "mailto" });
       window.location.href =
         "mailto:" +
         to +
@@ -141,6 +142,7 @@
           form.reset();
           setStatus("success", "Thanks — your board brief is in. We'll reply within one business day.");
           track("form_submit_success", { page: page });
+          track("contact_submit", { page: page, mode: "backend" });
         } else {
           throw new Error((out && out.message) || "Submission failed");
         }

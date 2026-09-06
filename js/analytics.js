@@ -1,7 +1,7 @@
 /*
  * Provider-agnostic analytics + conversion event tracking.
  *
- * - Loads Plausible and/or GA4 only when configured in config.js.
+ * - Loads Plausible, GA4, and/or Clarity only when configured in config.js.
  * - Exposes window.nimbTrack(name, props) for custom events.
  * - Auto-instruments high-intent interactions so lead funnels are measurable
  *   without hand-wiring every element: CTA/button clicks, mailto clicks,
@@ -56,6 +56,19 @@
     window.gtag("config", cfg.ga4MeasurementId);
   }
 
+  var clarityId = typeof cfg.clarityProjectId === "string" ? cfg.clarityProjectId.trim() : "";
+  if (clarityId) {
+    window.clarity =
+      window.clarity ||
+      function () {
+        (window.clarity.q = window.clarity.q || []).push(arguments);
+      };
+    loadScript({
+      async: true,
+      src: "https://www.clarity.ms/tag/" + encodeURIComponent(clarityId)
+    });
+  }
+
   function track(name, props) {
     if (!name) return;
     props = props || {};
@@ -107,12 +120,17 @@
         }
 
         var href = el.getAttribute("href") || "";
+        var sku = el.getAttribute("data-pay-sku");
+        var isBookCall = el.hasAttribute("data-book-call");
 
-        if (el.hasAttribute("data-book-call")) {
-          // booking.js handles the action; record intent here.
-          track("book_call_click", { page: page, label: textOf(el) });
-          return;
+        if (sku !== null) {
+          var kind = /^https?:/i.test(href.trim()) ? "pay" : "book";
+          track("package_cta_click", { page: page, sku: sku, kind: kind });
         }
+        if (isBookCall) {
+          track("book_diagnostic_click", { page: page, label: textOf(el) });
+        }
+        if (sku !== null || isBookCall) return;
 
         if (href.indexOf("mailto:") === 0) {
           track("email_click", { page: page, label: textOf(el) });
