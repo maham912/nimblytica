@@ -1634,7 +1634,6 @@ body.nav-open {
   }
 }
 
-/* === homepage before/after punch (2026-09-06) === */
 .ba-wrap {
   margin: 28px auto 8px;
   max-width: 100%;
@@ -2010,7 +2009,6 @@ body.nav-open {
   }
 }
 
-/* === ba-punch poster / silent playsinline polish (2026-09-06) === */
 .ba-punch[data-playsinline="true"] {
   max-width: 100%;
 }
