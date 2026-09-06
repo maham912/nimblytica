@@ -106,29 +106,76 @@
         <nav class="foot-links" aria-label="Footer">
           <a href="${p("two-weeks.html")}">Two weeks</a>
           <a href="${p("packages.html")}">Packages</a>
+          <a href="${p("solutions/sfv-home-tech.html")}">SFV home tech</a>
           <a href="${p("trust.html")}">Trust</a>
           <a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a>
         </nav>
       </div>`;
   }
 
-  /* Sticky mobile CTA: hide when a form submit is on-screen so it never covers send. */
+  /* Sticky mobile CTA: safe-area bar; hide when it would cover a form submit. */
   const ctaBar = document.querySelector(".mobile-cta-bar");
   if (ctaBar) {
     document.body.classList.add("has-mobile-cta");
-    const submits = document.querySelectorAll(
-      '#contact-sheet button[type="submit"], #sample-gate button[type="submit"]'
+
+    function setCovered(cover) {
+      ctaBar.classList.toggle("is-hidden", cover);
+      document.body.classList.toggle("mobile-cta-covered", cover);
+      ctaBar.setAttribute("aria-hidden", cover ? "true" : "false");
+    }
+
+    function syncStack() {
+      if (!window.matchMedia("(max-width: 879px)").matches) {
+        document.body.classList.remove("mobile-cta-stacked");
+        return;
+      }
+      const buttons = ctaBar.querySelectorAll(":scope > .btn");
+      if (buttons.length < 2) {
+        document.body.classList.remove("mobile-cta-stacked");
+        return;
+      }
+      /* Stack when the bar is narrow enough that side-by-side would crush labels */
+      const stacked = ctaBar.clientWidth < 420 || window.innerWidth <= 400;
+      document.body.classList.toggle("mobile-cta-stacked", stacked);
+    }
+
+    syncStack();
+    window.addEventListener("resize", syncStack, { passive: true });
+
+    const coverTargets = document.querySelectorAll(
+      '#contact-sheet button[type="submit"], #sample-gate button[type="submit"], [data-mobile-cta-cover]'
     );
-    if (submits.length && "IntersectionObserver" in window) {
+    const formSheets = document.querySelectorAll("#contact-sheet, #sample-gate");
+
+    if (coverTargets.length && "IntersectionObserver" in window) {
       const io = new IntersectionObserver(
         (entries) => {
           const cover = entries.some((en) => en.isIntersecting);
-          ctaBar.classList.toggle("is-hidden", cover);
-          ctaBar.setAttribute("aria-hidden", cover ? "true" : "false");
+          setCovered(cover);
         },
-        { root: null, threshold: 0.15, rootMargin: "0px 0px -12% 0px" }
+        /* Larger bottom rootMargin so the sticky bar clears before overlap */
+        { root: null, threshold: 0.05, rootMargin: "0px 0px -18% 0px" }
       );
-      submits.forEach((el) => io.observe(el));
+      coverTargets.forEach((el) => io.observe(el));
     }
+
+    /* While typing in a conversion form, keep the bar tucked so the keyboard + submit stay clear */
+    formSheets.forEach((sheet) => {
+      sheet.addEventListener("focusin", () => setCovered(true));
+      sheet.addEventListener("focusout", (e) => {
+        const next = e.relatedTarget;
+        if (next && sheet.contains(next)) return;
+        /* Let IntersectionObserver re-evaluate on next frame */
+        requestAnimationFrame(() => {
+          const submits = sheet.querySelectorAll('button[type="submit"]');
+          const still =
+            Array.from(submits).some((btn) => {
+              const r = btn.getBoundingClientRect();
+              return r.top < window.innerHeight * 0.88 && r.bottom > 0;
+            }) || (document.activeElement && sheet.contains(document.activeElement));
+          setCovered(still);
+        });
+      });
+    });
   }
 })();
