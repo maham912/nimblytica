@@ -130,14 +130,51 @@
       </div>
 
       <div class="wrap ba-wrap">
-        <figure class="ba-punch" id="ba-punch" data-ba-punch aria-labelledby="ba-punch-title">
+        <figure class="ba-punch" id="ba-punch" data-ba-punch data-playsinline="true" data-muted="true" aria-labelledby="ba-punch-title">
           <figcaption class="ba-cap">
             <p class="scene-label">Before → after</p>
             <h2 class="ba-title" id="ba-punch-title">Screenshot pack → live as-of</h2>
-            <p class="lede ba-lede">Silent loop. Invented Northwind Health Ops. No sound.</p>
+            <p class="lede ba-lede">Silent punch. Invented Northwind Health Ops. No sound — poster first, then a lightweight loop.</p>
           </figcaption>
-          <div class="ba-stage" role="img" aria-label="Animated before and after: mailed OT screenshot pack becomes a Northwind live board">
-            <div class="ba-pane ba-before" data-pane="before">
+          <div class="ba-stage" role="img" aria-label="Poster then silent before/after: mailed OT screenshot pack becomes a Northwind live board">
+            <div class="ba-poster" data-ba-poster>
+              <div class="ba-poster-frame" aria-hidden="true">
+                <div class="ba-poster-before">
+                  <p class="ba-poster-kicker">Before</p>
+                  <p class="ba-poster-title">FW: OT pack</p>
+                  <div class="ba-sheet ba-poster-sheet">
+                    <div class="ba-sheet-row head"><span></span><span></span><span></span><span></span></div>
+                    <div class="ba-sheet-row"><span></span><span></span><span></span><span></span></div>
+                    <div class="ba-sheet-row"><span></span><span></span><span></span><span></span></div>
+                    <div class="ba-sheet-row"><span></span><span></span><span></span><span></span></div>
+                  </div>
+                  <p class="ba-stamp">Stale by standup</p>
+                </div>
+                <div class="ba-poster-arrow" aria-hidden="true">→</div>
+                <div class="ba-poster-after">
+                  <p class="ba-poster-kicker">After</p>
+                  <p class="ba-poster-title">Northwind live</p>
+                  <div class="ba-kpis ba-poster-kpis">
+                    <article><div class="n">1,200</div><div class="l">HC</div></article>
+                    <article><div class="n">48</div><div class="l">Open</div></article>
+                    <article><div class="n">37.7k</div><div class="l">OT</div></article>
+                  </div>
+                  <svg class="ba-chart ba-poster-chart" viewBox="0 0 320 56" width="100%" height="56" role="presentation" focusable="false" aria-hidden="true">
+                    <polyline class="ba-chart-grid" points="0,14 320,14" />
+                    <polyline class="ba-chart-grid" points="0,28 320,28" />
+                    <polyline class="ba-chart-grid" points="0,42 320,42" />
+                    <polyline class="ba-chart-line" fill="none" stroke-linecap="round" stroke-linejoin="round" points="8,44 48,40 88,42 128,32 168,34 208,22 248,18 288,12 312,10" />
+                    <circle class="ba-chart-dot" cx="312" cy="10" r="3" />
+                  </svg>
+                  <p class="ba-stamp live">One as-of</p>
+                </div>
+              </div>
+              <button type="button" class="ba-poster-play" data-ba-start-loop>
+                <span class="ba-poster-play-label">Play silent loop</span>
+                <span class="ba-poster-play-sub">No sound · plays inline</span>
+              </button>
+            </div>
+            <div class="ba-pane ba-before" data-pane="before" hidden>
               <div class="ba-mail">
                 <p class="ba-mail-meta">Inbox · Forwarded · Today 06:41</p>
                 <p class="ba-mail-sub">FW: OT pack — print for standup</p>
@@ -177,11 +214,11 @@
             </div>
           </div>
           <div class="ba-controls" role="group" aria-label="Before or after">
-            <button type="button" class="ba-tab" data-ba-set="before" aria-pressed="true">Before</button>
-            <button type="button" class="ba-tab" data-ba-set="after" aria-pressed="false">After</button>
-            <button type="button" class="ba-tab ba-pause" data-ba-toggle-loop aria-pressed="true" title="Pause or play the silent loop">Loop on</button>
+            <button type="button" class="ba-tab" data-ba-set="before" aria-pressed="false" disabled>Before</button>
+            <button type="button" class="ba-tab" data-ba-set="after" aria-pressed="false" disabled>After</button>
+            <button type="button" class="ba-tab ba-pause" data-ba-toggle-loop aria-pressed="false" title="Pause or play the silent loop">Loop off</button>
           </div>
-          <p class="caption">Fictional Northwind figures. CSS/SVG loop — muted, plays inline, max-width 100%. <a href="demo/workforce.html">Open the full board</a>.</p>
+          <p class="caption">Fictional Northwind figures. Static poster first; silent CSS/SVG loop — muted, plays inline, max-width 100%. <a href="demo/workforce.html">Open the full board</a>.</p>
         </figure>
       </div>
 

@@ -46,6 +46,8 @@ A page/feature is done only when all of these pass:
 | Hamburger scroll lock + focus trap + Escape | PR mobile-musthaves | Done |
 | Homepage before/after silent punch (CSS/SVG loop) | PR homepage-ba-punch | Done |
 | Gated sample gallery (1-col unlock @390) | PR sample-gallery-gated | Done |
+| Trust page stacked cards + trust FAQ-lite @390 | PR trust-poster-polish | Done |
+| Homepage BA poster-first silent punch polish | PR trust-poster-polish | Done |
 
 ---
 
@@ -68,10 +70,10 @@ When we add any of these, they go live with a 390px acceptance check in the PR:
 | Monthly Board Care deposit/link | Same as above; range copy wraps cleanly |
 | Retainer / Slack support upsell | Card stacks; no desktop-only hover reveal |
 | More sample boards / gated packs | Shipped — unlock gallery 1-col @390; invented orgs only |
-| Before/after demo loops or short video | Shipped homepage CSS/SVG silent loop; keep playsinline/no-sound/max-width 100% if video later |
+| Before/after demo loops or short video | Shipped poster-first + silent CSS/SVG loop (playsinline/no-sound/max-width 100%) |
 | Client login / portal (future) | Thumb auth, no hover menus |
 | Blog / case studies (anonymized) | Readable type scale; images `max-width:100%` |
-| FAQ accordion | Large tap rows; one open at a time OK |
+| FAQ accordion | Trust FAQ-lite shipped on trust.html; packages/two-weeks accordion remains HOLD on PR #22 |
 | Bottom nav / sticky Book | Safe-area padding; doesn’t cover form submit |
 | Dark-mode toggle (if ever) | Respect `prefers-color-scheme`; no flash |
 | Multi-language (unlikely) | Layout doesn’t break with longer strings |
@@ -100,4 +102,4 @@ Acceptance: headless or real Chrome at **390×844** — `document.documentElemen
 3. Do not ship a desktop-only layout “to polish later.”
 4. Owner: **Nimblytica** maintains this file; Cloud Desk implements.
 
-Last updated: 2026-09-06 (gated sample gallery)
+Last updated: 2026-09-06 (trust stack + BA poster polish)
