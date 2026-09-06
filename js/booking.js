@@ -1,11 +1,3 @@
-/*
- * "Book a 20-min board diagnostic" wiring.
- *
- * When a Calendly URL is configured (config.js), buttons marked
- * [data-book-call] open the Calendly popup (the widget assets load lazily,
- * only on pages that have such a button). When no URL is configured, those
- * buttons fall back to the email contact flow so they are never dead ends.
- */
 (function () {
   var buttons = document.querySelectorAll("[data-book-call]");
   if (!buttons.length) return;
