@@ -580,7 +580,9 @@ h1 {
 }
 .panel .table-scroll,
 .product-frame .table-scroll,
-.mail .table-scroll {
+.mail .table-scroll,
+#sc-children .table-scroll,
+.kernel .table-scroll {
   margin: 0;
   padding: 0;
 }
