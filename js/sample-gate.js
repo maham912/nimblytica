@@ -72,7 +72,7 @@
         try {
           panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
         } catch (err) {}
-        var first = panel.querySelector("a.btn:not([hidden])");
+        var first = panel.querySelector("a.sample-card, a.btn:not([hidden])");
         if (first && typeof first.focus === "function") {
           try {
             first.focus({ preventScroll: true });
@@ -148,7 +148,7 @@
       .then(function (out) {
         if (out && out.success) {
           form.reset();
-          setStatus("success", "Unlocked. The boards and one-pager are below.");
+          setStatus("success", "Unlocked. Sample gallery and one-pager are below.");
           persistUnlock();
           track("sample_gate_success", {
             page: document.documentElement.getAttribute("data-page") || "",
