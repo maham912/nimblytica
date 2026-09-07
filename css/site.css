@@ -343,6 +343,39 @@ h1 {
   text-underline-offset: 3px;
 }
 
+/* hero who / what / ballpark — mobile-first */
+.hero-pitch {
+  margin-top: 18px;
+  max-width: 34rem;
+}
+.hero-facts {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+}
+.hero-facts > div { margin: 0; }
+.hero-facts .meta {
+  display: block;
+  margin: 0 0 4px;
+}
+.hero-facts dd {
+  margin: 0;
+  color: var(--ink-dim);
+  max-width: 32rem;
+  letter-spacing: -0.02em;
+}
+.hero-facts a {
+  color: var(--ink-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.hero-next-label { margin: 18px 0 10px; }
+.hero-demo-note {
+  margin-top: 8px;
+  padding-bottom: 4px;
+}
+.hero-demo-note .caption { margin-top: 0; }
+
 .product {
   position: relative;
   z-index: 1;
