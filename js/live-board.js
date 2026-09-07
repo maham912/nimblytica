@@ -105,8 +105,18 @@
     document.getElementById("wb-asof").textContent = DATA.as_of;
   }
 
+  var trendRetries = 0;
   function renderTrend() {
-    if (!window.NimblyticaCharts) return;
+    if (!window.NimblyticaCharts || !DATA) return;
+    if (!NimblyticaCharts.ready()) {
+      // Keep SVG fallback visible while Plotly CDN catches up.
+      if (trendRetries < 24) {
+        trendRetries += 1;
+        setTimeout(renderTrend, 250);
+      }
+      return;
+    }
+    trendRetries = 0;
     NimblyticaCharts.headcount("wb-chart-hc", series(DATA.trend_headcount), true);
     NimblyticaCharts.overtime("wb-chart-ot", series(DATA.trend_overtime_hours), true);
   }
