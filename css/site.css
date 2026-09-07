@@ -20,6 +20,13 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("../fonts/instrument-serif-latin-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --bg: #000;
@@ -234,7 +241,10 @@ h1 {
   margin: 0;
 }
 .hero-title {
-  font-size: clamp(1.7rem, 5.2vw, 2.6rem);
+  font-family: "Instrument Serif", ui-serif, Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -0.03em;
   view-transition-name: title;
 }
 .page-head h1 { font-size: clamp(2.4rem, 8vw, 5.2rem); }
@@ -307,14 +317,58 @@ h1 {
 }
 .btn.ghost:hover { border-color: var(--ink); color: #fff; }
 
-/* hero — board first, then the two-week offer */
 .hero {
   position: relative;
   padding: 4px 0 36px;
   overflow: clip;
 }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(70% 55% at 72% 8%, #1a1a1a 0%, transparent 68%);
+}
 .hero-copy { position: relative; z-index: 1; padding-top: 4px; }
-.hero .line { margin-top: 10px; }
+.hero .line {
+  font-family: "Instrument Serif", ui-serif, Georgia, serif;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+/* layout mode: stack <900px, split ≥900px */
+.hero-split {
+  display: grid;
+  grid-template-areas:
+    "copy"
+    "board";
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+.hero-split > .hero-copy { grid-area: copy; min-width: 0; }
+.hero-split > .product {
+  grid-area: board;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+}
+@media (min-width: 900px) {
+  .hero-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "copy board";
+    align-items: start;
+    gap: 28px;
+  }
+  .hero-split .offer,
+  .hero-split .hero-pitch,
+  .hero-split .hero-facts dd,
+  .hero-split .offer p,
+  .hero-split .caption {
+    max-width: none;
+  }
+}
 .offer {
   position: relative;
   z-index: 1;
@@ -1523,7 +1577,6 @@ footer.site a { color: var(--ink-dim); }
   .page-head { padding: 24px 0 8px; }
   .page-head h1 { font-size: clamp(2rem, 12vw, 3.4rem); }
   .offer-page .page-head h1 { font-size: clamp(1.25rem, 7vw, 1.7rem); }
-  .hero-title { font-size: clamp(1.55rem, 9vw, 2.1rem); }
   .samples-sheet-head .btn { min-height: 44px; }
   .composer, .briefing-card { padding: 16px 14px 16px; }
   .panel { padding: 14px 14px 8px; }
