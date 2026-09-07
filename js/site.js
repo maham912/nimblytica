@@ -53,6 +53,17 @@
       summary.setAttribute("aria-label", open ? "Close site menu" : "Site menu");
     }
 
+    /* Desktop ≥880px: keep details open so nav.links stays visible (closed
+       <details> hides children even when CSS sets display). Mobile unchanged. */
+    function syncDesktopNav() {
+      if (!fold) return;
+      if (!mobileNav.matches) {
+        fold.setAttribute("open", "");
+        lockBody(false);
+      }
+      syncNavExpanded();
+    }
+
     function lockBody(on) {
       if (!mobileNav.matches) {
         document.body.classList.remove("nav-open");
@@ -65,6 +76,13 @@
 
     function closeMenu(restoreFocus) {
       if (!fold) return;
+      if (!mobileNav.matches) {
+        /* Never collapse primary links on desktop. */
+        fold.setAttribute("open", "");
+        lockBody(false);
+        syncNavExpanded();
+        return;
+      }
       fold.removeAttribute("open");
       lockBody(false);
       syncNavExpanded();
@@ -77,9 +95,15 @@
     }
 
     if (fold) {
-      syncNavExpanded();
+      syncDesktopNav();
       fold.addEventListener("toggle", () => {
-        lockBody(!!fold.open);
+        if (!mobileNav.matches) {
+          /* User-agent or script may flip open; force desktop open. */
+          if (!fold.open) fold.setAttribute("open", "");
+          lockBody(false);
+        } else {
+          lockBody(!!fold.open);
+        }
         syncNavExpanded();
       });
 
@@ -88,7 +112,7 @@
       });
 
       document.addEventListener("click", (e) => {
-        if (fold.open && !fold.contains(e.target)) closeMenu(true);
+        if (mobileNav.matches && fold.open && !fold.contains(e.target)) closeMenu(true);
       });
 
       document.addEventListener("keydown", (e) => {
@@ -114,8 +138,13 @@
       });
 
       mobileNav.addEventListener("change", () => {
-        if (!mobileNav.matches) lockBody(false);
-        else if (fold.open) lockBody(true);
+        if (!mobileNav.matches) {
+          fold.setAttribute("open", "");
+          lockBody(false);
+        } else {
+          fold.removeAttribute("open");
+          lockBody(false);
+        }
         syncNavExpanded();
       });
     }
