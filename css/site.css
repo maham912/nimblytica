@@ -21,6 +21,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("../fonts/instrument-serif-latin-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #000;
   --bg-1: #0a0a0a;
@@ -34,6 +42,8 @@
   --pad: clamp(18px, 4.5vw, 40px);
   --max: 1180px;
   --type: Geist, ui-sans-serif, system-ui, sans-serif;
+  --display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
 
 @view-transition { navigation: auto; }
@@ -234,12 +244,17 @@ h1 {
   margin: 0;
 }
 .hero-title {
-  font-size: clamp(1.7rem, 5.2vw, 2.6rem);
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.55rem, 7.2vw, 4.35rem);
+  letter-spacing: -0.05em;
+  line-height: 0.94;
   view-transition-name: title;
 }
 .page-head h1 { font-size: clamp(2.4rem, 8vw, 5.2rem); }
 .line {
-  font-size: clamp(1.15rem, 2.6vw, 1.55rem);
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 2.8vw, 1.65rem);
   font-weight: 400;
   letter-spacing: -0.03em;
   max-width: 22em;
@@ -307,13 +322,32 @@ h1 {
 }
 .btn.ghost:hover { border-color: var(--ink); color: #fff; }
 
-/* hero — board first, then the two-week offer */
+/* hero — copy left | live board right on desktop */
 .hero {
   position: relative;
   padding: 4px 0 36px;
   overflow: clip;
 }
-.hero-copy { position: relative; z-index: 1; padding-top: 4px; }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -12% -8% auto;
+  height: min(72vh, 680px);
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 58% 52% at 78% 18%, rgba(92, 102, 140, 0.20), transparent 72%),
+    radial-gradient(ellipse 42% 48% at 18% 8%, rgba(255, 255, 255, 0.055), transparent 68%),
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(24, 24, 28, 0.85), transparent 75%);
+}
+.hero-split {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.hero-copy { position: relative; z-index: 1; padding-top: 4px; min-width: 0; }
 .hero .line { margin-top: 10px; }
 .offer {
   position: relative;
@@ -346,23 +380,37 @@ h1 {
 /* hero who / what / ballpark — mobile-first */
 .hero-pitch {
   margin-top: 18px;
-  max-width: 34rem;
+  max-width: none;
 }
 .hero-facts {
   display: grid;
-  gap: 14px;
+  gap: 12px;
   margin: 0;
 }
-.hero-facts > div { margin: 0; }
-.hero-facts .meta {
+.hero-facts > div {
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg-1) 80%, transparent);
+}
+.hero-facts .meta,
+.hero-next-label {
   display: block;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
 }
 .hero-facts dd {
   margin: 0;
   color: var(--ink-dim);
-  max-width: 32rem;
+  max-width: none;
   letter-spacing: -0.02em;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 .hero-facts a {
   color: var(--ink-dim);
@@ -379,7 +427,7 @@ h1 {
 .product {
   position: relative;
   z-index: 1;
-  margin: 16px 0 0;
+  margin: 0;
   width: 100%;
   min-width: 0;
   view-transition-name: board;
@@ -389,6 +437,14 @@ h1 {
     width: min(var(--max), calc(100% - 2 * var(--pad)));
     margin-inline: auto;
   }
+  .hero-split .product {
+    width: 100%;
+    margin-inline: 0;
+  }
+}
+.hero-split .product {
+  width: 100%;
+  margin: 0;
 }
 .product-frame {
   background: var(--bg-1);
@@ -402,6 +458,47 @@ h1 {
     border: 1px solid var(--line);
     border-radius: 18px;
     padding: 26px 28px 28px;
+  }
+}
+
+/* desktop half-page: copy | board */
+@media (min-width: 900px) {
+  .hero {
+    padding: 10px 0 48px;
+  }
+  .hero-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(22px, 3vw, 40px);
+    align-items: start;
+  }
+  .hero-copy {
+    padding-top: 10px;
+  }
+  .hero-pitch,
+  .hero .offer.hero-pitch {
+    max-width: none;
+    margin-top: 16px;
+  }
+  .hero-facts {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .hero-facts > div:last-child {
+    grid-column: 1 / -1;
+  }
+  .hero-facts dd {
+    font-size: 0.92rem;
+  }
+  .hero-split .product-frame {
+    padding: 18px 16px 20px;
+    border-radius: 16px;
+  }
+  .hero-split .product-frame .chart {
+    height: 160px;
+  }
+  .hero-split .kpis {
+    gap: 12px 10px;
   }
 }
 
@@ -1523,7 +1620,7 @@ footer.site a { color: var(--ink-dim); }
   .page-head { padding: 24px 0 8px; }
   .page-head h1 { font-size: clamp(2rem, 12vw, 3.4rem); }
   .offer-page .page-head h1 { font-size: clamp(1.25rem, 7vw, 1.7rem); }
-  .hero-title { font-size: clamp(1.55rem, 9vw, 2.1rem); }
+  .hero-title { font-size: clamp(2.15rem, 11vw, 2.85rem); }
   .samples-sheet-head .btn { min-height: 44px; }
   .composer, .briefing-card { padding: 16px 14px 16px; }
   .panel { padding: 14px 14px 8px; }
