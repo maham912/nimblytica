@@ -213,6 +213,10 @@ nav.links a:hover,
 nav.links a[aria-current="page"] { color: var(--ink); }
 @media (min-width: 880px) {
   .nav-toggle { display: none; }
+  .nav-fold::details-content {
+    display: contents;
+    content-visibility: visible;
+  }
   nav.links,
   .nav-fold[open] nav.links {
     display: flex;

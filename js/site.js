@@ -63,8 +63,20 @@
       document.body.style.overflow = on ? "hidden" : "";
     }
 
-    function closeMenu(restoreFocus) {
+    function applyNavMode() {
       if (!fold) return;
+      if (mobileNav.matches) {
+        fold.removeAttribute("open");
+        lockBody(false);
+      } else {
+        fold.setAttribute("open", "");
+        lockBody(false);
+      }
+      syncNavExpanded();
+    }
+
+    function closeMenu(restoreFocus) {
+      if (!fold || !mobileNav.matches) return;
       fold.removeAttribute("open");
       lockBody(false);
       syncNavExpanded();
@@ -77,8 +89,14 @@
     }
 
     if (fold) {
-      syncNavExpanded();
+      applyNavMode();
       fold.addEventListener("toggle", () => {
+        if (!mobileNav.matches) {
+          fold.setAttribute("open", "");
+          lockBody(false);
+          syncNavExpanded();
+          return;
+        }
         lockBody(!!fold.open);
         syncNavExpanded();
       });
@@ -88,6 +106,7 @@
       });
 
       document.addEventListener("click", (e) => {
+        if (!mobileNav.matches) return;
         if (fold.open && !fold.contains(e.target)) closeMenu(true);
       });
 
@@ -113,11 +132,7 @@
         }
       });
 
-      mobileNav.addEventListener("change", () => {
-        if (!mobileNav.matches) lockBody(false);
-        else if (fold.open) lockBody(true);
-        syncNavExpanded();
-      });
+      mobileNav.addEventListener("change", applyNavMode);
     }
   }
 
