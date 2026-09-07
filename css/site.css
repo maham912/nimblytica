@@ -337,7 +337,6 @@ h1 {
   margin-top: 10px;
 }
 
-/* layout mode: stack <900px, split ≥900px */
 .hero-split {
   display: grid;
   grid-template-areas:
