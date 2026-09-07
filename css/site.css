@@ -213,9 +213,20 @@ nav.links a:hover,
 nav.links a[aria-current="page"] { color: var(--ink); }
 @media (min-width: 880px) {
   .nav-toggle { display: none; }
-  nav.links,
-  .nav-fold[open] nav.links {
+  /* Always show horizontal primary links on desktop, even if details lacks [open]
+     briefly before JS runs. ::details-content covers Chromium UA hide. */
+  .nav-fold {
     display: flex;
+    align-items: center;
+  }
+  .nav-fold::details-content {
+    display: contents;
+    content-visibility: visible;
+  }
+  nav.links,
+  .nav-fold[open] nav.links,
+  .nav-fold:not([open]) nav.links {
+    display: flex !important;
     flex-direction: row;
     flex-wrap: wrap;
     position: static;
@@ -227,7 +238,8 @@ nav.links a[aria-current="page"] { color: var(--ink); }
     border-radius: 0;
     box-shadow: none;
   }
-  .nav-fold[open] nav.links a {
+  .nav-fold[open] nav.links a,
+  .nav-fold:not([open]) nav.links a {
     min-height: 0;
     padding: 0;
     border-radius: 0;
