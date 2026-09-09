@@ -16,7 +16,7 @@ window.NIMBLYTICA_CONFIG = {
      */
     web3formsAccessKey: "52e5e160-79bf-46d0-beeb-ec295151db54",
     endpoint: "https://api.web3forms.com/submit",
-    subject: "Live ops board — new inquiry",
+    subject: "Fractional BI — new inquiry",
     // Fallback address used when no access key is configured (mailto flow).
     contactEmail: "hello@nimblytica.com"
   },
@@ -52,9 +52,8 @@ window.NIMBLYTICA_CONFIG = {
   },
 
   stripe: {
-    liveBoard: { paymentLink: "" },
-    opsPulse: { paymentLink: "" },
-    biHours: { paymentLink: "" },
-    boardCare: { paymentLink: "" }
+    healthCheck: { paymentLink: "" },
+    biJumpstart: { paymentLink: "" },
+    fractionalBi: { paymentLink: "" }
   }
 };
