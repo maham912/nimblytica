@@ -63,7 +63,7 @@ window.NIMBLYTICA_CONFIG = {
    * Paste full Gumroad URLs here (e.g. "https://nimblytica.gumroad.com/l/kit-pdf").
    */
   gumroad: {
-    kitChecklist: { productUrl: "https://mahamster03.gumroad.com/l/finmvb" }, // $149 Checklist PDF
-    kitExcel: { productUrl: "https://mahamster03.gumroad.com/l/scwaz" } // $299 Checklist + fillable Excel score workbook
+    kitChecklist: { productUrl: "https://nimblytica.gumroad.com/l/finmvb" }, // $149 Checklist PDF
+    kitExcel: { productUrl: "https://nimblytica.gumroad.com/l/scwaz" } // $299 Checklist + fillable Excel score workbook
   }
 };
