@@ -31,6 +31,7 @@
           <nav class="links" id="site-nav" aria-label="Primary">
             <a href="${p("two-weeks.html")}" ${current === "two-weeks" ? 'aria-current="page"' : ""}>Jumpstart</a>
             <a href="${p("packages.html")}" ${current === "packages" ? 'aria-current="page"' : ""}>Offers</a>
+            <a href="${p("health-check-kit.html")}" ${current === "health-check-kit" ? 'aria-current="page"' : ""}>Kit $149</a>
             <a href="${p("live-install.html")}" ${current === "live-install" ? 'aria-current="page"' : ""}>Live install</a>
             <a href="${p("demo/samples.html")}" ${current === "samples" || current === "program-complete" ? 'aria-current="page"' : ""}>Samples</a>
             <a href="${p("demo/shift-board.html")}" ${current === "shift-board" ? 'aria-current="page"' : ""}>Shift Board</a>
@@ -158,6 +159,7 @@
         <nav class="foot-links" aria-label="Footer">
           <a href="${p("two-weeks.html")}">Jumpstart</a>
           <a href="${p("packages.html")}">Offers</a>
+          <a href="${p("health-check-kit.html")}">Kit $149</a>
           <a href="${p("live-install.html")}">Live install</a>
           <a href="${p("trust.html")}">Trust</a>
           <a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a>
