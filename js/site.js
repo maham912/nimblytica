@@ -25,7 +25,10 @@
     const contactHref = document.getElementById("contact") ? "#contact" : p("index.html") + "#contact";
     header.innerHTML = `
       <div class="wrap top-inner">
-        <a class="wordmark" href="${p("index.html")}">Nimblytica</a>
+        <a class="wordmark" href="${p("index.html")}">
+          <img class="wordmark-mark" src="${p("assets/mark.svg")}" width="28" height="28" alt="" />
+          <span>Nimblytica</span>
+        </a>
         <details class="nav-fold">
           <summary class="nav-toggle" aria-label="Site menu" aria-controls="site-nav" aria-expanded="false">Menu</summary>
           <nav class="links" id="site-nav" aria-label="Primary">
