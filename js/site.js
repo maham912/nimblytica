@@ -198,18 +198,41 @@
       }
     }
 
+    /* One obvious action on the first screen: hide the sticky bar while the
+       hero button is already in view. It returns once that button scrolls away. */
+    let formCover = false;
+    let heroCover = false;
+    function syncCtaBar() {
+      setCtaBarHidden(formCover || heroCover);
+    }
+
     const submits = document.querySelectorAll(
       '#contact-sheet button[type="submit"], #sample-gate button[type="submit"]'
     );
-    if (submits.length && "IntersectionObserver" in window) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          const cover = entries.some((en) => en.isIntersecting);
-          setCtaBarHidden(cover);
-        },
-        { root: null, threshold: 0.15, rootMargin: "0px 0px -12% 0px" }
-      );
-      submits.forEach((el) => io.observe(el));
+    if ("IntersectionObserver" in window) {
+      if (submits.length) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            formCover = entries.some((en) => en.isIntersecting);
+            syncCtaBar();
+          },
+          { root: null, threshold: 0.15, rootMargin: "0px 0px -12% 0px" }
+        );
+        submits.forEach((el) => io.observe(el));
+      }
+      const heroCta = document.querySelector(".hero-cta");
+      if (heroCta) {
+        heroCover = true;
+        syncCtaBar();
+        const heroIo = new IntersectionObserver(
+          (entries) => {
+            heroCover = entries.some((en) => en.isIntersecting);
+            syncCtaBar();
+          },
+          { threshold: 0.5 }
+        );
+        heroIo.observe(heroCta);
+      }
     }
   }
 })();
