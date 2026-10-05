@@ -131,7 +131,7 @@
       top.innerHTML = rows
         .map(
           (d, i) =>
-            `<tr><td>${i + 1}</td><td>${d.name}</td><td>${fmt(d.overtime_hours_12mo)}</td><td>${fmt(d.open_roles)}</td><td>${d.attrition_pct}%</td><td>${d.owner}</td></tr>`
+            `<tr><td data-label="Rank">${i + 1}</td><td data-label="Unit">${d.name}</td><td data-label="OT hours">${fmt(d.overtime_hours_12mo)}</td><td data-label="Open">${fmt(d.open_roles)}</td><td data-label="Attrition">${d.attrition_pct}%</td><td data-label="Owner">${d.owner}</td></tr>`
         )
         .join("");
     }
@@ -140,7 +140,7 @@
       const deptNames = deptsFor(CUT).map((d) => d.name);
       const hires = (DATA.new_hires || []).filter((h) => CUT === "all" || deptNames.indexOf(h.dept) !== -1);
       neu.innerHTML =
-        hires.map((h) => `<tr><td>${h.start}</td><td>${h.name}</td><td>${h.role}</td><td>${h.dept}</td></tr>`).join("") ||
+        hires.map((h) => `<tr><td data-label="Start">${h.start}</td><td data-label="Name">${h.name}</td><td data-label="Role">${h.role}</td><td data-label="Unit">${h.dept}</td></tr>`).join("") ||
         `<tr><td colspan="4">No new names on this cut.</td></tr>`;
     }
     const list = document.getElementById("wb-list");
