@@ -566,6 +566,40 @@ h1 {
   .hero-split .kpis {
     gap: 12px 10px;
   }
+  /* Tables sit under the split, full width, so columns are not clipped in the side card. */
+  .hero-board-rest {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+  .hero-split .board-tables table.data th,
+  .hero-split .board-tables table.data td {
+    padding-right: 10px;
+  }
+  .hero-split .slicer {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    scrollbar-width: thin;
+  }
+  .hero-split .slicer button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+.hero-board-rest {
+  min-width: 0;
+  width: 100%;
+}
+@media (min-width: 900px) and (max-width: 1199px) {
+  .hero-split .kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero-split .board-charts {
+    grid-template-columns: 1fr;
+  }
+  .hero-split .board-tables {
+    grid-template-columns: 1fr;
+  }
 }
 
 .mode-row {
