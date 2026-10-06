@@ -6,17 +6,17 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#000000">
   <meta name="view-transition" content="same-origin">
-  <title>Nimblytica · BI and workforce analytics</title>
-  <meta name="description" content="BI and workforce analytics consultancy. One live board for overtime, headcount, and open roles. Model and DAX audit $1,800. Dashboard build $3,000. Monthly reporting from $1,200.">
-  <meta property="og:title" content="Nimblytica · BI and workforce analytics">
-  <meta property="og:description" content="BI and workforce analytics consultancy. One live board for overtime, headcount, and open roles. Model and DAX audit $1,800. Dashboard build $3,000. Monthly reporting from $1,200.">
+  <title>Nimblytica · Power BI and BI consulting</title>
+  <meta name="description" content="Fixed-price Power BI consulting: Model and DAX Audit $1,800, Dashboard Build $3,000, monthly reporting from $1,200. AI automation add-ons for alerts and weekly summaries.">
+  <meta property="og:title" content="Nimblytica · Power BI and BI consulting">
+  <meta property="og:description" content="Fixed-price Power BI consulting: Model and DAX Audit $1,800, Dashboard Build $3,000, monthly reporting from $1,200. AI automation add-ons for alerts and weekly summaries.">
   <meta property="og:image" content="https://nimblytica.com/assets/og.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nimblytica.com/">
   <link rel="canonical" href="https://nimblytica.com/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Nimblytica · BI and workforce analytics">
-  <meta name="twitter:description" content="BI and workforce analytics consultancy. One live board for overtime, headcount, and open roles. Model and DAX audit $1,800. Dashboard build $3,000. Monthly reporting from $1,200.">
+  <meta name="twitter:title" content="Nimblytica · Power BI and BI consulting">
+  <meta name="twitter:description" content="Fixed-price Power BI consulting: Model and DAX Audit $1,800, Dashboard Build $3,000, monthly reporting from $1,200.">
   <meta name="twitter:image" content="https://nimblytica.com/assets/og.png">
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
@@ -31,7 +31,7 @@
     "url": "https://nimblytica.com/",
     "email": "hello@nimblytica.com",
     "logo": "https://nimblytica.com/assets/icon-512.png",
-    "description": "BI and workforce analytics consultancy. One live board for overtime, headcount, and open roles. Model and DAX audit $1,800. Dashboard build $3,000. Monthly reporting from $1,200."
+    "description": "Fixed-price Power BI and BI consulting. Model and DAX Audit, Dashboard Build, monthly reporting, and AI automation add-ons."
   }
   </script>
   <script type="application/ld+json">
@@ -42,488 +42,239 @@
     "url": "https://nimblytica.com/"
   }
   </script>
-  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 </head>
 <body>
   <header class="top" data-chrome="header"></header>
   <main id="main">
-    <section class="hero" aria-labelledby="site-title">
-      <div class="wrap hero-split">
-      <div class="hero-copy">
-        <h1 class="hero-title" id="site-title">Nimblytica</h1>
-        <p class="line">BI and workforce analytics consultancy.</p>
-        <article class="offer hero-pitch" id="offer" aria-labelledby="offer-title">
-          <h2 id="offer-title" class="sr-only">Who, offer, price, proof, next step</h2>
-          <dl class="hero-signals">
-            <div>
-              <dt>Offer</dt>
-              <dd>One live board for overtime, headcount, and open roles, on sources you already have.</dd>
-            </div>
-            <div>
-              <dt>Price</dt>
-              <dd>Model and DAX audit $1,800. Dashboard build $3,000. Monthly reporting from $1,200.</dd>
-            </div>
-            <div>
-              <dt>Proof</dt>
-              <dd><a href="demo/workforce.html">Workforce snapshot</a>. Nursing overtime, headcount, and open roles. The figures are demo data.</dd>
-            </div>
-          </dl>
-          <div class="cta-row hero-cta">
-            <button type="button" class="btn" data-book-call>Book a 20-min diagnostic</button>
-          </div>
-          <p class="caption hero-mail">Or email <a href="mailto:hello@nimblytica.com?subject=Workforce%20board">hello@nimblytica.com</a></p>
-        </article>
-      </div>
 
-      <div class="product" id="live-board">
-        <div class="product-frame">
-          <div class="mode-row">
-            <div class="mode" id="wb-mode" role="group" aria-label="Cut">
-              <button type="button" data-mode="department" aria-pressed="true">Department</button>
-              <button type="button" data-mode="hierarchy" aria-pressed="false">Hierarchy</button>
-            </div>
-            <p class="meta" style="margin:0"><span id="wb-cut">Northwind Health Ops</span> · <span id="wb-asof">2026-08-01</span></p>
-          </div>
-          <div class="slicer" id="wb-slicer" role="group" aria-label="Slice">
-            <button type="button" aria-pressed="true">All</button>
-            <button type="button" aria-pressed="false">Nursing</button>
-            <button type="button" aria-pressed="false">Clinical Support</button>
-            <button type="button" aria-pressed="false">Revenue Cycle</button>
-            <button type="button" aria-pressed="false">Operations</button>
-            <button type="button" aria-pressed="false">IT</button>
-            <button type="button" aria-pressed="false">Finance</button>
-            <button type="button" aria-pressed="false">Quality</button>
-            <button type="button" aria-pressed="false">Administration</button>
-          </div>
-          <div class="kpis">
-            <article class="kpi"><div class="n" id="wb-hc">1,200</div><div class="l">Headcount</div><div class="d" id="wb-hc-d">Northwind Health Ops</div></article>
-            <article class="kpi"><div class="n" id="wb-open">48</div><div class="l">Open roles</div><div class="d" id="wb-open-d">60 hires / 90 days (org)</div></article>
-            <article class="kpi"><div class="n" id="wb-attr">12%</div><div class="l">Attrition, 12 months</div><div class="d" id="wb-attr-d">140 terms (org)</div></article>
-            <article class="kpi"><div class="n" id="wb-span">8</div><div class="l">Span of control</div><div class="d" id="wb-ot-d">37,700 OT hours / 12 mo</div></article>
-          </div>
-          <div class="grid-2 board-charts">
-            <div class="panel">
-              <h2>Headcount trend</h2>
-              <div id="wb-chart-hc" class="chart" aria-label="Headcount trend chart">
-                <div class="chart-fallback" data-chart-fallback>
-                  <svg viewBox="0 0 320 120" width="100%" height="120" role="img" aria-label="Static headcount trend fallback">
-                    <title>Headcount trend (static)</title>
-                    <polyline fill="none" stroke="#2a2a2a" stroke-width="1" points="0,30 320,30" />
-                    <polyline fill="none" stroke="#2a2a2a" stroke-width="1" points="0,60 320,60" />
-                    <polyline fill="none" stroke="#2a2a2a" stroke-width="1" points="0,90 320,90" />
-                    <polyline fill="none" stroke="#f2f2f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="8,88 48,82 88,78 128,70 168,62 208,54 248,42 288,28 312,22" />
-                    <circle cx="312" cy="22" r="3.5" fill="#f2f2f2" />
-                  </svg>
-                  <p class="chart-fallback-label">Static preview · live chart loads with Plotly</p>
-                </div>
-              </div>
-            </div>
-            <div class="panel">
-              <h2>Overtime hours</h2>
-              <div id="wb-chart-ot" class="chart" aria-label="Overtime hours chart">
-                <div class="chart-fallback" data-chart-fallback>
-                  <svg viewBox="0 0 320 120" width="100%" height="120" role="img" aria-label="Static overtime hours fallback">
-                    <title>Overtime hours (static)</title>
-                    <rect x="20" y="48" width="28" height="56" fill="#a3a3a3" />
-                    <rect x="64" y="40" width="28" height="64" fill="#a3a3a3" />
-                    <rect x="108" y="36" width="28" height="68" fill="#a3a3a3" />
-                    <rect x="152" y="44" width="28" height="60" fill="#a3a3a3" />
-                    <rect x="196" y="52" width="28" height="52" fill="#a3a3a3" />
-                    <rect x="240" y="60" width="28" height="44" fill="#a3a3a3" />
-                    <rect x="284" y="70" width="28" height="34" fill="#a3a3a3" />
-                  </svg>
-                  <p class="chart-fallback-label">Static preview · live chart loads with Plotly</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <noscript><p class="chart-noscript">JavaScript required for live Plotly charts. Static Northwind previews stay visible above.</p></noscript>
+    <section class="home-hero" aria-labelledby="site-title">
+      <div class="wrap home-hero-inner">
+        <p class="scene-label">Power BI · SQL · BI consulting</p>
+        <h1 class="home-hero-title" id="site-title">Trusted Power BI reports, fixed price, without a full-time BI hire</h1>
+        <p class="home-hero-lede">Nimblytica builds and cares for semantic models, dashboards, and light AI automation on the Microsoft stack you already run.</p>
+        <div class="cta-row home-hero-cta">
+          <button type="button" class="btn" data-book-call>Book a call</button>
+          <a class="btn ghost" href="#samples">See samples</a>
         </div>
-      </div>
-      <div class="hero-board-rest">
-        <div class="product-frame">
-          <div class="grid-2 board-tables">
-            <div class="panel">
-              <h2>Top units</h2>
-              <div class="table-scroll">
-                <table class="data" aria-label="Top units by overtime">
-                  <thead>
-                    <tr><th>#</th><th>Unit</th><th>OT hours</th><th>Open</th><th>Attrition</th><th>Owner</th></tr>
-                  </thead>
-                  <tbody id="wb-top-body">
-                    <tr><td data-label="Rank">1</td><td data-label="Unit">Nursing</td><td data-label="OT hours">24,000</td><td data-label="Open">20</td><td data-label="Attrition">16%</td><td data-label="Owner">Alex Rivera</td></tr>
-                    <tr><td data-label="Rank">2</td><td data-label="Unit">Clinical Support</td><td data-label="OT hours">6,000</td><td data-label="Open">8</td><td data-label="Attrition">10%</td><td data-label="Owner">Jordan Hale</td></tr>
-                    <tr><td data-label="Rank">3</td><td data-label="Unit">Revenue Cycle</td><td data-label="OT hours">4,000</td><td data-label="Open">8</td><td data-label="Attrition">14%</td><td data-label="Owner">Sam Okonkwo</td></tr>
-                    <tr><td data-label="Rank">4</td><td data-label="Unit">Operations</td><td data-label="OT hours">2,000</td><td data-label="Open">4</td><td data-label="Attrition">8%</td><td data-label="Owner">Casey Nguyen</td></tr>
-                    <tr><td data-label="Rank">5</td><td data-label="Unit">IT</td><td data-label="OT hours">1,000</td><td data-label="Open">4</td><td data-label="Attrition">6%</td><td data-label="Owner">Priya Shah</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="panel">
-              <h2>New names</h2>
-              <div class="table-scroll">
-                <table class="data" aria-label="Recent new hires">
-                  <thead>
-                    <tr><th>Start</th><th>Name</th><th>Role</th><th>Unit</th></tr>
-                  </thead>
-                  <tbody id="wb-new-body">
-                    <tr><td data-label="Start">2026-06-02</td><td data-label="Name">Alex Rivera</td><td data-label="Role">Director, Nursing</td><td data-label="Unit">Nursing</td></tr>
-                    <tr><td data-label="Start">2026-07-06</td><td data-label="Name">Quinn Patel</td><td data-label="Role">Staff Nurse</td><td data-label="Unit">Nursing</td></tr>
-                    <tr><td data-label="Start">2026-07-13</td><td data-label="Name">Taylor Brooks</td><td data-label="Role">Coder</td><td data-label="Unit">Revenue Cycle</td></tr>
-                    <tr><td data-label="Start">2026-07-20</td><td data-label="Name">Jamie Ortiz</td><td data-label="Role">Analyst</td><td data-label="Unit">IT</td></tr>
-                    <tr><td data-label="Start">2026-07-27</td><td data-label="Name">Chris Adeyemi</td><td data-label="Role">Coordinator</td><td data-label="Unit">Operations</td></tr>
-                    <tr><td data-label="Start">2026-06-16</td><td data-label="Name">Morgan Ellis</td><td data-label="Role">Manager, Finance</td><td data-label="Unit">Finance</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <p class="caption">Live snapshot on invented Northwind Health Ops figures. Switch department or hierarchy and the numbers and charts tick with the cut. <a href="demo/workforce.html">Open the full board</a>.</p>
-        </div>
-      </div>
-      </div>
-
-      <div class="wrap ba-wrap">
-        <figure class="ba-punch" id="ba-punch" data-ba-punch data-playsinline="true" data-muted="true" aria-labelledby="ba-punch-title">
-          <figcaption class="ba-cap">
-            <p class="scene-label">Before → after</p>
-            <h2 class="ba-title" id="ba-punch-title">From emailed screenshots to a live as-of</h2>
-            <p class="lede ba-lede">Silent before/after on invented Northwind Health Ops figures. Poster first, then a short loop, no sound.</p>
-          </figcaption>
-          <div class="ba-stage" role="img" aria-label="Poster then silent before/after: mailed OT screenshot pack becomes a Northwind live board">
-            <div class="ba-poster" data-ba-poster>
-              <div class="ba-poster-frame" aria-hidden="true">
-                <div class="ba-poster-before">
-                  <p class="ba-poster-kicker">Before</p>
-                  <p class="ba-poster-title">FW: OT pack</p>
-                  <div class="ba-sheet ba-poster-sheet">
-                    <div class="ba-sheet-row head"><span>Unit</span><span>OT hrs</span><span>Open</span><span>Attr</span></div>
-                    <div class="ba-sheet-row"><span>Nursing</span><span>24,000</span><span>20</span><span>16%</span></div>
-                    <div class="ba-sheet-row"><span>Clin. Support</span><span>6,000</span><span>8</span><span>10%</span></div>
-                    <div class="ba-sheet-row"><span>Rev Cycle</span><span>4,000</span><span>8</span><span>14%</span></div>
-                  </div>
-                  <p class="ba-stamp">Stale by standup</p>
-                </div>
-                <div class="ba-poster-arrow" aria-hidden="true">→</div>
-                <div class="ba-poster-after">
-                  <p class="ba-poster-kicker">After</p>
-                  <p class="ba-poster-title">Northwind live</p>
-                  <div class="ba-kpis ba-poster-kpis">
-                    <article><div class="n">1,200</div><div class="l">HC</div></article>
-                    <article><div class="n">48</div><div class="l">Open</div></article>
-                    <article><div class="n">37.7k</div><div class="l">OT</div></article>
-                  </div>
-                  <svg class="ba-chart ba-poster-chart" viewBox="0 0 320 56" width="100%" height="56" role="presentation" focusable="false" aria-hidden="true">
-                    <polyline class="ba-chart-grid" points="0,14 320,14" />
-                    <polyline class="ba-chart-grid" points="0,28 320,28" />
-                    <polyline class="ba-chart-grid" points="0,42 320,42" />
-                    <polyline class="ba-chart-line" fill="none" stroke-linecap="round" stroke-linejoin="round" points="8,44 48,40 88,42 128,32 168,34 208,22 248,18 288,12 312,10" />
-                    <circle class="ba-chart-dot" cx="312" cy="10" r="3" />
-                  </svg>
-                  <p class="ba-stamp live">One as-of</p>
-                </div>
-              </div>
-              <button type="button" class="ba-poster-play" data-ba-start-loop>
-                <span class="ba-poster-play-label">Play silent loop</span>
-                <span class="ba-poster-play-sub">No sound · plays inline</span>
-              </button>
-            </div>
-            <div class="ba-pane ba-before" data-pane="before" hidden>
-              <div class="ba-mail">
-                <p class="ba-mail-meta">Inbox · Forwarded · Today 06:41</p>
-                <p class="ba-mail-sub">FW: OT pack, print for standup</p>
-                <p class="ba-mail-from">from: ops-export@northwind.example</p>
-              </div>
-              <div class="ba-sheet">
-                <div class="ba-sheet-row head"><span>Unit</span><span>OT hours</span><span>Open</span><span>Attrition</span></div>
-                <div class="ba-sheet-row"><span>Nursing</span><span>24,000</span><span>20</span><span>16%</span></div>
-                <div class="ba-sheet-row"><span>Clinical Support</span><span>6,000</span><span>8</span><span>10%</span></div>
-                <div class="ba-sheet-row"><span>Revenue Cycle</span><span>4,000</span><span>8</span><span>14%</span></div>
-                <div class="ba-sheet-row"><span>Operations</span><span>2,000</span><span>4</span><span>8%</span></div>
-                <div class="ba-sheet-row"><span>IT</span><span>1,000</span><span>4</span><span>6%</span></div>
-              </div>
-              <p class="ba-stamp">Stale by standup</p>
-            </div>
-            <div class="ba-pane ba-after" data-pane="after" hidden>
-              <div class="ba-board">
-                <div class="ba-board-meta">
-                  <span>Northwind Health Ops</span>
-                  <span>as of 2026-08-01</span>
-                </div>
-                <div class="ba-kpis">
-                  <article><div class="n">1,200</div><div class="l">Headcount</div></article>
-                  <article><div class="n">48</div><div class="l">Open roles</div></article>
-                  <article><div class="n">37.7k</div><div class="l">OT hours / 12 mo</div></article>
-                </div>
-                <svg class="ba-chart" viewBox="0 0 320 88" width="100%" height="88" role="presentation" focusable="false" aria-hidden="true">
-                  <title>OT hours trending down</title>
-                  <polyline class="ba-chart-grid" points="0,22 320,22" />
-                  <polyline class="ba-chart-grid" points="0,44 320,44" />
-                  <polyline class="ba-chart-grid" points="0,66 320,66" />
-                  <polyline class="ba-chart-line" fill="none" stroke-linecap="round" stroke-linejoin="round" points="8,70 48,62 88,66 128,48 168,52 208,34 248,28 288,18 312,14" />
-                  <circle class="ba-chart-dot" cx="312" cy="14" r="3.5" />
-                </svg>
-                <p class="ba-stamp live">One as-of · every standup</p>
-              </div>
-            </div>
-          </div>
-          <div class="ba-controls" role="group" aria-label="Before or after">
-            <button type="button" class="ba-tab" data-ba-set="before" aria-pressed="false" disabled>Before</button>
-            <button type="button" class="ba-tab" data-ba-set="after" aria-pressed="false" disabled>After</button>
-            <button type="button" class="ba-tab ba-pause" data-ba-toggle-loop aria-pressed="false" title="Pause or play the silent loop">Loop off</button>
-          </div>
-          <p class="caption">Fictional Northwind figures. Static poster first; silent CSS/SVG loop, muted, plays inline, max-width 100%. <a href="demo/workforce.html">Open the full board</a>.</p>
-        </figure>
-      </div>
-
-      <div class="wrap hero-copy hero-demo-note">
-        <p class="caption">The board above uses invented Northwind figures only. When you are ready: book a 20-min diagnostic, email <a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a>, or <a href="#sample-board">unlock the sample board</a>.</p>
+        <p class="caption hero-mail">Or email <a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a></p>
       </div>
     </section>
 
-    <section class="scene" data-scene="board" aria-label="Board">
-      <div class="scene-pin">
-        <div class="wrap">
-          <p class="scene-label">Board</p>
-          <h2>One as-of for every standup</h2>
-          <p class="lede">Pick a department or unit. Headcount, open roles, and attrition update with the cut, instead of a pack someone mailed last night.</p>
-          <div class="scene-stage kpis">
-            <article class="kpi"><div class="n" id="sc-board-a">1,200</div><div class="l">Headcount</div><div class="d" id="sc-board-cut">All</div></article>
-            <article class="kpi"><div class="n" id="sc-board-b">48</div><div class="l">Open roles</div></article>
-            <article class="kpi"><div class="n" id="sc-board-c">12%</div><div class="l">Attrition</div></article>
-          </div>
-          <p class="caption">This is the board you stand in front of. <a href="demo/shift-board.html">Shift Board</a> ranks who to flex off when volume is low. For nursing overtime, see <a href="solutions/nursing-overtime.html">the nursing overtime board</a>.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="scene" data-scene="pulse" aria-label="Pulse">
-      <div class="scene-pin">
-        <div class="wrap">
-          <p class="scene-label">Pulse</p>
-          <h2>Open, late, and aging. Not a ticket dump.</h2>
-          <p class="lede">A sample dashboard on demo data for Lanternfield Service Ops. Built for the huddle: cards and a queue cut, not scrolling rows.</p>
-          <div class="kpis pulse-kpis">
-            <article class="kpi"><div class="n" id="sc-pulse-open">240</div><div class="l">Open tickets</div><div class="d" id="sc-pulse-cut">Lanternfield Service Ops</div></article>
-            <article class="kpi"><div class="n" id="sc-pulse-late">28</div><div class="l">Breached, still open</div></article>
-            <article class="kpi"><div class="n" id="sc-pulse-aged">30</div><div class="l">Aging 8+ days</div></article>
-          </div>
-          <div class="scene-stage grid-2 pulse-charts">
-            <div class="panel">
-              <h3>Opened vs resolved</h3>
-              <div id="sc-chart-flow" class="chart" aria-label="Opened versus resolved tickets chart"></div>
-            </div>
-            <div class="panel">
-              <h3>Open by queue</h3>
-              <div id="sc-chart-queue" class="chart" aria-label="Open tickets by queue chart"></div>
-            </div>
-          </div>
-          <p class="caption"><a href="demo/ops-pulse.html">Open the Ops Pulse demo</a>.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="scene" data-scene="briefing" aria-label="Briefing">
-      <div class="scene-pin">
-        <div class="wrap">
-          <p class="scene-label">Briefing</p>
-          <h2>Optional briefing on the board</h2>
-          <p class="lede">Same snapshot in a few plain lines. You still read the board and decide. The briefing is not the product.</p>
-          <div class="scene-stage brief-play">
-            <p class="hi" id="sc-brief-0">Nursing snapshot as of 2026-08-01: headcount 480, 20 open roles.</p>
-            <p id="sc-brief-1">Overtime on this cut is 24,000 hours over 12 months.</p>
-            <p id="sc-brief-2">Next check: night coverage before opening more roles.</p>
-          </div>
-          <p class="caption"><a href="demo/llm.html">Try a sample briefing</a>.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="sheet outcomes" id="offers" aria-labelledby="offers-title">
+    <section class="home-trust" aria-label="Credibility">
       <div class="wrap">
-        <p class="scene-label">Offers</p>
-        <h2 id="offers-title">Three ways to stop arguing in spreadsheets</h2>
-        <p class="lede">Clear prices. Built for teams that already have Excel and Power BI, not a platform project.</p>
+        <ul class="trust-strip">
+          <li>California S-corp · invoices to Nimblytica Inc</li>
+          <li>Power BI · DAX · SQL · Power Automate</li>
+          <li>Fixed scopes · async-friendly delivery</li>
+          <li>US remote · next-business-day email</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sheet home-section" id="services" aria-labelledby="services-title">
+      <div class="wrap">
+        <p class="scene-label">Services</p>
+        <h2 id="services-title">Three fixed-price offers</h2>
+        <p class="lede">Clear prices for teams that already have Excel, SQL, or Power BI and need a trusted board, not a platform project.</p>
         <div class="sku-grid">
           <article class="sku">
-            <p class="meta">$2.5k–$4k · ~5 days</p>
-            <h3>Reporting Health Check</h3>
-            <p>Inventory the reports you run today, find broken metrics, and leave with a written fix list leadership can act on.</p>
+            <p class="meta">$1,800 · 5 to 7 business days</p>
+            <h3>Model and DAX Audit</h3>
+            <p>Read-only health check of one semantic model. Scored findings pack and a prioritized fix list you can approve item by item.</p>
             <dl class="sku-dl">
               <div>
                 <dt>Deliverable</dt>
-                <dd>Written inventory + prioritized fix list.</dd>
+                <dd>Findings pack + prioritized fix list + walkthrough.</dd>
               </div>
               <div>
-                <dt>Timeline</dt>
-                <dd>About five days.</dd>
+                <dt>Best for</dt>
+                <dd>Slow, costly, or untrusted models.</dd>
               </div>
             </dl>
             <div class="cta-row">
-              <button type="button" class="btn" data-book-call>Book a 20-min diagnostic</button>
+              <button type="button" class="btn" data-book-call>Book a call</button>
             </div>
           </article>
           <article class="sku">
-            <p class="meta">$10k–$18k · 3–5 weeks</p>
-            <h3>BI Jumpstart</h3>
-            <p>One governed model plus two operational dashboards on sources you already have: Excel, SQL, QuickBooks, Salesforce, HubSpot, Sheets, and the rest.</p>
+            <p class="meta">$3,000 · 3 to 4 weeks</p>
+            <h3>Dashboard Build</h3>
+            <p>One production Power BI dashboard on one primary source. Fixed KPIs, scheduled refresh, clean handoff notes.</p>
             <dl class="sku-dl">
               <div>
                 <dt>Deliverable</dt>
-                <dd>Governed model + 2 dashboards leadership can trust.</dd>
+                <dd>Model + report (up to 4 pages) + handoff.</dd>
               </div>
               <div>
-                <dt>Timeline</dt>
-                <dd>Three to five weeks.</dd>
+                <dt>Best for</dt>
+                <dd>Ops, finance, and RevOps teams with usable data.</dd>
               </div>
             </dl>
             <div class="cta-row">
-              <button type="button" class="btn" data-book-call>Book a 20-min diagnostic</button>
+              <button type="button" class="btn" data-book-call>Book a call</button>
             </div>
           </article>
           <article class="sku">
-            <p class="meta">$3.5k–$6k / mo</p>
-            <h3>Fractional BI</h3>
-            <p>Month-to-month model care, new measures, and month-end support so the number stays trusted after Jumpstart.</p>
+            <p class="meta">$1,200 / mo · up to 12 hours</p>
+            <h3>Monthly reporting</h3>
+            <p>Light care plan: refresh triage, small enhancements, fixes, and a short monthly health note. Month to month.</p>
             <dl class="sku-dl">
               <div>
                 <dt>Deliverable</dt>
-                <dd>Ongoing model care + month-end support.</dd>
+                <dd>Hour bank + request log + monthly check-in.</dd>
               </div>
               <div>
-                <dt>Timeline</dt>
-                <dd>Month to month.</dd>
+                <dt>Best for</dt>
+                <dd>Teams that need continuity after a build.</dd>
               </div>
             </dl>
             <div class="cta-row">
-              <button type="button" class="btn" data-book-call>Book a 20-min diagnostic</button>
+              <button type="button" class="btn" data-book-call>Book a call</button>
             </div>
           </article>
         </div>
-        <div class="cta-row" style="margin-top:18px">
-          <a class="btn ghost" href="packages.html">Full offer details</a>
-          <a class="btn ghost" href="mailto:hello@nimblytica.com?subject=Fractional%20BI">Email hello@nimblytica.com</a>
-        </div>
+        <p class="caption home-kit-note"><a href="health-check-kit.html">Kit $149</a> is a self-serve checklist PDF before a full audit. It does not replace the three offers above. <a href="packages.html">Full offer details</a>.</p>
       </div>
     </section>
 
-    <section class="sheet how" id="how-it-works" aria-labelledby="how-it-works-title">
+    <section class="sheet home-section home-section-alt" id="ai-automation" aria-labelledby="ai-title">
+      <div class="wrap">
+        <p class="scene-label">AI automation</p>
+        <h2 id="ai-title">AI automation add-ons</h2>
+        <p class="lede">Keep your dashboards. Add a thin automation layer on top so managers get notified without living in the workspace.</p>
+        <div class="sku-grid sku-grid-2">
+          <article class="sku">
+            <p class="meta">$1,200 fixed</p>
+            <h3>Alert Automation</h3>
+            <p>Power Automate setup for failed refreshes and KPI threshold breaches by email or Teams.</p>
+            <ul class="home-bullets">
+              <li>Refresh failure and overdue refresh alerts</li>
+              <li>Up to 5 KPI threshold rules</li>
+              <li>Runbook and 7-day post-handoff support</li>
+            </ul>
+            <div class="cta-row">
+              <button type="button" class="btn" data-book-call>Book a call</button>
+            </div>
+          </article>
+          <article class="sku">
+            <p class="meta">$1,800 fixed</p>
+            <h3>AI Weekly Brief</h3>
+            <p>Weekly plain-English summary of one trusted Power BI dashboard, emailed or posted to Teams.</p>
+            <ul class="home-bullets">
+              <li>Defaults to Azure OpenAI; Copilot when you have capacity</li>
+              <li>One channel, locked prompt template in your tenant</li>
+              <li>Human approval gate available as a $2,500 upsell</li>
+            </ul>
+            <div class="cta-row">
+              <button type="button" class="btn" data-book-call>Book a call</button>
+            </div>
+          </article>
+        </div>
+        <ul class="home-bullets home-bullets-wide">
+          <li>Built in your Microsoft tenant on Power Automate</li>
+          <li>Fixed-price add-ons sold a la carte next to Audit, Build, and retainer</li>
+          <li>Licensing and data-access prerequisites confirmed before work starts</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sheet home-section" id="samples" aria-labelledby="samples-title">
+      <div class="wrap">
+        <p class="scene-label">Samples</p>
+        <h2 id="samples-title">See a live sample board</h2>
+        <p class="lede">Demo data only. Invented figures so you can click around without sharing a client file.</p>
+        <div class="sample-gallery home-sample-gallery" role="list">
+          <a class="sample-card" role="listitem" href="demo/ops-pulse.html">
+            <span class="sample-card-kicker">Ops · demo data</span>
+            <span class="sample-card-title">Pulse</span>
+            <span class="sample-card-desc">Open, late, and aging tickets for a huddle board.</span>
+          </a>
+          <a class="sample-card" role="listitem" href="demo/workforce.html">
+            <span class="sample-card-kicker">People · demo data</span>
+            <span class="sample-card-title">Workforce snapshot</span>
+            <span class="sample-card-desc">Headcount, open roles, attrition, overtime.</span>
+          </a>
+          <a class="sample-card" role="listitem" href="demo/samples.html">
+            <span class="sample-card-kicker">Gallery</span>
+            <span class="sample-card-title">All samples</span>
+            <span class="sample-card-desc">Scorecard, Shift Board, pipeline, and more.</span>
+          </a>
+        </div>
+        <p class="caption">All sample boards use fictional Northwind / Lanternfield figures. Nothing is a client case study.</p>
+      </div>
+    </section>
+
+    <section class="sheet home-section home-section-alt" id="how-it-works" aria-labelledby="how-title">
       <div class="wrap">
         <p class="scene-label">How it works</p>
-        <h2 id="how-it-works-title">Health Check → Jumpstart → Fractional</h2>
-        <p class="lede">A short ladder. Book a diagnostic when you are ready. No pitch deck.</p>
-        <div class="outcomes-grid">
+        <h2 id="how-title">Four steps from intro call to handoff</h2>
+        <div class="outcomes-grid home-steps">
           <article class="outcome-card">
-            <p class="scene-label">1 · Health Check</p>
+            <p class="scene-label">1 · Intro</p>
             <div class="outcome-pair">
-              <p>Inventory reports and broken metrics. Leave with a written fix list (~5 days, $2.5k–$4k).</p>
+              <p>20-minute call. Confirm the offer, data access, and licensing. No pitch deck.</p>
             </div>
           </article>
           <article class="outcome-card">
-            <p class="scene-label">2 · BI Jumpstart</p>
+            <p class="scene-label">2 · Scope</p>
             <div class="outcome-pair">
-              <p>One governed model + two operational dashboards on your existing sources (3–5 weeks, $10k–$18k).</p>
+              <p>Fixed SOW with inclusions, exclusions, timeline, and payment to Nimblytica Inc.</p>
             </div>
           </article>
           <article class="outcome-card">
-            <p class="scene-label">3 · Fractional BI</p>
+            <p class="scene-label">3 · Build</p>
             <div class="outcome-pair">
-              <p>Keep the model trusted: new measures, month-end support, month-to-month ($3.5k–$6k/mo).</p>
+              <p>Async delivery in your tenant. Revision rounds capped in the SOW.</p>
+            </div>
+          </article>
+          <article class="outcome-card">
+            <p class="scene-label">4 · Handoff</p>
+            <div class="outcome-pair">
+              <p>Notes, walkthrough, and optional monthly care or AI add-ons.</p>
             </div>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="sheet home-section" id="faq" aria-labelledby="faq-title">
+      <div class="wrap">
+        <p class="scene-label">FAQ</p>
+        <h2 id="faq-title">Common questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Do you work only on Microsoft Power BI?</summary>
+            <p>Yes. The core offers are Power BI semantic models, DAX, SQL sources, and Power Automate. Spreadsheet cleanup is in scope only when it feeds a Power BI build.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Who gets invoiced?</summary>
+            <p>All work is invoiced by and paid to Nimblytica Inc (California S-corp). No W-2 and no contract-to-hire.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do AI add-ons require Fabric Copilot capacity?</summary>
+            <p>Alert Automation does not. The AI Weekly Brief defaults to Azure OpenAI in your subscription. Copilot is an option when you already have qualifying Fabric or Premium capacity.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I buy the Kit without a consulting engagement?</summary>
+            <p>Yes. The <a href="health-check-kit.html">$149 Kit</a> is a self-serve checklist. It does not include a live audit of your model.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How fast can work start?</summary>
+            <p>After the intro call, a signed SOW, and the first invoice paid. Audit and alerts packs typically start within a few business days once access works.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet home-section home-final-cta" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <p class="scene-label">Next step</p>
+        <h2 id="contact-title">Book a 20-minute intro call</h2>
+        <p class="lede">Say which offer you want and where the data lives today. Or email hello@nimblytica.com.</p>
         <div class="cta-row">
-          <button type="button" class="btn" data-book-call>Book a 20-min diagnostic</button>
-          <a class="btn ghost" href="mailto:hello@nimblytica.com?subject=Fractional%20BI">Email hello@nimblytica.com</a>
-          <a class="btn ghost" href="#sample-board">Get the sample board</a>
+          <button type="button" class="btn" data-book-call>Book a call</button>
+          <a class="btn ghost" href="mailto:hello@nimblytica.com?subject=Power%20BI%20consulting">Email hello@nimblytica.com</a>
         </div>
-      </div>
-    </section>
-
-    <section class="sheet proof" id="proof" hidden aria-labelledby="proof-title">
-      <div class="wrap">
-        <p class="scene-label">Proof</p>
-        <h2 id="proof-title">What operators say</h2>
-        <div class="proof-grid" id="testimonials"></div>
-        <div class="logos" id="client-logos" hidden></div>
-      </div>
-    </section>
-
-    <section class="sheet sample-gate-sheet" id="sample-board" aria-labelledby="sample-board-title">
-      <div class="wrap">
-        <p class="scene-label">Sample</p>
-        <h2 id="sample-board-title">Get the sample board</h2>
-        <p class="lede">Enter your name and email to unlock the live sample gallery: invented Northwind and Lanternfield boards, plus a one-pager you can download.</p>
-        <p class="sample-gate-banner">Free · fictional demos only · goes to hello@nimblytica.com</p>
-        <form id="sample-gate" novalidate>
-          <div class="honeypot" aria-hidden="true">
-            <label for="sample-botcheck">Leave this field empty</label>
-            <input id="sample-botcheck" name="botcheck" type="text" tabindex="-1" autocomplete="off">
-          </div>
-          <div class="field">
-            <label for="sample-name">Name</label>
-            <input id="sample-name" name="name" type="text" autocomplete="name" enterkeyhint="next" autocapitalize="words" required data-clarity-mask aria-describedby="sample-name-error">
-            <p class="field-error" id="sample-name-error" hidden></p>
-          </div>
-          <div class="field">
-            <label for="sample-email">Email</label>
-            <input id="sample-email" name="email" type="email" autocomplete="email" inputmode="email" enterkeyhint="go" required data-clarity-mask aria-describedby="sample-email-error">
-            <p class="field-error" id="sample-email-error" hidden></p>
-          </div>
-          <div class="cta-row">
-            <button type="submit" class="btn">Get the sample board</button>
-          </div>
-          <p id="sample-status" class="form-status" aria-live="polite"></p>
-        </form>
-        <div id="sample-unlock" hidden>
-          <p class="lede sample-unlock-lede" id="sample-unlock-status">Unlocked. Pick a board below. The gallery and one-pager work on phone-width too.</p>
-          <div class="sample-gallery" role="list">
-            <a class="sample-card" role="listitem" href="demo/workforce.html">
-              <span class="sample-card-kicker">People · Northwind</span>
-              <span class="sample-card-title">Workforce snapshot</span>
-              <span class="sample-card-desc">Headcount, attrition, open roles, OT hours.</span>
-            </a>
-            <a class="sample-card" role="listitem" href="demo/scorecard.html">
-              <span class="sample-card-kicker">People · Northwind</span>
-              <span class="sample-card-title">Scorecard</span>
-              <span class="sample-card-desc">Attrition, open roles, OT. System to Region.</span>
-            </a>
-            <a class="sample-card" role="listitem" href="demo/shift-board.html">
-              <span class="sample-card-kicker">People · Northwind</span>
-              <span class="sample-card-title">Shift Board</span>
-              <span class="sample-card-desc">Who gets flexed off when volume is low.</span>
-            </a>
-            <a class="sample-card" role="listitem" href="demo/ops-pulse.html">
-              <span class="sample-card-kicker">Ops · Lanternfield</span>
-              <span class="sample-card-title">Pulse</span>
-              <span class="sample-card-desc">Open, late, and aging. The huddle, not a ticket dump.</span>
-            </a>
-            <a class="sample-card" role="listitem" href="demo/pipeline.html">
-              <span class="sample-card-kicker">Data · Northwind</span>
-              <span class="sample-card-title">Metric kernel</span>
-              <span class="sample-card-desc">People-analytics export into a warehouse kernel.</span>
-            </a>
-            <a class="sample-card" role="listitem" href="demo/program-complete.html">
-              <span class="sample-card-kicker">Email · Northwind</span>
-              <span class="sample-card-title">Program complete</span>
-              <span class="sample-card-desc">Manager recap and participant note. Invented cohort.</span>
-            </a>
-          </div>
-          <div class="cta-row sample-unlock-keep">
-            <a class="btn ghost" data-sample-pdf href="assets/northwind-sample-board.pdf" download>Download the one-pager</a>
-            <a class="btn ghost" data-sample-html href="assets/northwind-sample-board.html" hidden>HTML one-pager</a>
-            <a class="btn ghost" href="demo/samples.html">Full samples list</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="sheet" id="contact" aria-labelledby="contact-title">
-      <div class="wrap">
-        <h2 id="contact-title">Tell us what you need</h2>
-        <p class="lede">Messages go to hello@nimblytica.com. Say which offer you want (Health Check, Jumpstart, or Fractional) and where the data lives today.</p>
-        <form id="contact-sheet" novalidate>
+        <form id="contact-sheet" class="home-contact-form" novalidate>
           <div class="honeypot" aria-hidden="true">
             <label for="botcheck">Leave this field empty</label>
             <input id="botcheck" name="botcheck" type="text" tabindex="-1" autocomplete="off">
@@ -539,21 +290,13 @@
             <p class="field-error" id="email-error" hidden></p>
           </div>
           <div class="field">
-            <label for="want">What I want to see</label>
+            <label for="want">What I want (Audit, Dashboard Build, retainer, AI add-on)</label>
             <textarea id="want" name="want" autocomplete="off" enterkeyhint="next" required aria-describedby="want-error"></textarea>
             <p class="field-error" id="want-error" hidden></p>
           </div>
           <div class="field">
-            <label for="data">Where the data lives today (Excel, UKG, SQL, tickets, a folder of files)</label>
-            <input id="data" name="data" type="text" autocomplete="off" enterkeyhint="next" autocapitalize="sentences">
-          </div>
-          <div class="field">
-            <label for="refresh">How often it should refresh</label>
-            <input id="refresh" name="refresh" type="text" autocomplete="off" enterkeyhint="next" autocapitalize="sentences">
-          </div>
-          <div class="field">
-            <label for="who">Who looks at it</label>
-            <input id="who" name="who" type="text" autocomplete="organization-title" enterkeyhint="send" autocapitalize="words">
+            <label for="data">Where the data lives today</label>
+            <input id="data" name="data" type="text" autocomplete="off" enterkeyhint="send" autocapitalize="sentences">
           </div>
           <div class="cta-row">
             <button type="submit" class="btn">Send to hello@nimblytica.com</button>
@@ -562,23 +305,16 @@
         </form>
       </div>
     </section>
+
   </main>
   <div class="mobile-cta-bar" role="region" aria-label="Primary action">
-    <button type="button" class="btn" data-book-call>Book a 20-min diagnostic</button>
+    <button type="button" class="btn" data-book-call>Book a call</button>
   </div>
   <footer class="site" data-chrome="footer"></footer>
   <script src="js/config.js"></script>
   <script src="js/analytics.js"></script>
   <script src="js/site.js"></script>
-  <script src="js/tick.js"></script>
-  <script src="js/board-charts.js"></script>
-  <script src="js/live-board.js"></script>
-  <script src="js/scenes.js"></script>
-  <script src="js/ba-punch.js"></script>
-  <script src="js/testimonials.js"></script>
   <script src="js/contact.js"></script>
   <script src="js/booking.js"></script>
-  <script src="js/samples.js"></script>
-  <script src="js/sample-gate.js"></script>
 </body>
 </html>
