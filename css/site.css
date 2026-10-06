@@ -603,7 +603,13 @@ p.line {
     flex-wrap: nowrap;
     overflow-x: auto;
     max-width: 100%;
-    scrollbar-width: thin;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hero-split .slicer::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
   .hero-split .slicer button {
     flex: 0 0 auto;
@@ -1842,6 +1848,16 @@ footer.site a { color: var(--ink-dim); }
     margin: 0 calc(var(--pad) * -1);
     padding: 2px var(--pad) 8px;
     scrollbar-width: thin;
+  }
+  .hero-split .slicer {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 2px;
+  }
+  .hero-split .slicer::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
   .slicer button {
     flex: 0 0 auto;
