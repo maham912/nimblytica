@@ -33,6 +33,7 @@
       workforce: 1,
       llm: 1
     };
+    const homeHash = (hash) => (current === "home" ? hash : p("index.html") + hash);
     header.innerHTML = `
       <div class="wrap top-inner">
         <a class="wordmark" href="${p("index.html")}">
@@ -42,10 +43,13 @@
         <details class="nav-fold">
           <summary class="nav-toggle" aria-label="Site menu" aria-controls="site-nav" aria-expanded="false">Menu</summary>
           <nav class="links" id="site-nav" aria-label="Primary">
-            <a href="${p("packages.html")}" ${current === "packages" ? 'aria-current="page"' : ""}>Offers</a>
-            <a href="${p("demo/samples.html")}" ${samplePages[current] ? 'aria-current="page"' : ""}>Samples</a>
+            <a href="${homeHash("#services")}">Services</a>
+            <a href="${homeHash("#ai-automation")}">AI Automation</a>
+            <a href="${homeHash("#samples")}" ${samplePages[current] ? 'aria-current="page"' : ""}>Samples</a>
+            <a href="${homeHash("#how-it-works")}">How it works</a>
+            <a href="${homeHash("#faq")}">FAQ</a>
             <a href="${p("health-check-kit.html")}" ${current === "health-check-kit" ? 'aria-current="page"' : ""}>Kit $149</a>
-            <a class="nav-cta" href="${contactHref}">Contact</a>
+            <a class="nav-cta" href="${contactHref}" data-book-call>Book a call</a>
           </nav>
         </details>
       </div>`;
@@ -160,14 +164,16 @@
 
   const footer = document.querySelector("[data-chrome='footer']");
   if (footer) {
+    const fHash = (hash) => (current === "home" ? hash : p("index.html") + hash);
     footer.innerHTML = `
       <div class="wrap foot">
-        <div>Nimblytica</div>
+        <div>Nimblytica Inc</div>
         <nav class="foot-links" aria-label="Footer">
-          <a href="${p("two-weeks.html")}">Jumpstart</a>
+          <a href="${fHash("#services")}">Services</a>
+          <a href="${fHash("#ai-automation")}">AI Automation</a>
           <a href="${p("packages.html")}">Offers</a>
+          <a href="${p("demo/samples.html")}">Samples</a>
           <a href="${p("health-check-kit.html")}">Kit $149</a>
-          <a href="${p("live-install.html")}">Live install</a>
           <a href="${p("trust.html")}">Trust</a>
           <a href="mailto:hello@nimblytica.com">hello@nimblytica.com</a>
         </nav>
