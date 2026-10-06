@@ -1,4 +1,4 @@
-# nimblytica.com — native mobile backlog
+# nimblytica.com, native mobile backlog
 
 Living list. Every new site feature must ship **mobile-first** (phone as primary, not desktop-shrink). Update this file when something ships or a gap is found.
 
@@ -57,8 +57,8 @@ A page/feature is done only when all of these pass:
 
 Priority order for the next mobile passes:
 
-1. **Live Payment Links UX on phone** — once Stripe links are live, verify Buy → Stripe Checkout → return on 390px (packages + any deposit CTAs). Soft-fail still OK until links land.
-2. **Demo drill paths** — scorecard Acute→Harbor breadcrumb, pipeline stage rail, shift-board rank: all usable at 390px after #16 (regression after sticky CTA / nav a11y pass).
+1. **Live Payment Links UX on phone**, once Stripe links are live, verify Buy → Stripe Checkout → return on 390px (packages + any deposit CTAs). Soft-fail still OK until links land.
+2. **Demo drill paths**, scorecard Acute→Harbor breadcrumb, pipeline stage rail, shift-board rank: all usable at 390px after #16 (regression after sticky CTA / nav a11y pass).
 
 ---
 
@@ -71,7 +71,7 @@ When we add any of these, they go live with a 390px acceptance check in the PR:
 | Stripe Live Board / Ops Pulse / BI hours Checkout | Full-width Start buttons; Checkout mobile web; success/cancel return |
 | Monthly Board Care deposit/link | Same as above; range copy wraps cleanly |
 | Retainer / Slack support upsell | Card stacks; no desktop-only hover reveal |
-| More sample boards / gated packs | Shipped — unlock gallery 1-col @390; invented orgs only |
+| More sample boards / gated packs | Shipped, unlock gallery 1-col @390; invented orgs only |
 | Before/after demo loops or short video | Shipped poster-first + silent CSS/SVG loop (playsinline/no-sound/max-width 100%) |
 | Client login / portal (future) | Thumb auth, no hover menus |
 | Blog / case studies (anonymized) | Readable type scale; images `max-width:100%` |
@@ -93,7 +93,7 @@ When we add any of these, they go live with a 390px acceptance check in the PR:
 - `demo/workforce.html`, `ops-pulse.html`, `shift-board.html`, `scorecard.html`, `pipeline.html`, `samples.html`, `program-complete.html`, `llm.html`
 - `work/*` mirrors if still linked
 
-Acceptance: headless or real Chrome at **390×844** — `document.documentElement.scrollWidth <= innerWidth` (allow 1px), primary CTAs visible without horizontal pan.
+Acceptance: headless or real Chrome at **390×844**, `document.documentElement.scrollWidth <= innerWidth` (allow 1px), primary CTAs visible without horizontal pan.
 
 ---
 
@@ -104,6 +104,6 @@ Acceptance: headless or real Chrome at **390×844** — `document.documentElemen
 3. Do not ship a desktop-only layout “to polish later.”
 4. Owner: **Nimblytica** maintains this file; Cloud Desk implements.
 
-Last updated: 2026-09-06 (contact form UX polish @390×844 — no SFV/home-call; HOLD #22 and #25 skipped forever)
+Last updated: 2026-09-06 (contact form UX polish @390×844, no SFV/home-call; HOLD #22 and #25 skipped forever)
 
 **Skip forever:** PR #22 (FAQ accordion) and PR #25 (SFV/home-call). Do not revive.

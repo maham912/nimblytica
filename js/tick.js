@@ -5,7 +5,7 @@
 
   function fmt(n, digits) {
     const num = Number(n);
-    if (!Number.isFinite(num)) return "—";
+    if (!Number.isFinite(num)) return "n/a";
     if (digits != null) return num.toFixed(digits);
     return num.toLocaleString("en-US");
   }

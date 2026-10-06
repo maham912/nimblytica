@@ -1,4 +1,4 @@
-/* Executive scorecard — System → Division → Region. Static JSON. */
+/* Executive scorecard, System → Division → Region. Static JSON. */
 (function () {
   const DATA_URL = new URL("../data/scorecard.fake.json", document.currentScript.src);
   let DATA = null;

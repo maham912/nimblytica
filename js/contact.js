@@ -2,7 +2,7 @@
  * Contact sheet submission.
  *
  * When a Web3Forms access key is configured (config.js), the form is submitted
- * over fetch() to a real backend that emails the lead and keeps a record —
+ * over fetch() to a real backend that emails the lead and keeps a record. 
  * with inline submitting/success/error states, validation, and a honeypot.
  *
  * When no key is configured, it degrades to the original behaviour: opening the
@@ -189,7 +189,7 @@
     if (submitting) return;
 
     if (val("botcheck")) {
-      setStatus("success", "Thanks — we'll be in touch.");
+      setStatus("success", "Thanks, we'll be in touch.");
       return;
     }
 
@@ -227,7 +227,7 @@
         setBusy(false);
         setStatus(
           "success",
-          "If your email app didn't open, write " + to + " — same subject and notes."
+          "If your email app didn't open, write " + to + ", same subject and notes."
         );
       }, 600);
       return;
@@ -235,7 +235,7 @@
 
     var payload = {
       access_key: key,
-      subject: cfg.subject || "Live ops board — new inquiry",
+      subject: cfg.subject || "Live ops board, new inquiry",
       from_name: f.name,
       "What I want to see": f.want,
       "Where the data lives today": f.data,
@@ -267,7 +267,7 @@
           setBusy(true, "Sent");
           setStatus(
             "success",
-            "Thanks — your board brief is in. We'll reply within one business day."
+            "Thanks, your board brief is in. We'll reply within one business day."
           );
           track("form_submit_success", { page: page });
           track("contact_submit", { page: page, mode: "backend" });

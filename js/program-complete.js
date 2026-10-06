@@ -1,4 +1,4 @@
-/* Program-complete sample — switch manager recap / participant note. */
+/* Program-complete sample, switch manager recap / participant note. */
 (function () {
   const slicer = document.getElementById("mail-slicer");
   if (!slicer) return;

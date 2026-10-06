@@ -1,4 +1,4 @@
-/* Shift Board — who gets flexed off this shift when volume is low. */
+/* Shift Board, who gets flexed off this shift when volume is low. */
 (function () {
   const DATA_URL = new URL("../data/shift-board.fake.json", document.currentScript.src);
   let DATA = null;

@@ -6,11 +6,11 @@
 
   var kitMailto = {
     kitChecklist: {
-      subject: "Health Check Kit — $149 Checklist PDF",
+      subject: "Health Check Kit, $149 Checklist PDF",
       label: "Email hello@ for instant delivery"
     },
     kitExcel: {
-      subject: "Health Check Kit — $299 Excel kit",
+      subject: "Health Check Kit, $299 Excel kit",
       label: "Email hello@ for instant delivery"
     }
   };

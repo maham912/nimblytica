@@ -1,4 +1,4 @@
-/* Samples menu — overlay from the ghost CTA; href still works without JS. */
+/* Samples menu, overlay from the ghost CTA; href still works without JS. */
 (function () {
   const triggers = document.querySelectorAll("[data-samples-menu]");
   if (!triggers.length) return;
@@ -22,7 +22,7 @@
         {
           href: "demo/scorecard.html",
           title: "Scorecard",
-          caption: "Attrition, open roles, OT hours — System to Region."
+          caption: "Attrition, open roles, OT hours. System to Region."
         },
         {
           href: "demo/shift-board.html",
@@ -32,7 +32,7 @@
         {
           href: "demo/ops-pulse.html",
           title: "Pulse",
-          caption: "Open, late, aging — the huddle, not a ticket dump."
+          caption: "Open, late, and aging. The huddle, not a ticket dump."
         }
       ]
     },

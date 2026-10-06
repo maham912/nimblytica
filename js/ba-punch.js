@@ -1,4 +1,4 @@
-/* Homepage before/after silent loop — poster first, CSS/SVG punch, no audio, invented orgs only. */
+/* Homepage before/after silent loop, poster first, CSS/SVG punch, no audio, invented orgs only. */
 (function () {
   const root = document.querySelector("[data-ba-punch]");
   if (!root) return;

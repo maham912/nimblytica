@@ -87,6 +87,8 @@
     if (a) a.textContent = NimblyticaTick.fmt(open);
     if (b) b.textContent = NimblyticaTick.fmt(breached);
     if (c) c.textContent = NimblyticaTick.fmt(aged);
+    if (cut.name === lastPulseCut) return;
+    lastPulseCut = cut.name;
     NimblyticaCharts.flow("sc-chart-flow", series(PULSE.trend_opened, field), series(PULSE.trend_resolved, field), true);
     NimblyticaCharts.queue("sc-chart-queue", cut.rows, true);
   }
@@ -100,6 +102,7 @@
   }
 
   let last = { board: -1, pulse: -1, brief: -1 };
+  let lastPulseCut = null;
 
   function frame() {
     scenes.forEach((el) => {

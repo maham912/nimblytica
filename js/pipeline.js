@@ -1,4 +1,4 @@
-/* Metric kernel — click or hover a stage; copy and as-of tick in-page. */
+/* Metric kernel, click or hover a stage; copy and as-of tick in-page. */
 (function () {
   const mount = document.getElementById("warehouse");
   if (!mount) return;
@@ -33,7 +33,7 @@
     el("wh-title").textContent = stage.title;
     el("wh-body").textContent = stage.body;
     el("wh-n-label").textContent = stage.kpi.label;
-    el("wh-clock").textContent = stage.clock || "—";
+    el("wh-clock").textContent = stage.clock || "n/a";
     if (animate) NimblyticaTick.tick(el("wh-n"), stage.kpi.n);
     else el("wh-n").textContent = NimblyticaTick.fmt(stage.kpi.n);
 

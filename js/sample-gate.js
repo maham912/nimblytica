@@ -196,7 +196,7 @@
     if (submitting) return;
 
     if (val("botcheck")) {
-      setStatus("success", "Thanks — we'll be in touch.");
+      setStatus("success", "Thanks, we'll be in touch.");
       return;
     }
 
@@ -225,7 +225,7 @@
         "mailto:" +
         to +
         "?subject=" +
-        encodeURIComponent("Sample board — new lead") +
+        encodeURIComponent("Sample board, new lead") +
         "&body=" +
         encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n");
       persistUnlock();
@@ -245,7 +245,7 @@
 
     var payload = {
       access_key: key,
-      subject: "Sample board — new lead",
+      subject: "Sample board, new lead",
       from_name: name,
       name: name,
       email: email,
