@@ -11,7 +11,7 @@
       "hint": "people analytics",
       "as_of": "2026-08-01",
       "clock": "06:00",
-      "body": "A scheduled extract. The cut the board is allowed to see — not a warehouse tour.",
+      "body": "A scheduled extract. The cut the board is allowed to see. Not a warehouse tour.",
       "kpi": { "n": 8, "label": "Departments in the cut" }
     },
     {

@@ -1,4 +1,4 @@
-/* Nimblytica — one family, black, product as page. */
+/* Nimblytica. One family, black, product as page. */
 @font-face {
   font-family: Geist;
   src: url("../fonts/geist-latin-400.woff2") format("woff2");
@@ -35,7 +35,7 @@
   --bg-2: #111;
   --ink: #f2f2f2;
   --ink-dim: #a3a3a3;
-  --mute: #8a8a8a; /* ~5.5:1 on #000 — AA for captions/meta/nav */
+  --mute: #8a8a8a; /* ~5.5:1 on #000. AA for captions, meta, and nav */
   --line: #1c1c1c;
   --line-2: #2a2a2a;
   --spring: cubic-bezier(0.22, 1.15, 0.36, 1);
@@ -83,7 +83,7 @@ summary:focus-visible {
   outline-offset: 3px;
 }
 
-/* Skip link — first focusable control for keyboard / Lighthouse a11y */
+/* Skip link. First focusable control for keyboard and Lighthouse a11y */
 .skip-link {
   position: absolute;
   left: var(--pad);
@@ -248,7 +248,7 @@ nav.links a[aria-current="page"] { color: var(--ink); }
   .nav-fold:not([open]) nav.links {
     display: flex !important;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     position: static;
     min-width: 0;
     max-width: none;
@@ -264,6 +264,30 @@ nav.links a[aria-current="page"] { color: var(--ink); }
     padding: 0;
     border-radius: 0;
   }
+  nav.links a.nav-cta,
+  .nav-fold[open] nav.links a.nav-cta,
+  .nav-fold:not([open]) nav.links a.nav-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: #000;
+    font-weight: 600;
+  }
+  nav.links a.nav-cta:hover,
+  .nav-fold[open] nav.links a.nav-cta:hover {
+    color: #000;
+    background: #fff;
+  }
+}
+.nav-fold[open] nav.links a.nav-cta {
+  background: var(--ink);
+  color: #000;
+  font-weight: 600;
+  justify-content: center;
 }
 
 /* type */
@@ -284,7 +308,7 @@ h1 {
   view-transition-name: title;
 }
 .page-head h1 { font-size: clamp(2.4rem, 8vw, 5.2rem); }
-.line {
+p.line {
   font-family: var(--display);
   font-size: clamp(1.2rem, 2.8vw, 1.65rem);
   font-weight: 400;
@@ -354,7 +378,7 @@ h1 {
 }
 .btn.ghost:hover { border-color: var(--ink); color: #fff; }
 
-/* hero — copy left | live board right on desktop */
+/* hero: copy left, live board right on desktop */
 .hero {
   position: relative;
   padding: 4px 0 36px;
@@ -380,7 +404,7 @@ h1 {
   gap: 18px;
 }
 .hero-copy { position: relative; z-index: 1; padding-top: 4px; min-width: 0; }
-.hero .line { margin-top: 10px; }
+.hero p.line { margin-top: 10px; }
 .offer {
   position: relative;
   z-index: 1;
@@ -409,7 +433,7 @@ h1 {
   text-underline-offset: 3px;
 }
 
-/* hero who / offer / price / proof — compact enough for a phone fold */
+/* hero who, offer, price, proof. Compact enough for a phone fold */
 .hero-pitch {
   margin-top: 14px;
   max-width: none;
@@ -525,7 +549,7 @@ h1 {
   .hero-copy {
     padding-top: 18px;
   }
-  .hero .line {
+  .hero p.line {
     font-size: clamp(1.45rem, 2vw, 1.85rem);
     max-width: 16em;
     margin-top: 14px;
@@ -815,6 +839,12 @@ h1 {
 .plot-container,
 .svg-container {
   max-width: 100% !important;
+}
+/* Plotly date ticks use tspan.line. Keep them on the UI sans, not the display serif. */
+.js-plotly-plot .xtick text,
+.js-plotly-plot .ytick text,
+.js-plotly-plot .legend text {
+  font-family: Geist, ui-sans-serif, system-ui, sans-serif !important;
 }
 @media (min-width: 860px) {
   .chart { height: 260px; }
@@ -1281,7 +1311,7 @@ table.data .factor { font-weight: 600; letter-spacing: -0.03em; }
   margin-top: 22px;
 }
 
-/* honeypot — hidden from people, tempting to bots */
+/* honeypot. Hidden from people, tempting to bots */
 .honeypot {
   position: absolute !important;
   left: -9999px !important;

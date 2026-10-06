@@ -3,7 +3,7 @@
  *
  * Reads data/testimonials.json and populates the "Proof" section only when it
  * contains real, approved content. Ships empty by default, so the section stays
- * hidden until the owner adds genuine quotes/logos — no placeholder or
+ * hidden until the owner adds genuine quotes/logos, no placeholder or
  * fabricated endorsements are ever shown to visitors.
  */
 (function () {

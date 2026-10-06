@@ -133,9 +133,9 @@
       headline: "No matching cut in the sample snapshots",
       cut: "Unstructured note · demo only",
       kpis: [
-        { n: "—", l: "Trusted as-of", d: "Not on file" },
-        { n: "—", l: "Queue / unit", d: "Not matched" },
-        { n: "—", l: "Next step", d: "Board first" }
+        { n: "n/a", l: "Trusted as-of", d: "Not on file" },
+        { n: "n/a", l: "Queue / unit", d: "Not matched" },
+        { n: "n/a", l: "Next step", d: "Board first" }
       ],
       findings: [
         "The note does not name a sample queue or unit, so this page will not invent a number.",

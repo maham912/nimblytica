@@ -6,7 +6,7 @@
   function emailFallback() {
     var to = formCfg.contactEmail || "hello@nimblytica.com";
     window.location.href =
-      "mailto:" + to + "?subject=" + encodeURIComponent("Book a 20-min board diagnostic — live ops board");
+      "mailto:" + to + "?subject=" + encodeURIComponent("Book a 20-min board diagnostic. Live ops board");
   }
 
   var loaded = false;

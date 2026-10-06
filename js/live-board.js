@@ -1,4 +1,4 @@
-/* Homepage / two-weeks live board — workforce charts, department / hierarchy, optional cut loop. */
+/* Homepage / two-weeks live board, workforce charts, department / hierarchy, optional cut loop. */
 (function () {
   const mount = document.getElementById("live-board");
   if (!mount) return;

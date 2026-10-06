@@ -23,6 +23,16 @@
   const header = document.querySelector("[data-chrome='header']");
   if (header) {
     const contactHref = document.getElementById("contact") ? "#contact" : p("index.html") + "#contact";
+    const samplePages = {
+      samples: 1,
+      "program-complete": 1,
+      "shift-board": 1,
+      scorecard: 1,
+      "ops-pulse": 1,
+      pipeline: 1,
+      workforce: 1,
+      llm: 1
+    };
     header.innerHTML = `
       <div class="wrap top-inner">
         <a class="wordmark" href="${p("index.html")}">
@@ -32,16 +42,10 @@
         <details class="nav-fold">
           <summary class="nav-toggle" aria-label="Site menu" aria-controls="site-nav" aria-expanded="false">Menu</summary>
           <nav class="links" id="site-nav" aria-label="Primary">
-            <a href="${p("two-weeks.html")}" ${current === "two-weeks" ? 'aria-current="page"' : ""}>Jumpstart</a>
             <a href="${p("packages.html")}" ${current === "packages" ? 'aria-current="page"' : ""}>Offers</a>
+            <a href="${p("demo/samples.html")}" ${samplePages[current] ? 'aria-current="page"' : ""}>Samples</a>
             <a href="${p("health-check-kit.html")}" ${current === "health-check-kit" ? 'aria-current="page"' : ""}>Kit $149</a>
-            <a href="${p("live-install.html")}" ${current === "live-install" ? 'aria-current="page"' : ""}>Live install</a>
-            <a href="${p("demo/samples.html")}" ${current === "samples" || current === "program-complete" ? 'aria-current="page"' : ""}>Samples</a>
-            <a href="${p("demo/shift-board.html")}" ${current === "shift-board" ? 'aria-current="page"' : ""}>Shift Board</a>
-            <a href="${p("demo/scorecard.html")}" ${current === "scorecard" ? 'aria-current="page"' : ""}>Scorecard</a>
-            <a href="${p("demo/ops-pulse.html")}" ${current === "ops-pulse" ? 'aria-current="page"' : ""}>Pulse</a>
-            <a href="${p("demo/pipeline.html")}" ${current === "pipeline" ? 'aria-current="page"' : ""}>Pipeline</a>
-            <a href="${contactHref}">Contact</a>
+            <a class="nav-cta" href="${contactHref}">Contact</a>
           </nav>
         </details>
       </div>`;

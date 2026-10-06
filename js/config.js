@@ -4,7 +4,7 @@
  * Everything here is optional and safe to leave blank: with empty values the
  * site behaves exactly as before (contact forms open the visitor's email
  * client, no analytics load, "Book a 20-min board diagnostic" falls back to email). Fill a value
- * in to switch the corresponding feature on — no other code changes needed.
+ * in to switch the corresponding feature on. No other code changes needed.
  */
 window.NIMBLYTICA_CONFIG = {
   form: {
@@ -16,7 +16,7 @@ window.NIMBLYTICA_CONFIG = {
      */
     web3formsAccessKey: "52e5e160-79bf-46d0-beeb-ec295151db54",
     endpoint: "https://api.web3forms.com/submit",
-    subject: "Fractional BI — new inquiry",
+    subject: "Fractional BI: new inquiry",
     // Fallback address used when no access key is configured (mailto flow).
     contactEmail: "hello@nimblytica.com"
   },
@@ -44,7 +44,7 @@ window.NIMBLYTICA_CONFIG = {
   pricing: {
     /*
      * Optional. Shown on the Two weeks page when set; both lines stay hidden
-     * while empty. Only put a real number and a promise you will honour here —
+     * while empty. Only put a real number and a promise you will honour here.
      * these are commitments to prospects.
      */
     price: "", // e.g. "$4,500 flat for the first board"
@@ -59,7 +59,7 @@ window.NIMBLYTICA_CONFIG = {
 
   /*
    * Gumroad product URLs for the Health Check Kit sell page.
-   * Leave empty until products are live — CTAs soft-fail to mailto / Calendly.
+   * Leave empty until products are live. CTAs soft-fail to mailto / Calendly.
    * Paste full Gumroad URLs here (e.g. "https://nimblytica.gumroad.com/l/kit-pdf").
    */
   gumroad: {
