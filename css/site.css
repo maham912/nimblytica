@@ -414,7 +414,8 @@ p.line {
   max-width: 34rem;
 }
 .offer .meta { margin-bottom: 8px; }
-.offer h2 {
+.offer h2,
+.offer h1 {
   font-size: clamp(1.2rem, 3vw, 1.55rem);
   font-weight: 500;
   letter-spacing: -0.035em;
@@ -1477,7 +1478,8 @@ form.is-busy .field select {
   margin-top: 22px;
   max-width: 36rem;
 }
-.offer-page .offer h2 {
+.offer-page .offer h2,
+.offer-page .page-head .offer h1 {
   font-size: clamp(1.85rem, 6.4vw, 3.2rem);
   font-weight: 600;
   letter-spacing: -0.05em;
