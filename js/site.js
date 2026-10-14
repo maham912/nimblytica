@@ -44,7 +44,6 @@
           <summary class="nav-toggle" aria-label="Site menu" aria-controls="site-nav" aria-expanded="false">Menu</summary>
           <nav class="links" id="site-nav" aria-label="Primary">
             <a href="${homeHash("#services")}">Services</a>
-            <a href="${homeHash("#ai-automation")}">AI Automation</a>
             <a href="${homeHash("#samples")}" ${samplePages[current] ? 'aria-current="page"' : ""}>Samples</a>
             <a href="${homeHash("#how-it-works")}">How it works</a>
             <a href="${homeHash("#faq")}">FAQ</a>
@@ -170,7 +169,6 @@
         <div>Nimblytica Inc</div>
         <nav class="foot-links" aria-label="Footer">
           <a href="${fHash("#services")}">Services</a>
-          <a href="${fHash("#ai-automation")}">AI Automation</a>
           <a href="${p("packages.html")}">Offers</a>
           <a href="${p("demo/samples.html")}">Samples</a>
           <a href="${p("health-check-kit.html")}">Kit $149</a>
