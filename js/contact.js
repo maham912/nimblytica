@@ -140,7 +140,7 @@
       "What I want to see:",
       f.want,
       "",
-      "Where the data lives today (Excel, UKG, SQL, tickets, a folder of files):",
+      "Where the data lives today (Excel, your scheduling/timekeeping system, SQL, tickets, a folder of files):",
       f.data,
       "",
       "How often it should refresh:",
