@@ -2678,3 +2678,104 @@ nav.links a.nav-cta:hover,
   color: #041412 !important;
 }
 .sku .meta { color: var(--accent); }
+
+/* packages.html #compare */
+#compare .compare-chooser {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 28px;
+}
+#compare .compare-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+  align-items: center;
+  min-width: 0;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px 16px;
+  color: var(--ink);
+  text-decoration: none;
+}
+#compare .compare-row span {
+  min-width: 0;
+  letter-spacing: -0.02em;
+}
+#compare .compare-offer {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+#compare .compare-row:hover,
+#compare .compare-row:hover .compare-offer {
+  color: #fff;
+}
+#compare .compare-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  container-type: inline-size;
+}
+#compare table.data {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+#compare table.data caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0 0 12px;
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+}
+#compare table.data th,
+#compare table.data td {
+  white-space: normal;
+  vertical-align: top;
+}
+#compare table.data tbody th[scope="row"] {
+  width: 20%;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  font-weight: 600;
+  background: var(--bg);
+}
+@media (max-width: 879px) {
+  #compare table.data {
+    min-width: calc(8.5rem + 3 * (100cqw - 8.5rem));
+  }
+  #compare table.data caption {
+    position: sticky;
+    left: 0;
+    width: 100cqw;
+    max-width: 100cqw;
+    background: var(--bg);
+  }
+  #compare table.data thead th:first-child,
+  #compare table.data tbody th[scope="row"] {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    width: 8.5rem;
+    min-width: 8.5rem;
+    max-width: 8.5rem;
+    background: var(--bg);
+    box-shadow: inset -1px 0 0 var(--line);
+  }
+  #compare table.data thead th:first-child { z-index: 2; }
+  #compare table.data th[scope="col"]:not(:first-child),
+  #compare table.data td {
+    width: calc(100cqw - 8.5rem);
+    min-width: calc(100cqw - 8.5rem);
+    max-width: calc(100cqw - 8.5rem);
+  }
+}
+#compare .cta-row { margin-top: 22px; }
+@media (min-width: 800px) {
+  #compare .compare-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 20px;
+  }
+}
