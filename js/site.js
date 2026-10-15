@@ -47,8 +47,7 @@
             <a href="${homeHash("#samples")}" ${samplePages[current] ? 'aria-current="page"' : ""}>Samples</a>
             <a href="${homeHash("#how-it-works")}">How it works</a>
             <a href="${homeHash("#faq")}">FAQ</a>
-            <a href="${p("health-check-kit.html")}" ${current === "health-check-kit" ? 'aria-current="page"' : ""}>Kit $149</a>
-            <a class="nav-cta" href="${contactHref}" data-book-call>Book a call</a>
+            <a class="nav-cta" href="${contactHref}" data-book-call>Book a diagnostic</a>
           </nav>
         </details>
       </div>`;
@@ -228,7 +227,7 @@
         );
         submits.forEach((el) => io.observe(el));
       }
-      const heroCta = document.querySelector(".hero-cta");
+      const heroCta = document.querySelector(".hero-cta, .home-hero-cta");
       if (heroCta) {
         heroCover = true;
         syncCtaBar();
