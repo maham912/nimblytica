@@ -1,0 +1,14 @@
+#free-checklist .checklist-preview {
+  max-width: 36rem;
+  margin-top: 18px;
+}
+
+#free-checklist .checklist-questions {
+  margin: 0;
+  padding: 2px 16px 16px 2.25rem;
+  color: var(--ink-dim);
+}
+
+#free-checklist .checklist-questions li + li {
+  margin-top: 0.5rem;
+}

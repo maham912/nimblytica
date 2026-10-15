@@ -23,6 +23,7 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/lead-magnet.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -161,6 +162,49 @@
       </ol>
     </div>
 
+    <section class="sheet" id="free-checklist" aria-labelledby="free-checklist-title">
+      <div class="wrap">
+        <h2 id="free-checklist-title">Free: Do your numbers match? (one-page checklist)</h2>
+        <p class="lede">Ten questions to check whether your reports agree before you spend anything. We email it to you, with a link to book a diagnostic if you want help.</p>
+        <details class="faq-item checklist-preview">
+          <summary>Preview the 10 questions</summary>
+          <ol class="checklist-questions">
+            <li>Do the reports you compare agree with each other?</li>
+            <li>Do people use the same definition for the same metric?</li>
+            <li>Does anyone rebuild a report by hand in Excel?</li>
+            <li>Would the numbers stop if one person were out?</li>
+            <li>Are any Power BI licences paid for and unused?</li>
+            <li>Do the reports refresh when they are supposed to?</li>
+            <li>Does month-end wait on a report that is late?</li>
+            <li>Does each metric have a named owner?</li>
+            <li>Is there a set place where these numbers are discussed?</li>
+            <li>Does a written definition exist for each metric?</li>
+          </ol>
+        </details>
+        <form id="checklist-request" data-web3form novalidate data-pending="Sending your checklist request…" data-success="Thanks. We'll email the one-page checklist.">
+          <div class="honeypot" aria-hidden="true">
+            <label for="checklist-botcheck">Leave this field empty</label>
+            <input id="checklist-botcheck" name="botcheck" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" name="subject" value="Free checklist request">
+          <input type="hidden" name="lead_source" value="free-checklist">
+          <div class="field">
+            <label for="checklist-email">Email</label>
+            <input id="checklist-email" name="email" type="email" autocomplete="email" inputmode="email" enterkeyhint="next" required data-clarity-mask aria-describedby="checklist-email-error">
+            <p class="field-error" id="checklist-email-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="checklist-company">Company (optional)</label>
+            <input id="checklist-company" name="company" type="text" autocomplete="organization" enterkeyhint="send" autocapitalize="words" data-clarity-mask>
+          </div>
+          <div class="cta-row">
+            <button type="submit" class="btn">Email me the checklist</button>
+          </div>
+          <p id="checklist-status" class="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
     <section class="sheet" id="upgrade" aria-labelledby="upgrade-title">
       <div class="wrap">
         <p class="scene-label">When the kit isn’t enough</p>
@@ -243,6 +287,7 @@
   <script src="js/analytics.js"></script>
   <script src="js/site.js"></script>
   <script src="js/contact.js"></script>
+  <script src="js/lead-magnet.js"></script>
   <script src="js/booking.js"></script>
   <script src="js/packages.js"></script>
 </body>
