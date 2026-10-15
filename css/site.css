@@ -2562,11 +2562,11 @@ body.nav-open {
   padding: clamp(48px, 10vw, 96px) 0 clamp(36px, 6vw, 64px);
   border-bottom: 1px solid var(--line);
 }
-.home-hero-inner { max-width: 720px; }
+.home-hero-inner { max-width: 1040px; }
 .home-hero-title {
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(2rem, 5.2vw, 3.25rem);
+  font-size: clamp(2rem, 5.2vw, 4.2rem);
   line-height: 1.12;
   letter-spacing: -0.02em;
   margin: 10px 0 16px;
@@ -2576,8 +2576,15 @@ body.nav-open {
   font-size: 1.1rem;
   color: var(--ink-dim);
   margin: 0 0 22px;
-  max-width: 38rem;
+  max-width: 44rem;
 }
+.home-hero-lede + .caption {
+  color: var(--ink);
+  font-size: 1rem;
+  max-width: none;
+  margin: 0 0 20px;
+}
+.price-chip { white-space: nowrap; }
 .home-hero-cta { margin-bottom: 12px; }
 .home-hero .scene-label { color: var(--accent); }
 
