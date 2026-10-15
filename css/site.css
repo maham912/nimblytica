@@ -2779,3 +2779,81 @@ nav.links a.nav-cta:hover,
     gap: 8px 20px;
   }
 }
+
+/* cost.html calculator */
+.cost-page {
+  min-width: 0;
+}
+.cost-page .page-head h1 {
+  font-size: clamp(1.85rem, 5vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  max-width: 16em;
+  overflow-wrap: break-word;
+}
+.cost-page .lede,
+.cost-page .caption,
+.cost-page .cost-privacy {
+  overflow-wrap: break-word;
+}
+.cost-page .cost-privacy {
+  color: var(--ink);
+  max-width: 36rem;
+  margin: 16px 0 0;
+}
+#cost-calc {
+  width: 100%;
+  max-width: 36rem;
+  min-width: 0;
+}
+#cost-calc .field {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+#cost-calc input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+#cost-calc input::placeholder {
+  color: var(--mute);
+  opacity: 1;
+}
+#cost-result {
+  min-width: 0;
+  max-width: 100%;
+}
+#cost-result .cost-msg {
+  color: var(--ink-dim);
+  margin: 4px 0 0;
+  max-width: 36rem;
+}
+#cost-result .kpis {
+  grid-template-columns: 1fr;
+  margin-top: 18px;
+}
+#cost-result .kpi .n {
+  font-size: clamp(1.7rem, 6vw, 2.4rem);
+  overflow-wrap: anywhere;
+}
+#cost-result .caption {
+  margin-top: 4px;
+}
+#compare .cta-row > .caption {
+  flex: 1 0 100%;
+  max-width: none;
+  margin-top: 0;
+}
+@media (max-width: 540px) {
+  #cost-calc,
+  #cost-calc .field,
+  #cost-calc input {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  #cost-result .kpis {
+    grid-template-columns: 1fr;
+  }
+}
