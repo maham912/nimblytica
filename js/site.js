@@ -28,6 +28,7 @@
       "program-complete": 1,
       "shift-board": 1,
       scorecard: 1,
+      reconcile: 1,
       "ops-pulse": 1,
       pipeline: 1,
       workforce: 1,

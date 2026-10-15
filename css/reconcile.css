@@ -1,0 +1,75 @@
+
+/* Reconcile walkthrough */
+.reconcile .reconcile-banner {
+  display: block;
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  background: var(--bg-1);
+  color: var(--ink);
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+}
+.reconcile h2 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  margin: 0 0 8px;
+}
+.reconcile-steps { margin: 18px 0 16px; }
+.reconcile-step { margin: 0 0 8px; min-width: 0; }
+.reconcile-step > p { max-width: 40rem; }
+.reconcile .score { margin: 4px 0 8px; }
+.reconcile .score .n {
+  font-size: clamp(1.8rem, 8vw, 3.4rem);
+  max-width: 100%;
+}
+.reconcile-sheets {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  margin-top: 16px;
+}
+.reconcile-sheets > * { min-width: 0; max-width: 100%; }
+@media (min-width: 860px) {
+  .reconcile-sheets {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+.reconcile .panel { min-width: 0; max-width: 100%; }
+.reconcile .table-scroll {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 8px 0 0;
+  padding: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.reconcile table.data { width: 100%; }
+.reconcile table.data th,
+.reconcile table.data td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+.reconcile table.data .amt {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.reconcile-next { margin: 16px 0 8px; }
+.reconcile-end { margin: 28px 0 48px; }
+.reconcile-end .caption { margin-top: 12px; }
+@media (max-width: 420px) {
+  .reconcile table.data { font-size: 0.82rem; }
+  .reconcile table.data th,
+  .reconcile table.data td { padding: 10px 8px 10px 0; }
+}
