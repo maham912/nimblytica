@@ -61,7 +61,7 @@
     btn.className = node.className;
     btn.setAttribute("data-pay-sku", cta.sku);
     btn.setAttribute("data-book-call", "");
-    btn.textContent = "Book a 20-min board diagnostic";
+    btn.textContent = "Book a 20-minute diagnostic";
     node.replaceWith(btn);
 
     var row = btn.closest(".cta-row");

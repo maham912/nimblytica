@@ -2586,6 +2586,12 @@ body.nav-open {
   border-bottom: 1px solid var(--line);
   background: var(--bg-1);
 }
+.home-offer-strip {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-1);
+}
+.home-offer-strip a:hover { color: var(--ink); }
 .trust-strip {
   list-style: none;
   margin: 0;

@@ -3,7 +3,7 @@
   "org": "Northwind Health Ops",
   "last_refreshed": "2026-08-28T06:00:00",
   "refresh_note": "Twice daily",
-  "source": "UKG",
+  "source": "scheduling/timekeeping system",
   "report_dates": ["2026-08-28", "2026-08-29"],
   "shifts": ["Day", "Evening", "Night"],
   "sites": ["Harbor", "Midland", "Ridge"],

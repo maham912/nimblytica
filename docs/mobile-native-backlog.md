@@ -4,7 +4,7 @@ Living list. Every new site feature must ship **mobile-first** (phone as primary
 
 **Target viewport:** 390×844 (iPhone) + 360×800 Android. Thumb-reach CTAs. No page-level horizontal scroll. Tap targets ≥44px.
 
-**Hard rules (unchanged):** no Providence/PSJH/employer names; no fake testimonials; no inventing Stripe URLs.
+**Hard rules (unchanged):** no employer names; no fake testimonials; no inventing Stripe URLs.
 
 ---
 
