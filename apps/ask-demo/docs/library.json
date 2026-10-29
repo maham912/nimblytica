@@ -1,0 +1,25 @@
+{
+  "documents": [
+    {
+      "title": "Month-end accrual guide",
+      "source": "month-end-accrual-guide.md",
+      "keywords": "month end finance accrual invoice detention operations cutoff",
+      "text": "At month end, accrue detention fees for completed stops when the carrier record confirms a billable delay, even if the vendor invoice has not arrived. Keep operating delay hours separate from finance accrual hours. Reconcile the accrual to received invoices during the next close and record adjustments with the terminal and service month.",
+      "excerpt": "At month end, accrue confirmed billable detention delays even if the invoice has not arrived. Reconcile to the invoice in the next close, and keep operating delay hours separate from finance accrual hours."
+    },
+    {
+      "title": "Detention fee handling SOP",
+      "source": "detention-fee-sop.md",
+      "keywords": "detention fees wait time free window appointment arrival proof exception",
+      "text": "The sample carrier terms include a 90-minute free window after the confirmed appointment time. A detention claim needs an arrival timestamp, release timestamp, appointment reference, and reason code. Dispatch should flag a disputed or incomplete claim for review instead of treating it as approved spend.",
+      "excerpt": "The sample terms allow a 90-minute free window after the appointment. A claim needs arrival and release times, an appointment reference, and a reason code; disputed claims go to review."
+    },
+    {
+      "title": "Terminal operations handbook",
+      "source": "terminal-operations-handbook.md",
+      "keywords": "terminal site delivery on time late dispatch staffing handoff cutoff",
+      "text": "Each fictional terminal holds a morning dispatch review and a shift handoff at 15:00 local time. The site lead records late deliveries with a delay reason. Staffing snapshots are monthly planning totals, not a live roster. Escalate repeat route delays during the weekly terminal review.",
+      "excerpt": "Terminal leads record a reason for each late delivery. Monthly staffing figures are planning totals, not a live roster; repeat route delays go to the weekly review."
+    }
+  ]
+}
