@@ -6,7 +6,7 @@
   function emailFallback() {
     var to = formCfg.contactEmail || "hello@nimblytica.com";
     window.location.href =
-      "mailto:" + to + "?subject=" + encodeURIComponent("Book a 20-min board diagnostic. Live ops board");
+      "mailto:" + to + "?subject=" + encodeURIComponent("Book a 20-minute diagnostic");
   }
 
   var loaded = false;
@@ -50,7 +50,9 @@
     }
     ensureWidget(function () {
       if (window.Calendly && window.Calendly.initPopupWidget) {
-        window.Calendly.initPopupWidget({ url: url });
+        var popupUrl = new URL(url);
+        popupUrl.searchParams.set("hide_event_type_details", "1");
+        window.Calendly.initPopupWidget({ url: popupUrl.toString() });
       } else {
         emailFallback();
       }

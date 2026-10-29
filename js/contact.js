@@ -140,7 +140,7 @@
       "What I want to see:",
       f.want,
       "",
-      "Where the data lives today (Excel, UKG, SQL, tickets, a folder of files):",
+      "Where the data lives today (Excel, SQL, your scheduling/timekeeping system, tickets, or a folder of files):",
       f.data,
       "",
       "How often it should refresh:",
@@ -220,7 +220,7 @@
         "mailto:" +
         to +
         "?subject=" +
-        encodeURIComponent(cfg.subject || "Live ops board") +
+        encodeURIComponent(cfg.subject || "Nimblytica inquiry") +
         "&body=" +
         encodeURIComponent(mailtoBody(f));
       window.setTimeout(function () {
@@ -235,7 +235,7 @@
 
     var payload = {
       access_key: key,
-      subject: cfg.subject || "Live ops board, new inquiry",
+      subject: cfg.subject || "Nimblytica inquiry",
       from_name: f.name,
       "What I want to see": f.want,
       "Where the data lives today": f.data,

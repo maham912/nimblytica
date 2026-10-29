@@ -8,4 +8,4 @@ Static only. No Node server. Public contact: hello@nimblytica.com.
 
 Demos use invented figures (Northwind Health Ops; Lanternfield Service Ops) and invented geography (Harbor, Midland, Ridge). No client data.
 
-The homepage is a live ops board. `two-weeks.html` is the conversion page for the two-week offer. `packages.html` lists Live Board, Ops Pulse, the BI hours block, and Monthly Board Care. Stripe Payment Links live in `NIMBLYTICA_CONFIG.stripe` as empty placeholders until a real link is pasted. The ghost CTA opens a samples menu: people / workforce, data / pipeline, and program-complete email. Shift Board, scorecard, pulse, and metric kernel stay first-class demo pages.
+The homepage leads with Ask Your Data. `packages.html` lists its Pilot, Launch, and Care plans alongside the Reporting Health Check, BI Jumpstart, and Fractional BI. `two-weeks.html` is the BI Jumpstart offer page. Stripe Payment Links live in `NIMBLYTICA_CONFIG.stripe` as empty placeholders until a real link is pasted. Shift Board, scorecard, pulse, and metric kernel stay first-class demo pages.
