@@ -58,10 +58,6 @@ window.NIMBLYTICA_CONFIG = {
   },
 
   ask: {
-    /*
-     * Valley Freight Ask API base URL, e.g. "https://valley-freight-ask.<account>.workers.dev".
-     * Empty keeps the static browser mock. A Worker URL turns on the API.
-     */
     apiBase: ""
   },
 

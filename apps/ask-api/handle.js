@@ -31,6 +31,13 @@ const REFUSALS = {
   origin: refusal("This demo is not open to that site", "Open the Ask demo on nimblytica.com and try again.")
 };
 
+export function demoFailure(status) {
+  return Response.json(
+    { answer: REFUSALS.failed, remaining: null, mode: "mock" },
+    { status, headers: { "cache-control": "no-store" } }
+  );
+}
+
 export async function handle(request, env, db) {
   const started = Date.now();
   const origin = request.headers.get("origin");

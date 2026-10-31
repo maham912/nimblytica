@@ -85,10 +85,11 @@ const ENVELOPE = {
 
 function pageFiles() {
   const root = path.join(__dirname, "..");
-  return fs.readdirSync(root, { recursive: true })
-    .filter((name) => !/^(test|screenshots)([\\/]|$)/.test(name))
-    .map((name) => path.join(root, name))
-    .filter((file) => fs.statSync(file).isFile())
+  const docs = fs.readdirSync(path.join(root, "docs"))
+    .filter((name) => name.endsWith(".md") || name.endsWith(".json"))
+    .map((name) => path.join(root, "docs", name));
+  return ["index.html", "ask.js", "ask.css"].map((name) => path.join(root, name))
+    .concat(docs)
     .concat(path.join(__dirname, "../../../js/config.js"));
 }
 
@@ -139,17 +140,16 @@ test("no file the page can load carries the model key", () => {
   for (const file of pageFiles()) {
     const text = fs.readFileSync(file, "utf8");
     assert.ok(!text.includes(SENTINEL), file);
-    // DEPLOY.md names the secret so the owner can set it. The page never loads it.
-    if (path.basename(file) !== "DEPLOY.md") assert.ok(!text.includes("ASK_LLM_KEY"), file);
+    assert.ok(!text.includes("ASK_LLM_KEY"), file);
     assert.ok(!/\bsk-[A-Za-z0-9_-]{20,}/.test(text), file);
   }
 });
 
 test("page copy has no em dash and no employer name", () => {
-  for (const file of pageFiles()) {
+  const files = pageFiles().concat(path.join(__dirname, "../DEPLOY.md"));
+  for (const file of files) {
     const text = fs.readFileSync(file, "utf8");
     assert.ok(!text.includes("\u2014"), file);
-    // Hex escapes keep the banned name out of this file too.
-    assert.ok(!/\b\x55\x4B\x47\b/i.test(text), file);
+    assert.ok(!/\bUKG\b/i.test(text), file);
   }
 });

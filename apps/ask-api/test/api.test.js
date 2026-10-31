@@ -5,6 +5,7 @@ import { createRequire } from "node:module";
 import { DatabaseSync } from "node:sqlite";
 import { defineQueries, makeDataset, QUERIES, UnsafeQuery } from "../catalog.js";
 import { handle } from "../handle.js";
+import worker from "../worker.js";
 import { fromSqlite, query, QueryTimeout, seed, takeHit } from "../store.js";
 
 const require = createRequire(import.meta.url);
@@ -327,7 +328,41 @@ test("API copy has no em dash and no employer name", () => {
   for (const file of readdirSync(new URL("..", import.meta.url)).filter((name) => name.endsWith(".js"))) {
     const text = readFileSync(new URL(`../${file}`, import.meta.url), "utf8");
     assert.ok(!text.includes("\u2014"), file);
-    // Hex escapes keep the banned name out of this file too.
-    assert.ok(!/\b\x55\x4B\x47\b/i.test(text), file);
+    assert.ok(!/\bUKG\b/i.test(text), file);
   }
+});
+
+test("a failed seed returns 503 and the next request tries again", async () => {
+  let allowSeed = false;
+  let queries = 0;
+  const statement = {
+    bind() { return statement; },
+    async all() {
+      queries += 1;
+      return { results: [{ used: 1 }] };
+    }
+  };
+  const env = {
+    ASK_DB: {
+      prepare() { return statement; },
+      async batch() {
+        if (!allowSeed) throw new Error("seed failed");
+      }
+    }
+  };
+  const request = () => worker.fetch(new Request("https://ask.example/ask", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ question: STAFF })
+  }), env);
+  const first = await request();
+  const firstBody = await first.json();
+  assert.equal(first.status, 503);
+  assert.equal(queries, 0);
+  assert.equal(firstBody.answer.summary, "Something went wrong on the demo server. Try a suggested question.");
+  assert.equal(firstBody.remaining, null);
+  allowSeed = true;
+  const second = await request();
+  assert.equal(second.status, 200);
+  assert.ok(queries > 0);
 });
