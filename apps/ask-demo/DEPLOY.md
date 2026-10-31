@@ -36,10 +36,10 @@ At about 1,000 questions a month, the demo stays on the free allocation.
 | --- | --- | --- |
 | Cloudflare Workers Free | $0 | $0 |
 | Cloudflare D1 Free | $0 | $0 |
-| Workers AI `@cf/meta/llama-3.1-8b-instruct` | $0 | $0 |
+| Workers AI `@cf/meta/llama-3.1-8b-instruct-fp8` | $0 | $0 |
 | Total | $0 | $0 |
 
-The figures come from Cloudflare's pricing pages as of 2026-10-20. The Workers Free plan allows commercial use. Workers AI includes 10,000 neurons a day on that plan. This model is listed at 25,608 neurons per million input tokens and 75,147 neurons per million output tokens. A routing call is a few hundred tokens, so demo traffic stays far under the daily allocation. If that allocation is used up, the Worker keeps answering with the keyword planner.
+The figures come from Cloudflare's pricing pages as of 2026-10-20. The Workers Free plan allows commercial use. Workers AI includes 10,000 neurons a day on that plan. The fp8 model is listed at $0.152 per million input tokens and $0.287 per million output tokens, billed from that neuron allocation. A routing call is a few hundred tokens, so demo traffic stays far under the daily allocation. If that allocation is used up, the Worker keeps answering with the keyword planner.
 
 Workers Free allows 10 ms of CPU time per request. Time spent waiting on D1 or on Workers AI does not count. Workers Paid is $5 a month and is not needed for this demo.
 
@@ -81,7 +81,7 @@ Deploy again after you change the list. A request from any other site gets a 403
 
 ## What the model is allowed to do
 
-The `[ai]` binding calls `@cf/meta/llama-3.1-8b-instruct`. The model may return one of the five query names and a month. It does not write SQL. If the binding is missing, or the call fails, the keyword planner picks the query and the same allowlist still runs.
+The `[ai]` binding calls `@cf/meta/llama-3.1-8b-instruct-fp8`. The model may return one of the five query names. The server assigns the month from the question. The model does not write SQL. If the binding is missing, or the call fails, the keyword planner picks the query and the same allowlist still runs. A failed call logs the error name and message on the `fallback` field, with the question text removed.
 
 There is no model API key in this deploy.
 

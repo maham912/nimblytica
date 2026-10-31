@@ -230,7 +230,7 @@ test("the model reply never reaches a response or a log line", async (t) => {
     { name: "an off-menu query name", reply: () => modelReply({ query: "payroll", month: null }) },
     { name: "SQL text as the query", reply: () => modelReply({ query: "SELECT * FROM ask_hits LIMIT 1", month: "2025-03" }) },
     { name: "malformed content", reply: () => ({ response: "not json" }) },
-    { name: "a thrown binding error", reply: () => { throw new Error(`binding failed ${SENTINEL}`); } }
+    { name: "a thrown binding error", reply: () => { const error = new Error("model not found"); error.name = "InferenceUpstreamError"; throw error; } }
   ];
   for (const { name, reply, mode = "mock", intent = "deliveries" } of cases) {
     await t.test(name, async (t) => {
@@ -258,6 +258,44 @@ test("the model reply never reaches a response or a log line", async (t) => {
       assert.ok(!JSON.stringify(env.calls[0].input).includes(SENTINEL));
     });
   }
+});
+
+test("an upstream model failure is logged without the question", async (t) => {
+  const logs = captureLogs(t);
+  const question = "Compare overtime between ops and finance last month";
+  const env = aiEnv(() => {
+    const error = new Error(`Ai catalog miss for ${question}`);
+    error.name = "InferenceUpstreamError";
+    throw error;
+  });
+  const { body } = await ask((await openStore()).db, post(question, { ip: "203.0.113.50" }), env);
+  assert.equal(body.mode, "mock");
+  assert.equal(body.answer.intent, "overtime");
+  assert.match(body.answer.sql, /month = '2026-09'/);
+  const entry = JSON.parse(logs()[0]);
+  assert.match(entry.fallback, /^upstream: InferenceUpstreamError: Ai catalog miss for/);
+  assert.ok(!entry.fallback.includes(question));
+  assert.ok(!logs()[0].includes("overtime between"));
+});
+
+test("the server assigns the month and ignores a month the model invents", async (t) => {
+  captureLogs(t);
+  const cases = [
+    ["Compare overtime between ops and finance last month", "2026-09"],
+    ["Compare overtime between ops and finance this month", "2026-10"],
+    ["Compare operating and finance overtime for March 2025", "2025-03"],
+    ["Show overtime for 2025-03", "2025-03"],
+    ["Compare operating and finance overtime", "2026-10"]
+  ];
+  for (const [question, month] of cases) {
+    const env = aiEnv(() => modelReply({ query: "overtime", month: "2024-11" }));
+    const { body } = await ask((await openStore()).db, post(question), env);
+    assert.equal(body.mode, "llm", question);
+    assert.match(body.answer.sql, new RegExp(`month = '${month}'`), question);
+  }
+  const keyword = await ask((await openStore()).db, post("Compare overtime between ops and finance last month"));
+  assert.equal(keyword.body.mode, "mock");
+  assert.match(keyword.body.answer.sql, /month = '2026-09'/);
 });
 
 test("without an AI binding the API stays on the keyword planner", async (t) => {

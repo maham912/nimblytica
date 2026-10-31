@@ -1,6 +1,6 @@
 import { citationsFor, DATASET, DOCUMENTS, QUERIES } from "./catalog.js";
 
-export const AI_MODEL = "@cf/meta/llama-3.1-8b-instruct";
+export const AI_MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8";
 
 const MODEL_TIMEOUT_MS = 4000;
 const QUERY_NAMES = Object.keys(QUERIES);
@@ -17,7 +17,7 @@ const SYSTEM_PROMPT = [
   ...QUERY_NAMES.map((name) => `- ${name}: ${QUERIES[name].about}`),
   `Sample notes: ${DOCUMENTS.map((document) => document.title).join(", ")}.`,
   "Set query to null for policy or procedure questions, for questions about the sample notes, and for anything no query covers.",
-  `The data covers ${DATASET.months[0]} through ${DATASET.asOf}. Set month to YYYY-MM when the question names a month, otherwise null.`
+  `The data covers ${DATASET.months[0]} through ${DATASET.asOf}. Set month to null. The server chooses the month from the question.`
 ].join("\n");
 
 export async function planQuestion(question, env) {
@@ -28,16 +28,29 @@ export async function planQuestion(question, env) {
 function mockPlanner(question) {
   if (NOTES_WORDS.test(question) && citationsFor(question).length) return { kind: "notes" };
   const name = QUERY_NAMES.find((candidate) => QUERIES[candidate].match.test(question));
-  return name ? { kind: "query", name, month: monthIn(question) } : { kind: "notes" };
+  return name ? { kind: "query", name, month: monthFor(question) } : { kind: "notes" };
 }
 
-function monthIn(question) {
+function monthFor(question) {
+  const named = explicitMonth(question);
+  if (named && DATASET.months.includes(named)) return named;
+  if (/\blast month\b/i.test(question)) return monthOffset(DATASET.asOf, -1);
+  if (/\bthis month\b/i.test(question)) return DATASET.asOf;
+  return DATASET.asOf;
+}
+
+function explicitMonth(question) {
   const iso = question.match(ISO_MONTH);
+  if (iso) return `${iso[1]}-${iso[2]}`;
   const named = question.match(NAMED_MONTH);
-  let month = "";
-  if (iso) month = `${iso[1]}-${iso[2]}`;
-  else if (named) month = `${named[2]}-${String(MONTH_NAMES.indexOf(named[1].toLowerCase()) + 1).padStart(2, "0")}`;
-  return DATASET.months.includes(month) ? month : DATASET.asOf;
+  if (!named) return "";
+  return `${named[2]}-${String(MONTH_NAMES.indexOf(named[1].toLowerCase()) + 1).padStart(2, "0")}`;
+}
+
+function monthOffset(month, delta) {
+  const index = DATASET.months.indexOf(month);
+  if (index < 0) return DATASET.asOf;
+  return DATASET.months[Math.min(DATASET.months.length - 1, Math.max(0, index + delta))];
 }
 
 async function aiPlanner(question, ai) {
@@ -51,13 +64,21 @@ async function aiPlanner(question, ai) {
       max_tokens: 80,
       temperature: 0
     }), MODEL_TIMEOUT_MS);
-    const plan = parsePlan(result);
+    const plan = parsePlan(result, question);
     if (plan) return { plan, mode: "llm", fallback: null };
     fallback = "invalid";
   } catch (error) {
-    fallback = error?.name === "TimeoutError" ? "timeout" : "upstream";
+    fallback = upstreamFallback(error, question);
   }
   return { plan: mockPlanner(question), mode: "mock", fallback };
+}
+
+function upstreamFallback(error, question) {
+  if (error?.name === "TimeoutError") return "timeout";
+  const name = String(error?.name || "Error");
+  const message = String(error?.message || "").split(question).join(" ").replace(/\s+/g, " ").trim();
+  const detail = message && message !== name ? `${name}: ${message}` : name;
+  return `upstream: ${detail}`.slice(0, 240);
 }
 
 function withTimeout(work, ms) {
@@ -72,14 +93,13 @@ function withTimeout(work, ms) {
   return Promise.race([Promise.resolve(work), timeout]).finally(() => clearTimeout(timer));
 }
 
-function parsePlan(result) {
+function parsePlan(result, question) {
   const reply = asRoute(result);
   if (!reply) return null;
-  const { query, month = null } = reply;
+  const { query } = reply;
   if (query === null) return { kind: "notes" };
   if (!QUERY_NAMES.includes(query)) return null;
-  if (month !== null && !/^\d{4}-\d{2}$/.test(month)) return null;
-  return { kind: "query", name: query, month: DATASET.months.includes(month) ? month : DATASET.asOf };
+  return { kind: "query", name: query, month: monthFor(question) };
 }
 
 function asRoute(result) {
