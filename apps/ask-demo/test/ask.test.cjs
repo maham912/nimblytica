@@ -67,3 +67,87 @@ test("applies a rolling ten-question browser-local hourly cap", () => {
 test("times out a slow mock query", async () => {
   await assert.rejects(ask.withTimeout(() => new Promise(() => {}), 10), /took too long/);
 });
+
+const SENTINEL = "sk-test-sentinel-do-not-leak";
+const ENVELOPE = {
+  answer: {
+    kind: "data",
+    intent: "headcount",
+    title: "Staff by site",
+    summary: "122 fictional staff are assigned across 4 sites, based on the 2026-10 snapshot.",
+    rows: [{ label: "North Yard", value: 34, detail: "fictional staff" }],
+    citations: [],
+    sql: "SELECT site, headcount FROM monthly_site_operations WHERE month = '2026-10' ORDER BY headcount DESC LIMIT 1000"
+  },
+  remaining: 9,
+  mode: "mock"
+};
+
+function pageFiles() {
+  const root = path.join(__dirname, "..");
+  return fs.readdirSync(root, { recursive: true })
+    .filter((name) => !/^(test|screenshots)([\\/]|$)/.test(name))
+    .map((name) => path.join(root, name))
+    .filter((file) => fs.statSync(file).isFile())
+    .concat(path.join(__dirname, "../../../js/config.js"));
+}
+
+test("askApi=same points a local page at its own origin", () => {
+  assert.equal(ask.resolveApiBase("", new URL("http://127.0.0.1:8787/apps/ask-demo/?askApi=same")), "http://127.0.0.1:8787");
+  assert.equal(ask.resolveApiBase("", new URL("http://localhost:8000/apps/ask-demo/?askApi=http://127.0.0.1:8787")), "http://127.0.0.1:8787");
+});
+
+test("an empty config keeps the static mock and a Worker URL turns on the API", () => {
+  const live = new URL("https://nimblytica.com/apps/ask-demo/");
+  assert.equal(ask.resolveApiBase("", live), "");
+  assert.equal(ask.resolveApiBase(undefined, live), "");
+  assert.equal(ask.resolveApiBase("https://valley-freight-ask.example.workers.dev", live), "https://valley-freight-ask.example.workers.dev");
+});
+
+test("the public site ignores an askApi override", () => {
+  assert.equal(ask.resolveApiBase("", new URL("https://nimblytica.com/apps/ask-demo/?askApi=https://evil.example")), "");
+});
+
+test("requestAnswer sends only the question and returns the server envelope", async () => {
+  const calls = [];
+  const reply = await ask.requestAnswer("How many staff?", "https://ask.example/", async (url, init) => {
+    calls.push({ url, init });
+    return new Response(JSON.stringify(ENVELOPE));
+  });
+  assert.deepEqual(reply, ENVELOPE);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].url, "https://ask.example/ask");
+  assert.equal(calls[0].init.method, "POST");
+  assert.deepEqual(JSON.parse(calls[0].init.body), { question: "How many staff?" });
+  assert.deepEqual(Object.keys(calls[0].init.headers).map((name) => name.toLowerCase()), ["content-type"]);
+});
+
+test("requestAnswer turns a network failure or a malformed reply into an error answer", async () => {
+  const replies = [
+    async () => { throw new TypeError("Failed to fetch"); },
+    async () => new Response("<html>Bad gateway</html>", { status: 502 }),
+    async () => new Response(JSON.stringify({ answer: { kind: "constructor", title: "x", summary: "y", rows: [], citations: [] } }))
+  ];
+  for (const fetchImpl of replies) {
+    const reply = await ask.requestAnswer("How many staff?", "https://ask.example", fetchImpl);
+    assert.equal(reply.answer.kind, "error");
+    assert.equal(reply.remaining, null);
+  }
+});
+
+test("no file the page can load carries the model key", () => {
+  for (const file of pageFiles()) {
+    const text = fs.readFileSync(file, "utf8");
+    assert.ok(!text.includes(SENTINEL), file);
+    assert.ok(!text.includes("ASK_LLM_KEY"), file);
+    assert.ok(!/\bsk-[A-Za-z0-9_-]{20,}/.test(text), file);
+  }
+});
+
+test("page copy has no em dash and no employer name", () => {
+  for (const file of pageFiles()) {
+    const text = fs.readFileSync(file, "utf8");
+    assert.ok(!text.includes("\u2014"), file);
+    assert.ok(!/\bUKG\b/i.test(text), file);
+  }
+});

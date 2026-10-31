@@ -57,6 +57,14 @@ window.NIMBLYTICA_CONFIG = {
     fractionalBi: { paymentLink: "" }
   },
 
+  ask: {
+    /*
+     * Valley Freight Ask API base URL, e.g. "https://valley-freight-ask.<account>.workers.dev".
+     * Empty keeps the static browser mock. A Worker URL turns on the API.
+     */
+    apiBase: ""
+  },
+
   /*
    * Gumroad product URLs for the Health Check Kit sell page.
    * Leave empty until products are live. CTAs soft-fail to mailto / Calendly.

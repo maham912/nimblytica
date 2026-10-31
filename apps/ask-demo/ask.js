@@ -6,6 +6,15 @@
   const RATE_LIMIT = 10;
   const RATE_WINDOW_MS = 60 * 60 * 1000;
   const RATE_KEY = "nimblytica-valley-ask-questions";
+  const API_TIMEOUT_MS = 12000;
+  const LOOPBACK_HOSTS = new Set(["localhost", "127.0.0.1", "[::1]"]);
+  const KIND_LABELS = new Map([["data", "Sample metrics"], ["docs", "Document search"], ["unmatched", "No match"], ["error", "Not answered"]]);
+  const MODE_LABELS = new Map([["mock", "Mock mode"], ["llm", "Model mode"]]);
+  const UNREACHABLE = Object.freeze({
+    answer: { kind: "error", title: "Could not answer", summary: "The demo API did not respond. Try again in a moment.", rows: [], citations: [], sql: "" },
+    remaining: null,
+    mode: null
+  });
   const sites = [
     { id: "north-yard", name: "North Yard", headcount: 34, loads: 410, onTime: 0.91, overtime: 290, financeOvertime: 222, detention: 5200, fuel: 61200 },
     { id: "cedar-crossing", name: "Cedar Crossing", headcount: 31, loads: 365, onTime: 0.95, overtime: 184, financeOvertime: 179, detention: 3100, fuel: 54800 },
@@ -226,6 +235,32 @@
     ]).finally(() => clearTimeout(timer));
   }
 
+  function resolveApiBase(configBase, location) {
+    const override = new URLSearchParams(location.search).get("askApi");
+    if (override && LOOPBACK_HOSTS.has(location.hostname)) return override === "same" ? location.origin : override;
+    return String(configBase || "");
+  }
+
+  function isEnvelope(body) {
+    const answer = body && body.answer;
+    return Boolean(answer && KIND_LABELS.has(answer.kind) && typeof answer.title === "string" && typeof answer.summary === "string" && Array.isArray(answer.rows) && Array.isArray(answer.citations));
+  }
+
+  async function requestAnswer(question, apiBase, fetchImpl) {
+    try {
+      const response = await fetchImpl(`${apiBase.replace(/\/+$/, "")}/ask`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ question }),
+        signal: AbortSignal.timeout(API_TIMEOUT_MS)
+      });
+      const body = await response.json();
+      return isEnvelope(body) ? body : UNREACHABLE;
+    } catch (error) {
+      return UNREACHABLE;
+    }
+  }
+
   const api = {
     MAX_ROWS,
     QUERY_TIMEOUT_MS,
@@ -237,7 +272,9 @@
     answerQuestion,
     consumeQuestion,
     withTimeout,
-    formatCurrency
+    formatCurrency,
+    resolveApiBase,
+    requestAnswer
   };
   root.NimblyticaAskDemo = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
@@ -258,6 +295,9 @@
   const citationList = document.getElementById("citation-list");
   const query = document.getElementById("sql-query");
   const remainingLabel = document.getElementById("rate-remaining");
+  const modePill = document.querySelector(".mode-pill");
+  const config = root.NIMBLYTICA_CONFIG && root.NIMBLYTICA_CONFIG.ask;
+  const apiBase = resolveApiBase(config && config.apiBase, root.location);
   let documents = [];
   let remaining = RATE_LIMIT;
 
@@ -320,18 +360,26 @@
     citations.hidden = items.length === 0;
   }
 
-  async function submitQuestion(question) {
-    const text = String(question || "").trim();
-    if (!text || text.length > 240) {
-      answer.hidden = false;
-      answerTitle.textContent = "Check your question";
-      answerSummary.textContent = "Enter a question of 1 to 240 characters.";
-      resultKind.textContent = "Input";
-      resultVisual.replaceChildren();
-      renderCitations([]);
-      query.textContent = "";
-      return;
-    }
+  function showAnswer(result) {
+    answer.hidden = false;
+    answerTitle.textContent = result.title;
+    answerSummary.textContent = result.summary;
+    resultKind.textContent = KIND_LABELS.get(result.kind) || KIND_LABELS.get("unmatched");
+    renderRows(result.rows, result.intent);
+    renderCitations(result.citations);
+    query.textContent = result.sql || (result.kind === "error" ? "" : "No metric query used. Retrieved only matching fictional sample notes.");
+    if (result.kind !== "error") appendMessage("assistant-message", "Valley Freight Ask", result.summary);
+    answer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  async function askApi(text) {
+    const reply = await requestAnswer(text, apiBase, (url, init) => root.fetch(url, init));
+    if (typeof reply.remaining === "number") remainingLabel.textContent = String(reply.remaining);
+    if (MODE_LABELS.has(reply.mode)) modePill.textContent = MODE_LABELS.get(reply.mode);
+    return reply.answer;
+  }
+
+  function takeBrowserQuestion() {
     let storage;
     try {
       storage = root.localStorage;
@@ -347,25 +395,32 @@
       resultVisual.replaceChildren();
       renderCitations([]);
       query.textContent = "";
-      return;
+      return false;
     }
     remaining = quota.remaining;
     remainingLabel.textContent = String(remaining);
+    return true;
+  }
+
+  async function submitQuestion(question) {
+    const text = String(question || "").trim();
+    if (!text || text.length > 240) {
+      answer.hidden = false;
+      answerTitle.textContent = "Check your question";
+      answerSummary.textContent = "Enter a question of 1 to 240 characters.";
+      resultKind.textContent = "Input";
+      resultVisual.replaceChildren();
+      renderCitations([]);
+      query.textContent = "";
+      return;
+    }
+    if (!apiBase && !takeBrowserQuestion()) return;
     appendMessage("user-message", "You", text);
     input.value = "";
     askButton.disabled = true;
     askButton.textContent = "Thinking";
     try {
-      const result = await withTimeout(() => answerQuestion(text, data, documents), QUERY_TIMEOUT_MS);
-      answer.hidden = false;
-      answerTitle.textContent = result.title;
-      answerSummary.textContent = result.summary;
-      resultKind.textContent = result.kind === "data" ? "Sample metrics" : result.kind === "docs" ? "Document search" : "No match";
-      renderRows(result.rows, result.intent);
-      renderCitations(result.citations);
-      query.textContent = result.sql || "No metric query used. Retrieved only matching fictional sample notes.";
-      appendMessage("assistant-message", "Valley Freight Ask", result.summary);
-      answer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      showAnswer(apiBase ? await askApi(text) : await withTimeout(() => answerQuestion(text, data, documents), QUERY_TIMEOUT_MS));
     } catch (error) {
       answer.hidden = false;
       answerTitle.textContent = "Could not answer";
