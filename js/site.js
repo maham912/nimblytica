@@ -31,7 +31,8 @@
       "ops-pulse": 1,
       pipeline: 1,
       workforce: 1,
-      llm: 1
+      llm: 1,
+      ask: 1
     };
     const homeHash = (hash) => (current === "home" ? hash : p("index.html") + hash);
     header.innerHTML = `

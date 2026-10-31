@@ -57,6 +57,10 @@ window.NIMBLYTICA_CONFIG = {
     fractionalBi: { paymentLink: "" }
   },
 
+  ask: {
+    apiBase: ""
+  },
+
   /*
    * Gumroad product URLs for the Health Check Kit sell page.
    * Leave empty until products are live. CTAs soft-fail to mailto / Calendly.
