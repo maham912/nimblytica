@@ -1,7 +1,7 @@
 import { citationsFor, DATASET, DOCUMENTS, QUERIES } from "./catalog.js";
 
-const OPENAI_URL = "https://api.openai.com/v1/chat/completions";
-const OPENAI_MODEL = "gpt-4.1-mini";
+export const AI_MODEL = "@cf/meta/llama-3.1-8b-instruct";
+
 const MODEL_TIMEOUT_MS = 4000;
 const QUERY_NAMES = Object.keys(QUERIES);
 const NOTES_WORDS = /\b(policy|sop|handbook|guide|accrual|procedure)\b/i;
@@ -11,6 +11,8 @@ const MONTH_NAMES = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "se
 
 const SYSTEM_PROMPT = [
   "Route one question about a fictional freight company to one preapproved query.",
+  "Reply with JSON only, shaped as {\"query\": string or null, \"month\": \"YYYY-MM\" or null}.",
+  "query must be one of the names below, or null. Never write SQL.",
   "Queries:",
   ...QUERY_NAMES.map((name) => `- ${name}: ${QUERIES[name].about}`),
   `Sample notes: ${DOCUMENTS.map((document) => document.title).join(", ")}.`,
@@ -18,27 +20,9 @@ const SYSTEM_PROMPT = [
   `The data covers ${DATASET.months[0]} through ${DATASET.asOf}. Set month to YYYY-MM when the question names a month, otherwise null.`
 ].join("\n");
 
-const ROUTE_FORMAT = {
-  type: "json_schema",
-  json_schema: {
-    name: "route",
-    strict: true,
-    schema: {
-      type: "object",
-      additionalProperties: false,
-      required: ["query", "month"],
-      properties: {
-        query: { type: ["string", "null"], enum: [...QUERY_NAMES, null] },
-        month: { type: ["string", "null"] }
-      }
-    }
-  }
-};
-
 export async function planQuestion(question, env) {
-  const key = String(env.ASK_LLM_KEY || "").trim();
-  if (!key) return { plan: mockPlanner(question), mode: "mock", fallback: null };
-  return llmPlanner(question, key);
+  if (typeof env?.AI?.run !== "function") return { plan: mockPlanner(question), mode: "mock", fallback: null };
+  return aiPlanner(question, env.AI);
 }
 
 function mockPlanner(question) {
@@ -56,43 +40,55 @@ function monthIn(question) {
   return DATASET.months.includes(month) ? month : DATASET.asOf;
 }
 
-async function llmPlanner(question, key) {
+async function aiPlanner(question, ai) {
   let fallback;
   try {
-    const response = await fetch(OPENAI_URL, {
-      method: "POST",
-      headers: { authorization: `Bearer ${key}`, "content-type": "application/json" },
-      body: JSON.stringify({
-        model: OPENAI_MODEL,
-        temperature: 0,
-        max_tokens: 40,
-        response_format: ROUTE_FORMAT,
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT },
-          { role: "user", content: question }
-        ]
-      }),
-      signal: AbortSignal.timeout(MODEL_TIMEOUT_MS)
-    });
-    const plan = response.ok ? parsePlan(await response.text()) : null;
+    const result = await withTimeout(ai.run(AI_MODEL, {
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT },
+        { role: "user", content: question }
+      ],
+      max_tokens: 80,
+      temperature: 0
+    }), MODEL_TIMEOUT_MS);
+    const plan = parsePlan(result);
     if (plan) return { plan, mode: "llm", fallback: null };
-    fallback = response.ok ? "invalid" : "upstream";
+    fallback = "invalid";
   } catch (error) {
     fallback = error?.name === "TimeoutError" ? "timeout" : "upstream";
   }
   return { plan: mockPlanner(question), mode: "mock", fallback };
 }
 
-function parsePlan(text) {
-  let reply;
-  try {
-    reply = JSON.parse(JSON.parse(text).choices[0].message.content);
-  } catch {
-    return null;
-  }
-  const { query, month = null } = reply ?? {};
+function withTimeout(work, ms) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => {
+      const error = new Error("The model took too long.");
+      error.name = "TimeoutError";
+      reject(error);
+    }, ms);
+  });
+  return Promise.race([Promise.resolve(work), timeout]).finally(() => clearTimeout(timer));
+}
+
+function parsePlan(result) {
+  const reply = asRoute(result);
+  if (!reply) return null;
+  const { query, month = null } = reply;
   if (query === null) return { kind: "notes" };
   if (!QUERY_NAMES.includes(query)) return null;
   if (month !== null && !/^\d{4}-\d{2}$/.test(month)) return null;
   return { kind: "query", name: query, month: DATASET.months.includes(month) ? month : DATASET.asOf };
+}
+
+function asRoute(result) {
+  if (result && typeof result === "object" && !("response" in result) && ("query" in result || result.query === null)) return result;
+  const text = typeof result === "string" ? result : result?.response ?? "";
+  try {
+    const match = String(text).match(/\{[\s\S]*?\}/);
+    return JSON.parse(match ? match[0] : text);
+  } catch {
+    return null;
+  }
 }

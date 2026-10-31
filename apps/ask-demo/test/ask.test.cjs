@@ -100,9 +100,12 @@ test("askApi=same points a local page at its own origin", () => {
 
 test("an empty config keeps the static mock and a Worker URL turns on the API", () => {
   const live = new URL("https://nimblytica.com/apps/ask-demo/");
+  const preview = new URL("https://valley-freight-ask.example.workers.dev/apps/ask-demo/?askApi=https://evil.example");
   assert.equal(ask.resolveApiBase("", live), "");
   assert.equal(ask.resolveApiBase(undefined, live), "");
   assert.equal(ask.resolveApiBase("https://valley-freight-ask.example.workers.dev", live), "https://valley-freight-ask.example.workers.dev");
+  assert.equal(ask.resolveApiBase("", preview), preview.origin);
+  assert.equal(ask.resolveApiBase("", new URL("http://127.0.0.1:8787/apps/ask-demo/")), "");
 });
 
 test("the public site ignores an askApi override", () => {
@@ -151,5 +154,7 @@ test("page copy has no em dash and no employer name", () => {
     const text = fs.readFileSync(file, "utf8");
     assert.ok(!text.includes("\u2014"), file);
     assert.ok(!/\bUKG\b/i.test(text), file);
+    assert.ok(!text.includes("ASK_LLM_KEY"), file);
+    assert.ok(!text.includes("api.openai.com"), file);
   }
 });

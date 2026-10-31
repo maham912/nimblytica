@@ -40,11 +40,12 @@ export function demoFailure(status) {
 
 export async function handle(request, env, db) {
   const started = Date.now();
+  const url = new URL(request.url);
   const origin = request.headers.get("origin");
-  const allowed = origin !== null && allowedOrigins(env).has(origin);
+  const allowed = origin !== null && allowedOrigins(env, url.origin).has(origin);
   const headers = { "cache-control": "no-store", vary: "origin" };
   if (allowed) headers["access-control-allow-origin"] = origin;
-  if (new URL(request.url).pathname !== "/ask") return new Response(null, { status: 404, headers });
+  if (url.pathname !== "/ask") return new Response(null, { status: 404, headers });
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: { ...headers, ...PREFLIGHT } });
   if (request.method !== "POST") return new Response(null, { status: 405, headers: { ...headers, allow: "POST, OPTIONS" } });
 
@@ -85,9 +86,9 @@ async function ask(request, env, db) {
   return { ...facts, status: 200, answer: answerFromPlan(plan, question, records) };
 }
 
-function allowedOrigins(env) {
-  const listed = String(env.ALLOWED_ORIGINS || "").split(",").map((origin) => origin.trim()).filter(Boolean);
-  return new Set(listed.length ? listed : DEFAULT_ORIGINS);
+function allowedOrigins(env, ownOrigin) {
+  const extra = String(env.ALLOWED_ORIGINS || "").split(",").map((origin) => origin.trim()).filter(Boolean);
+  return new Set([...DEFAULT_ORIGINS, ...extra, ownOrigin]);
 }
 
 async function readQuestion(request) {

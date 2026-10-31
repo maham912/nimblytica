@@ -236,9 +236,12 @@
   }
 
   function resolveApiBase(configBase, location) {
+    const configured = String(configBase || "").trim();
+    if (configured) return configured;
     const override = new URLSearchParams(location.search).get("askApi");
     if (override && LOOPBACK_HOSTS.has(location.hostname)) return override === "same" ? location.origin : override;
-    return String(configBase || "");
+    if (location.hostname.endsWith(".workers.dev")) return location.origin;
+    return "";
   }
 
   function isEnvelope(body) {
