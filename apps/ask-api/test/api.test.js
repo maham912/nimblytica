@@ -1,8 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readdirSync, readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { DatabaseSync } from "node:sqlite";
 import { defineQueries, makeDataset, QUERIES, UnsafeQuery } from "../catalog.js";
+import { handle } from "../handle.js";
 import { fromSqlite, query, QueryTimeout, seed, takeHit } from "../store.js";
 
 const require = createRequire(import.meta.url);
@@ -11,12 +13,44 @@ const page = require("../../ask-demo/ask.js");
 const SAFE_SQL = "SELECT site FROM monthly_site_operations WHERE month = ? LIMIT 10";
 const HOUR_MS = 60 * 60 * 1000;
 const T0 = Date.UTC(2026, 9, 30, 12);
+const SENTINEL = "sk-test-sentinel-do-not-leak";
+const OPENAI_URL = "https://api.openai.com/v1/chat/completions";
+const LATE_MARCH = "Which site had the most late deliveries in March 2025?";
+const STAFF = "How many staff are assigned to each site?";
+const NORTH_YARD_MARCH_2025 = { label: "North Yard", value: 36, detail: "91.5% on time" };
+const LOG_FIELDS = ["event", "status", "mode", "ms", "chars", "route", "fallback"];
 
 async function openStore() {
   const database = new DatabaseSync(":memory:");
   const db = fromSqlite(database);
   await seed(db);
   return { database, db };
+}
+
+function post(question, { ip = "203.0.113.7", origin, body } = {}) {
+  const headers = { "content-type": "application/json" };
+  if (ip !== null) headers["cf-connecting-ip"] = ip;
+  if (origin) headers.origin = origin;
+  return new Request("https://ask.example/ask", { method: "POST", headers, body: body ?? JSON.stringify({ question }) });
+}
+
+async function ask(db, request, env = {}) {
+  const response = await handle(request, env, db);
+  const text = await response.text();
+  return { response, text, body: JSON.parse(text) };
+}
+
+function captureLogs(t) {
+  const log = t.mock.method(console, "log", () => {});
+  return () => log.mock.calls.map((call) => call.arguments[0]);
+}
+
+function stubModel(t, reply) {
+  return t.mock.method(globalThis, "fetch", async (...args) => reply(...args));
+}
+
+function modelReply(route) {
+  return Response.json({ choices: [{ message: { content: JSON.stringify(route) } }] });
 }
 
 function probe(sql, bind = (month) => [month]) {
@@ -85,4 +119,214 @@ test("takeHit admits ten questions per key in any rolling hour", async () => {
   assert.equal((await takeHit(db, "198.51.100.2", T0)).admitted, true);
   assert.equal((await takeHit(db, "198.51.100.1", T0 + HOUR_MS - 1)).admitted, false);
   assert.deepEqual(await takeHit(db, "198.51.100.1", T0 + HOUR_MS + 1), { admitted: true, remaining: 9 });
+});
+
+test("a late-delivery question answers from the SQL rows for the month it names", async (t) => {
+  captureLogs(t);
+  const { response, body } = await ask((await openStore()).db, post(LATE_MARCH));
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("cache-control"), "no-store");
+  assert.equal(body.mode, "mock");
+  assert.equal(body.remaining, 9);
+  assert.equal(body.answer.kind, "data");
+  assert.equal(body.answer.intent, "deliveries");
+  assert.equal(body.answer.rows.length, 4);
+  assert.deepEqual(body.answer.rows[0], NORTH_YARD_MARCH_2025);
+  assert.match(body.answer.summary, /2025-03/);
+  assert.match(body.answer.summary, /North Yard/);
+  assert.match(body.answer.summary, /\b36\b/);
+  assert.match(body.answer.sql, /WHERE month = '2025-03'/);
+  assert.ok(!body.answer.sql.includes(LATE_MARCH));
+});
+
+test("SQL inside a question or the body never runs", async (t) => {
+  captureLogs(t);
+  const { database, db } = await openStore();
+  const hostile = await ask(db, post("overtime; DROP TABLE staff"));
+  assert.equal(hostile.body.answer.kind, "data");
+  assert.equal(hostile.body.answer.intent, "overtime");
+  assert.equal(hostile.body.answer.sql, QUERIES.overtime.sql.replace("?", "'2026-10'"));
+  assert.ok(!/DROP/i.test(hostile.body.answer.sql));
+  const extra = await ask(db, post("", { body: JSON.stringify({ question: STAFF, sql: "DROP TABLE monthly_site_operations" }) }));
+  assert.equal(extra.body.answer.intent, "headcount");
+  assert.equal(database.prepare("SELECT COUNT(*) AS n FROM monthly_site_operations").get().n, 96);
+});
+
+test("a policy question answers from the sample notes without calling a model", async (t) => {
+  captureLogs(t);
+  const model = stubModel(t, () => modelReply({ query: null, month: null }));
+  const { body } = await ask((await openStore()).db, post("What is the detention fee policy?"));
+  assert.equal(body.answer.kind, "docs");
+  assert.equal(body.answer.citations[0].source, "detention-fee-sop.md");
+  assert.match(body.answer.summary, /90-minute free window/);
+  assert.equal(model.mock.callCount(), 0);
+});
+
+test("each network gets ten questions in a rolling hour", async (t) => {
+  captureLogs(t);
+  t.mock.timers.enable({ apis: ["Date"], now: T0 });
+  const { db } = await openStore();
+  for (let expected = 9; expected >= 0; expected -= 1) {
+    const { response, body } = await ask(db, post(STAFF, { ip: "198.51.100.1" }));
+    assert.equal(response.status, 200);
+    assert.equal(body.remaining, expected);
+  }
+  const limited = await ask(db, post(STAFF, { ip: "198.51.100.1" }));
+  assert.equal(limited.response.status, 429);
+  assert.equal(limited.body.answer.kind, "error");
+  assert.equal(limited.body.remaining, 0);
+  assert.equal((await ask(db, post(STAFF, { ip: "198.51.100.2" }))).response.status, 200);
+  t.mock.timers.setTime(T0 + HOUR_MS + 1);
+  const again = await ask(db, post(STAFF, { ip: "198.51.100.1" }));
+  assert.equal(again.response.status, 200);
+  assert.equal(again.body.remaining, 9);
+});
+
+test("an IPv6 /64 is one network, and missing addresses share one window", async (t) => {
+  captureLogs(t);
+  const { db } = await openStore();
+  for (let count = 0; count < 10; count += 1) await ask(db, post(STAFF, { ip: "2001:db8:1:2::a" }));
+  assert.equal((await ask(db, post(STAFF, { ip: "2001:0db8:0001:0002:0000:0000:0000:000b" }))).response.status, 429);
+  assert.equal((await ask(db, post(STAFF, { ip: "2001:db8:1:3::a" }))).response.status, 200);
+  for (let count = 0; count < 10; count += 1) await ask(db, post(STAFF, { ip: null }));
+  assert.equal((await ask(db, post(STAFF, { ip: "not an address" }))).response.status, 429);
+});
+
+test("bad input and preflight do not spend a question", async (t) => {
+  captureLogs(t);
+  const { db } = await openStore();
+  const bodies = [
+    JSON.stringify({ question: "" }),
+    JSON.stringify({ question: "   " }),
+    JSON.stringify({ question: "x".repeat(241) }),
+    JSON.stringify({ question: STAFF, padding: "x".repeat(2048) }),
+    "not json"
+  ];
+  for (const body of bodies) {
+    const result = await ask(db, post("", { body }));
+    assert.equal(result.response.status, 400, body.slice(0, 40));
+    assert.equal(result.body.answer.kind, "error");
+    assert.equal(result.body.remaining, null);
+  }
+  const preflight = await handle(new Request("https://ask.example/ask", { method: "OPTIONS", headers: { origin: "https://nimblytica.com", "cf-connecting-ip": "203.0.113.7" } }), {}, db);
+  assert.equal(preflight.status, 204);
+  assert.equal(preflight.headers.get("access-control-allow-origin"), "https://nimblytica.com");
+  assert.equal((await ask(db, post(STAFF))).body.remaining, 9);
+});
+
+test("the model key never reaches a response or a log line", async (t) => {
+  const cases = [
+    { name: "a valid route", reply: () => modelReply({ query: "fuel", month: "2025-03" }), mode: "llm", intent: "fuel" },
+    { name: "a 401 that echoes the key", reply: () => Response.json({ error: { message: `Incorrect API key provided: ${SENTINEL}` } }, { status: 401 }) },
+    { name: "a 200 that echoes the key", reply: () => modelReply({ query: SENTINEL, month: null }) },
+    { name: "a network error naming the key", reply: () => { throw new Error(`connect failed for ${SENTINEL}`); } },
+    { name: "an off-menu query name", reply: () => modelReply({ query: "payroll", month: null }) },
+    { name: "SQL text as the query", reply: () => modelReply({ query: "SELECT * FROM ask_hits LIMIT 1", month: "2025-03" }) },
+    { name: "malformed content", reply: () => new Response("not json") }
+  ];
+  for (const { name, reply, mode = "mock", intent = "deliveries" } of cases) {
+    await t.test(name, async (t) => {
+      const logs = captureLogs(t);
+      const model = stubModel(t, reply);
+      const { response, text, body } = await ask((await openStore()).db, post(LATE_MARCH), { ASK_LLM_KEY: SENTINEL });
+      assert.equal(response.status, 200);
+      assert.equal(body.mode, mode);
+      assert.equal(body.answer.kind, "data");
+      assert.equal(body.answer.intent, intent);
+      assert.ok(!text.includes(SENTINEL));
+      for (const [header, value] of response.headers) assert.ok(!value.includes(SENTINEL), header);
+
+      const lines = logs();
+      assert.equal(lines.length, 1);
+      assert.ok(!lines[0].includes(SENTINEL));
+      assert.ok(!lines[0].includes("late deliveries"));
+      const entry = JSON.parse(lines[0]);
+      assert.deepEqual(Object.keys(entry), LOG_FIELDS);
+      assert.equal(entry.fallback === null, mode === "llm");
+
+      assert.equal(model.mock.callCount(), 1);
+      const [url, init] = model.mock.calls[0].arguments;
+      assert.equal(url, OPENAI_URL);
+      assert.equal(init.headers.authorization, `Bearer ${SENTINEL}`);
+      assert.ok(!init.body.includes(SENTINEL));
+      assert.ok(init.body.includes(LATE_MARCH));
+    });
+  }
+});
+
+test("without a key the API never calls the model", async (t) => {
+  captureLogs(t);
+  const model = stubModel(t, () => modelReply({ query: "fuel", month: null }));
+  for (const env of [{}, { ASK_LLM_KEY: "" }, { ASK_LLM_KEY: "  " }]) {
+    const { body } = await ask((await openStore()).db, post(LATE_MARCH), env);
+    assert.equal(body.mode, "mock");
+    assert.equal(body.answer.intent, "deliveries");
+  }
+  assert.equal(model.mock.callCount(), 0);
+});
+
+test("a site outside the allowlist gets 403 before the cap or the model runs", async (t) => {
+  captureLogs(t);
+  const model = stubModel(t, () => modelReply({ query: "fuel", month: null }));
+  const { db } = await openStore();
+  const refused = await ask(db, post(LATE_MARCH, { origin: "https://evil.example" }), { ASK_LLM_KEY: SENTINEL });
+  assert.equal(refused.response.status, 403);
+  assert.equal(refused.response.headers.get("access-control-allow-origin"), null);
+  assert.equal(refused.body.answer.kind, "error");
+  assert.equal(refused.body.remaining, null);
+  assert.equal(model.mock.callCount(), 0);
+
+  const allowed = await ask(db, post(LATE_MARCH, { origin: "https://nimblytica.com" }));
+  assert.equal(allowed.response.status, 200);
+  assert.equal(allowed.response.headers.get("access-control-allow-origin"), "https://nimblytica.com");
+  assert.equal(allowed.body.remaining, 9);
+
+  const configured = await ask(db, post(LATE_MARCH, { origin: "https://evil.example" }), { ALLOWED_ORIGINS: "https://evil.example" });
+  assert.equal(configured.response.status, 200);
+});
+
+test("a stalled query answers 503 with the timeout message after five seconds", async (t) => {
+  captureLogs(t);
+  const { db } = await openStore();
+  const templates = new Set(Object.values(QUERIES).map((entry) => entry.sql));
+  let markStalled;
+  const stalled = new Promise((resolve) => {
+    markStalled = resolve;
+  });
+  const stalling = {
+    ...db,
+    all: (sql, params) => {
+      if (!templates.has(sql)) return db.all(sql, params);
+      markStalled();
+      return new Promise(() => {});
+    }
+  };
+  t.mock.timers.enable({ apis: ["setTimeout"] });
+  const pending = ask(stalling, post(STAFF));
+  await stalled;
+  t.mock.timers.tick(5000);
+  const { response, body } = await pending;
+  assert.equal(response.status, 503);
+  assert.equal(body.answer.kind, "error");
+  assert.match(body.answer.summary, /five seconds/);
+  assert.equal(body.remaining, 9);
+});
+
+test("a store failure answers 503 without detail", async (t) => {
+  const logs = captureLogs(t);
+  const broken = { all: async () => { throw new Error("D1_ERROR: no such table: ask_hits"); } };
+  const { response, text, body } = await ask(broken, post(STAFF));
+  assert.equal(response.status, 503);
+  assert.equal(body.answer.kind, "error");
+  assert.equal(body.remaining, null);
+  assert.ok(!text.includes("D1_ERROR"));
+  assert.ok(!logs()[0].includes("D1_ERROR"));
+});
+
+test("API copy has no em dash and no employer name", () => {
+  for (const file of readdirSync(new URL("..", import.meta.url)).filter((name) => name.endsWith(".js"))) {
+    const text = readFileSync(new URL(`../${file}`, import.meta.url), "utf8");
+    assert.ok(!text.includes("\u2014"), file);
+    assert.ok(!/\bUKG\b/i.test(text), file);
+  }
 });

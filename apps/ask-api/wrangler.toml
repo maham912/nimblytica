@@ -1,0 +1,8 @@
+name = "valley-freight-ask"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "ASK_DB"
+database_name = "valley-freight-ask"
+database_id = "paste-the-id-from-wrangler-d1-create"

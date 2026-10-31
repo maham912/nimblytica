@@ -1,5 +1,10 @@
+import library from "../ask-demo/docs/library.json" with { type: "json" };
+
 export const TABLE = "monthly_site_operations";
 export const MAX_ROWS = 1000;
+export const DOCUMENTS = library.documents;
+const MAX_CITATIONS = 2;
+const IGNORED_TERMS = new Set(["about", "after", "does", "from", "have", "how", "into", "that", "the", "their", "there", "this", "what", "when", "where", "which", "with", "would", "your"]);
 
 const sites = [
   { id: "north-yard", name: "North Yard", headcount: 34, loads: 410, onTime: 0.91, overtime: 290, financeOvertime: 222, detention: 5200, fuel: 61200 },
@@ -129,3 +134,48 @@ export const QUERIES = defineQueries({
     summarize: (records, month) => `Recorded detention fees total ${formatCurrency(total(records, "detention_fees"))} across ${records.length} sites for ${month}.`
   }
 });
+
+export function citationsFor(question) {
+  const terms = new Set((question.toLowerCase().match(/[a-z0-9]+/g) || []).filter((term) => term.length > 2 && !IGNORED_TERMS.has(term)));
+  if (!terms.size) return [];
+  return DOCUMENTS.map((document) => {
+    const text = `${document.title} ${document.keywords || ""} ${document.text || ""}`.toLowerCase();
+    const score = Array.from(terms).reduce((sum, term) => sum + (text.includes(term) ? 1 : 0), 0);
+    return { document, score };
+  }).filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.document.title.localeCompare(b.document.title))
+    .slice(0, MAX_CITATIONS)
+    .map(({ document }) => ({ title: document.title, source: document.source, excerpt: document.excerpt }));
+}
+
+function displaySql(sql, params) {
+  let index = 0;
+  return sql.replace(/\?/g, () => `'${params[index++]}'`);
+}
+
+export function answerFromPlan(plan, question, records) {
+  const citations = citationsFor(question);
+  if (plan.kind === "query") {
+    const entry = QUERIES[plan.name];
+    return {
+      kind: "data",
+      intent: plan.name,
+      title: entry.title,
+      summary: entry.summarize(records, plan.month),
+      rows: entry.rows(records),
+      citations,
+      sql: displaySql(entry.sql, entry.bind(plan.month))
+    };
+  }
+  if (citations.length) {
+    return { kind: "docs", title: "From the Valley Freight sample notes", summary: citations.map((citation) => citation.excerpt).join(" "), rows: [], citations, sql: "" };
+  }
+  return {
+    kind: "unmatched",
+    title: "No matched sample",
+    summary: "I could not match that question to this small demo. Try one of the suggested questions about overtime, deliveries, fuel, staff, detention fees, or accruals.",
+    rows: [],
+    citations: [],
+    sql: ""
+  };
+}
