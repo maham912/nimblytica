@@ -327,6 +327,7 @@ test("API copy has no em dash and no employer name", () => {
   for (const file of readdirSync(new URL("..", import.meta.url)).filter((name) => name.endsWith(".js"))) {
     const text = readFileSync(new URL(`../${file}`, import.meta.url), "utf8");
     assert.ok(!text.includes("\u2014"), file);
-    assert.ok(!/\bUKG\b/i.test(text), file);
+    // Hex escapes keep the banned name out of this file too.
+    assert.ok(!/\b\x55\x4B\x47\b/i.test(text), file);
   }
 });
